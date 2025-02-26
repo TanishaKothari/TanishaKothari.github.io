@@ -1,8 +1,3 @@
-/*
-  TODO:
-  1. Gems not spawning on mobile.
-*/
-
 const gameState = {
   player: {
     level: 1,
