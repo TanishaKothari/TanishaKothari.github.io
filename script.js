@@ -390,7 +390,7 @@ document.addEventListener("DOMContentLoaded", () => {
       renderScene();
     }
   };
-
+  
   const renderScene = () => {
     const scene = scenes[currentScene];
 
@@ -1219,17 +1219,17 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // Update achievements UI
   const updateAchievementsUI = () => {
-  const achievementsList = document.querySelector('.achievements-list');
-  if (achievementsList) {
-    const fragment = document.createDocumentFragment();
-    achievementsList.innerHTML = '';
-    Object.values(GameSystems.achievements).forEach(achievement => {
-      if (achievement.tiers) {
-        achievement.tiers.forEach(tier => {
-          if (tier.unlocked) {
-            const achievementItem = document.createElement('li');
-            achievementItem.classList.add('achievement-item');
-            achievementItem.innerHTML = `
+    const achievementsList = document.querySelector('.achievements-list');
+    if (achievementsList) {
+      const fragment = document.createDocumentFragment();
+      achievementsList.innerHTML = '';
+      Object.values(GameSystems.achievements).forEach(achievement => {
+        if (achievement.tiers) {
+          achievement.tiers.forEach(tier => {
+            if (tier.unlocked) {
+              const achievementItem = document.createElement('li');
+              achievementItem.classList.add('achievement-item');
+              achievementItem.innerHTML = `
               ${tier.icon}
               <span>${tier.name}</span>
               <div class="achievement-tooltip">
@@ -1241,15 +1241,15 @@ document.addEventListener("DOMContentLoaded", () => {
                 </div>
               </div>
             `;
-            fragment.appendChild(achievementItem);
-          }
-        });
+              fragment.appendChild(achievementItem);
+            }
+          });
 
-        const nextTier = achievement.tiers.find(t => !t.unlocked);
-        if (nextTier) {
-          const progressItem = document.createElement('li');
-          progressItem.classList.add('achievement-item', 'achievement-progress');
-          progressItem.innerHTML = `
+          const nextTier = achievement.tiers.find(t => !t.unlocked);
+          if (nextTier) {
+            const progressItem = document.createElement('li');
+            progressItem.classList.add('achievement-item', 'achievement-progress');
+            progressItem.innerHTML = `
             ${nextTier.icon}
             <div class="flex-1">
               <span>${nextTier.name}</span>
@@ -1261,13 +1261,13 @@ document.addEventListener("DOMContentLoaded", () => {
             </div>
             <span class="text-sm text-gray-400">${achievement.progress}/${nextTier.requirement}</span>
           `;
-          fragment.appendChild(progressItem);
-        }
-      } else {
-        if (achievement.unlocked) {
-          const achievementItem = document.createElement('li');
-          achievementItem.classList.add('achievement-item');
-          achievementItem.innerHTML = `
+            fragment.appendChild(progressItem);
+          }
+        } else {
+          if (achievement.unlocked) {
+            const achievementItem = document.createElement('li');
+            achievementItem.classList.add('achievement-item');
+            achievementItem.innerHTML = `
             ${achievement.icon}
             <span>${achievement.name}</span>
             <div class="achievement-tooltip">
@@ -1276,74 +1276,74 @@ document.addEventListener("DOMContentLoaded", () => {
               <div class="tooltip-xp">+${achievement.xpReward} XP</div>
             </div>
           `;
-          fragment.appendChild(achievementItem);
+            fragment.appendChild(achievementItem);
+          }
         }
-      }
-    });
-    achievementsList.appendChild(fragment);
-  }
-};
-
-const notificationQueue = [];
-let isProcessingQueue = false;
-
-// Modified showAchievementNotification function
-const showAchievementNotification = (name, xp) => {
-  // Add notification to queue
-  notificationQueue.push({ name, xp });
-  
-  // Start processing queue if not already processing
-  if (!isProcessingQueue) {
-    processNotificationQueue();
-  }
-};
-
-// Add new function to process notification queue
-const processNotificationQueue = async () => {
-  isProcessingQueue = true;
-
-  while (notificationQueue.length > 0) {
-    const { name, xp } = notificationQueue.shift();
-    
-    // Create notification element
-    const notification = document.createElement('div');
-    notification.className = 'fixed z-50 animate-fade-in notification-toast';
-    
-    // Position notifications based on screen size
-    if (window.innerWidth <= 768) {
-      notification.classList.add('bottom-4', 'left-1/2', '-translate-x-1/2');
-    } else {
-      notification.classList.add('bottom-4', 'right-4');
+      });
+      achievementsList.appendChild(fragment);
     }
-    
-    // Style notification
-    notification.innerHTML = `
+  };
+
+  const notificationQueue = [];
+  let isProcessingQueue = false;
+
+  // Modified showAchievementNotification function
+  const showAchievementNotification = (name, xp) => {
+    // Add notification to queue
+    notificationQueue.push({ name, xp });
+
+    // Start processing queue if not already processing
+    if (!isProcessingQueue) {
+      processNotificationQueue();
+    }
+  };
+
+  // Add new function to process notification queue
+  const processNotificationQueue = async () => {
+    isProcessingQueue = true;
+
+    while (notificationQueue.length > 0) {
+      const { name, xp } = notificationQueue.shift();
+
+      // Create notification element
+      const notification = document.createElement('div');
+      notification.className = 'fixed z-50 animate-fade-in notification-toast';
+
+      // Position notifications based on screen size
+      if (window.innerWidth <= 768) {
+        notification.classList.add('bottom-4', 'left-1/2', '-translate-x-1/2');
+      } else {
+        notification.classList.add('bottom-4', 'right-4');
+      }
+
+      // Style notification
+      notification.innerHTML = `
       <div class="bg-black/80 text-white p-4 rounded-lg animate-fade-in">
         <div class="font-bold">🏆 Achievement Unlocked!</div>
         <div>${name}</div>
         <div class="text-yellow-400">+${xp} XP</div>
       </div>
     `;
-    
-    // Add to DOM
-    document.body.appendChild(notification);
-    
-    // Wait for animation and display time
-    await new Promise(resolve => setTimeout(resolve, 3000));
-    
-    // Fade out animation
-    notification.style.opacity = '0';
-    await new Promise(resolve => setTimeout(resolve, 300));
-    
-    // Remove from DOM
-    notification.remove();
-    
-    // Small delay between notifications
-    await new Promise(resolve => setTimeout(resolve, 300));
-  }
-  
-  isProcessingQueue = false;
-};
+
+      // Add to DOM
+      document.body.appendChild(notification);
+
+      // Wait for animation and display time
+      await new Promise(resolve => setTimeout(resolve, 3000));
+
+      // Fade out animation
+      notification.style.opacity = '0';
+      await new Promise(resolve => setTimeout(resolve, 300));
+
+      // Remove from DOM
+      notification.remove();
+
+      // Small delay between notifications
+      await new Promise(resolve => setTimeout(resolve, 300));
+    }
+
+    isProcessingQueue = false;
+  };
 
   // Initialize collectibles
   setInterval(() => {
