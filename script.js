@@ -390,7 +390,7 @@ document.addEventListener("DOMContentLoaded", () => {
       renderScene();
     }
   };
-  
+
   const renderScene = () => {
     const scene = scenes[currentScene];
 
@@ -1225,43 +1225,42 @@ document.addEventListener("DOMContentLoaded", () => {
       achievementsList.innerHTML = '';
       Object.values(GameSystems.achievements).forEach(achievement => {
         if (achievement.tiers) {
-          achievement.tiers.forEach(tier => {
-            if (tier.unlocked) {
-              const achievementItem = document.createElement('li');
-              achievementItem.classList.add('achievement-item');
-              achievementItem.innerHTML = `
-              ${tier.icon}
-              <span>${tier.name}</span>
-              <div class="achievement-tooltip">
-                <div class="tooltip-title">${tier.name}</div>
-                <div class="tooltip-desc">${achievement.description}</div>
-                <div class="tooltip-xp">+${tier.xpReward} XP</div>
-                <div class="tooltip-progress">
-                  Progress: ${achievement.progress}/${tier.requirement}
-                </div>
-              </div>
-            `;
-              fragment.appendChild(achievementItem);
-            }
-          });
-
+          // Find the highest unlocked tier and next tier
+          const highestUnlockedTier = [...achievement.tiers].reverse()
+            .find(tier => tier.unlocked);
           const nextTier = achievement.tiers.find(t => !t.unlocked);
+
           if (nextTier) {
+            // Show only the next tier with progress
             const progressItem = document.createElement('li');
             progressItem.classList.add('achievement-item', 'achievement-progress');
             progressItem.innerHTML = `
-            ${nextTier.icon}
-            <div class="flex-1">
-              <span>${nextTier.name}</span>
-              <div class="w-full bg-gray-700 h-2 rounded-full mt-1">
-                <div class="bg-blue-500 h-full rounded-full transition-all" 
-                     style="width: ${(achievement.progress / nextTier.requirement) * 100}%">
+              ${nextTier.icon}
+              <div class="flex-1">
+                <span>${nextTier.name}</span>
+                <div class="w-full bg-gray-700 h-2 rounded-full mt-1">
+                  <div class="bg-blue-500 h-full rounded-full transition-all" 
+                       style="width: ${(achievement.progress / nextTier.requirement) * 100}%">
+                  </div>
                 </div>
               </div>
-            </div>
-            <span class="text-sm text-gray-400">${achievement.progress}/${nextTier.requirement}</span>
-          `;
+              <span class="text-sm text-gray-400">${achievement.progress}/${nextTier.requirement}</span>
+            `;
             fragment.appendChild(progressItem);
+          } else if (highestUnlockedTier) {
+            // If all tiers completed, show only the highest tier
+            const achievementItem = document.createElement('li');
+            achievementItem.classList.add('achievement-item');
+            achievementItem.innerHTML = `
+              ${highestUnlockedTier.icon}
+              <span>${highestUnlockedTier.name}</span>
+              <div class="achievement-tooltip">
+                <div class="tooltip-title">${highestUnlockedTier.name}</div>
+                <div class="tooltip-desc">${achievement.description}</div>
+                <div class="tooltip-xp">+${highestUnlockedTier.xpReward} XP</div>
+              </div>
+            `;
+            fragment.appendChild(achievementItem);
           }
         } else {
           if (achievement.unlocked) {
