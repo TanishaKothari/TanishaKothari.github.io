@@ -289,7 +289,7 @@ document.addEventListener("DOMContentLoaded", () => {
               <div class="space-y-4">
                   <div class="bg-white/5 p-4 rounded-lg">
                       <div class="flex items-center gap-2 mb-2">
-                          <i class="fas fa-users text-green-400"></i>
+                          <i class="fas fa-users text-orange-400"></i>
                           <span class="font-semibold">ENGO Peer Mentoring</span>
                       </div>
                       <p>Serving as a mentor at the University of Sydney's ENGO program, helping new students transition 
@@ -320,6 +320,14 @@ document.addEventListener("DOMContentLoaded", () => {
                       </div>
                       <p>Assisted in running a community blood donation camp by managing certificate distribution to donors, contributing to the smooth operation of the event.</p>
                   </div>
+
+                  <div class="bg-white/5 p-4 rounded-lg">
+                    <div class="flex items-center gap-2 mb-2">
+                        <i class="fas fa-globe text-green-400"></i>
+                        <span class="font-semibold">Delegate</span>
+                    </div>
+                    <p>I had the privilege of delegating an insightful interview with former member of parliament at New Zealand Parliament Mr. Kanwaljit Singh Bakshi on the role of India as a soft power in the global scenario.</p>
+                </div>
               </div>
             </div>
 
@@ -987,13 +995,13 @@ document.addEventListener("DOMContentLoaded", () => {
           
           <div class="grid gap-8">
             <div class="group bg-white/5 rounded-xl p-6 hover:bg-white/10 transition-all duration-300
-                        border border-white/10 hover:border-green-500/50">
+                        border border-white/10 hover:border-orange-500/50">
               <div class="flex items-center gap-4 mb-4">
-                <div class="text-3xl text-green-400 p-3 bg-white/5 rounded-lg">
+                <div class="text-3xl text-orange-400 p-3 bg-white/5 rounded-lg">
                   <i class="fas fa-users"></i>
                 </div>
                 <div>
-                  <h3 class="text-xl font-bold group-hover:text-green-400 transition-colors">
+                  <h3 class="text-xl font-bold group-hover:text-orange-400 transition-colors">
                     ENGO Peer Mentor
                   </h3>
                   <div class="text-blue-300">University of Sydney</div>
@@ -1062,6 +1070,21 @@ document.addEventListener("DOMContentLoaded", () => {
               <p class="text-gray-300 leading-relaxed">
                 Assisted in running a community blood donation camp by managing certificate distribution to donors, 
                 contributing to the smooth operation of the event.
+              </p>
+            </div>
+
+            <div class="group bg-white/5 rounded-xl p-6 hover:bg-white/10 transition-all duration-300
+                border border-white/10 hover:border-green-500/50">
+              <div class="flex items-center gap-4 mb-4">
+                <div class="text-3xl text-green-400 p-3 bg-white/5 rounded-lg">
+                  <i class="fas fa-globe"></i>
+                </div>
+                <h3 class="text-xl font-bold group-hover:text-green-400 transition-colors">
+                  Delegate
+                </h3>
+              </div>
+              <p class="text-gray-300 leading-relaxed">
+                I had the privilege of delegating an insightful interview with former member of parliament at New Zealand Parliament Mr. Kanwaljit Singh Bakshi on the role of India as a soft power in the global scenario.
               </p>
             </div>
           </div>

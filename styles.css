@@ -27,6 +27,9 @@
   --dark-bg: #1f2937;
 }
 
+.text-orange-400 { color: #f3873a; }
+.hover\:text-orange-400:hover { color: #f97316; }
+
 /* Academic Section Styles */
 .certification-card {
   background: rgba(255, 255, 255, 0.1);
