@@ -1,3 +1,8 @@
+/*
+  TODO:
+  1. Gems not spawning on mobile.
+*/
+
 const gameState = {
   player: {
     level: 1,
@@ -490,6 +495,14 @@ document.addEventListener("DOMContentLoaded", () => {
                         <i class="fab fa-github"></i>
                         <span>View Code</span>
                       </a>
+                      ${project.name === "PortalPaths: Maze Multiverse" ? `
+                        <a href="https://tanishakothari.itch.io/portalpaths-maze-multiverse" target="_blank" rel="noopener noreferrer"
+                            class="flex items-center gap-2 text-blue-300 hover:text-blue-100 transition-colors">
+                          <i class="fas fa-external-link-alt"></i>
+                          <span>Play Game</span>
+                        </a>
+                      ` : ''
+                      }
                       ${project.name === "ExploreEase" ? `
                         <a href="https://exploreease-4cf23960f067.herokuapp.com/login" target="_blank" rel="noopener noreferrer" 
                             class="flex items-center gap-2 text-blue-300 hover:text-blue-100 transition-colors">
@@ -891,6 +904,14 @@ document.addEventListener("DOMContentLoaded", () => {
                         <i class="fab fa-github"></i>
                         <span>View Code</span>
                       </a>
+                      ${project.name === "PortalPaths: Maze Multiverse" ? `
+                        <a href="https://tanishakothari.itch.io/portalpaths-maze-multiverse" target="_blank" rel="noopener noreferrer"
+                            class="inline-flex items-center gap-2 text-blue-300 hover:text-blue-100 transition-colors">
+                          <i class="fas fa-external-link-alt"></i>
+                          <span>Play Game</span>
+                        </a>
+                      ` : ''
+                      }
                       ${project.name === "ExploreEase" ? `
                         <a href="https://exploreease-4cf23960f067.herokuapp.com/login" target="_blank" rel="noopener noreferrer" 
                             class="inline-flex items-center gap-2 text-blue-300 hover:text-blue-100 transition-colors">
