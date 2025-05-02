@@ -41,6 +41,7 @@ document.addEventListener("DOMContentLoaded", () => {
           { text: "Explore Skills Chamber", nextScene: "skills" },
           { text: "Quest for Knowledge", nextScene: "academics" },
           { text: "Path of the Chess Master", nextScene: "chess" },
+          { text: "Search for Experience", nextScene: "experience" },
           { text: "About the Developer", nextScene: "about" },
           { text: "Contact Portal", nextScene: "contact" }
         ],
@@ -280,6 +281,39 @@ document.addEventListener("DOMContentLoaded", () => {
         ]
       }
     },
+    experience: {
+      background: "bg-gradient-to-b from-purple-900 to-indigo-900",
+      content: {
+        title: "Search for Experience",
+        description: `
+          <div class="space-y-8">
+            <div class="bg-white/5 p-6 rounded-lg">
+              <div class="flex items-center gap-3 mb-2">
+                <i class="fas fa-chess text-purple-400 text-2xl"></i>
+                <span class="font-bold text-lg">USYD Chess Club General Executive</span>
+              </div>
+              <div class="text-blue-300 mb-1">University of Sydney</div>
+              <div class="text-gray-400 mb-2">May 2025 - Present</div>
+              <p>Serving as a general executive for the University of Sydney Chess Club.</p>
+            </div>
+            <div class="bg-white/5 p-6 rounded-lg">
+              <div class="flex items-center gap-3 mb-2">
+                <i class="fas fa-users text-orange-400 text-2xl"></i>
+                <span class="font-bold text-lg">ENGO Peer Mentor</span>
+              </div>
+              <div class="text-blue-300 mb-1">University of Sydney</div>
+              <div class="text-gray-400 mb-2">February 2025 - Present</div>
+              <ul class="list-disc ml-6 text-gray-300 space-y-1">
+                <li>Mentoring first-year students to facilitate their transition to university life</li>
+                <li>Providing academic guidance and social support</li>
+                <li>Contributing to building an inclusive learning environment</li>
+                <li>Developing leadership and communication skills</li>
+              </ul>
+            </div>
+          </div>
+        `,
+      }
+    },
     about: {
       background: "bg-gradient-to-b from-violet-900 to-purple-900",
       content: {
@@ -291,17 +325,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
             <div class="mt-6">
               <h3 class="text-xl font-semibold mb-4">Volunteer Experience</h3>
-              <div class="space-y-4">
-                  <div class="bg-white/5 p-4 rounded-lg">
-                      <div class="flex items-center gap-2 mb-2">
-                          <i class="fas fa-users text-orange-400"></i>
-                          <span class="font-semibold">ENGO Peer Mentoring</span>
-                      </div>
-                      <p>Serving as a mentor at the University of Sydney's ENGO program, helping new students transition 
-                        to university life through academic guidance and social support. Contributing to building an 
-                        inclusive learning environment while developing leadership and communication skills.</p>
-                  </div>
-
                   <div class="bg-white/5 p-4 rounded-lg">
                       <div class="flex items-center gap-2 mb-2">
                           <i class="fas fa-heart text-pink-400"></i>
@@ -423,7 +446,9 @@ document.addEventListener("DOMContentLoaded", () => {
       "bg-gradient-to-b from-green-900 to-blue-900": gameState.darkMode ?
         "var(--bg-gradient)" : "linear-gradient(to bottom, #064e3b, #1e40af)",
       "bg-gradient-to-b from-green-900 to-purple-900": gameState.darkMode ?
-        "var(--bg-gradient)" : "linear-gradient(to bottom, #064e3b, #5b21b6)"
+        "var(--bg-gradient)" : "linear-gradient(to bottom, #064e3b, #5b21b6)",
+      "bg-gradient-to-b from-purple-900 to-indigo-900": gameState.darkMode ?
+        "var(--bg-gradient)" : "linear-gradient(to bottom, #4c1d95, #312e81)"
     };
 
     // Add a fade-out animation to the current content
@@ -1015,6 +1040,24 @@ document.addEventListener("DOMContentLoaded", () => {
           </h2>
           
           <div class="grid gap-8">
+            <div class="group bg-white/5 rounded-xl p-6 hover:bg-white/10 transition-all duration-300
+                        border border-white/10 hover:border-purple-500/50">
+              <div class="flex items-center gap-4 mb-4">
+                <div class="text-3xl text-purple-400 p-3 bg-white/5 rounded-lg">
+                  <i class="fas fa-chess"></i>
+                </div>
+                <div>
+                  <h3 class="text-xl font-bold group-hover:text-purple-400 transition-colors">
+                    USYD Chess Club General Executive
+                  </h3>
+                  <div class="text-blue-300">University of Sydney</div>
+                  <div class="text-gray-400">May 2025 - Present</div>
+                </div>
+              </div>
+              <p class="text-gray-300 leading-relaxed">
+                Serving as a general executive for the University of Sydney Chess Club.
+              </p>
+            </div>
             <div class="group bg-white/5 rounded-xl p-6 hover:bg-white/10 transition-all duration-300
                         border border-white/10 hover:border-orange-500/50">
               <div class="flex items-center gap-4 mb-4">

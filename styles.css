@@ -28,7 +28,7 @@
 }
 
 .text-orange-400 { color: #f3873a; }
-.hover\:text-orange-400:hover { color: #f97316; }
+.group:hover .group-hover\:text-orange-400 { color: #f97316; }
 
 /* Academic Section Styles */
 .certification-card {
