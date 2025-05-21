@@ -1,8 +1,3 @@
-/*
-  TODO:
-  1. Gems not spawning on mobile.
-*/
-
 const gameState = {
   player: {
     level: 1,
@@ -157,9 +152,11 @@ document.addEventListener("DOMContentLoaded", () => {
             skills: [
               { name: "Python & Flask", level: 80, icon: '<i class="fab fa-python"></i>' },
               { name: "JavaScript", level: 70, icon: '<i class="fab fa-js"></i>' },
+              { name: "SvelteKit", level: 65, icon: '<i class="fas fa-fire"></i>' },
+              { name: "C++", level: 75, icon: '<i class="fas fa-code"></i>' },
+              { name: "MySQL & SQLite", level: 72, icon: '<i class="fas fa-database"></i>' },
               { name: "HTML & CSS", level: 75, icon: '<i class="fab fa-html5"></i>' },
-              { name: "Bootstrap", level: 70, icon: '<i class="fab fa-bootstrap"></i>' },
-              { name: "MySQL & SQLite", level: 72, icon: '<i class="fas fa-database"></i>' }
+              { name: "Bootstrap", level: 70, icon: '<i class="fab fa-bootstrap"></i>' }
             ]
           },
           {
@@ -289,12 +286,29 @@ document.addEventListener("DOMContentLoaded", () => {
           <div class="space-y-8">
             <div class="bg-white/5 p-6 rounded-lg">
               <div class="flex items-center gap-3 mb-2">
+                <i class="fas fa-laptop-code text-green-400 text-2xl"></i>
+                <span class="font-bold text-lg">Software Developer</span>
+              </div>
+              <div class="text-blue-300 mb-1">e12.io</div>
+              <div class="text-gray-400 mb-2">March 2025 - Present</div>
+              <ul class="list-disc ml-6 text-gray-300 space-y-1">
+                <li>Built responsive web interfaces in Svelte and SvelteKit for device onboarding, data visualization, and vendor/product management.</li>
+                <li>Implemented secure JWT and OAuth 2.0 authentication flows, enabling protected access and role-based control across the platform.</li>
+                <li>Integrated with and extended Node.js APIs to support frontend functionality for a scalable IoT data system.</li>
+              </ul>
+            </div>
+            <div class="bg-white/5 p-6 rounded-lg">
+              <div class="flex items-center gap-3 mb-2">
                 <i class="fas fa-chess text-purple-400 text-2xl"></i>
                 <span class="font-bold text-lg">USYD Chess Club General Executive</span>
               </div>
               <div class="text-blue-300 mb-1">University of Sydney</div>
               <div class="text-gray-400 mb-2">May 2025 - Present</div>
-              <p>Serving as a general executive for the University of Sydney Chess Club.</p>
+              <ul class="list-disc ml-6 text-gray-300 space-y-1">
+                <li>Assist in organizing events and tournaments to engage chess enthusiasts across campus.</li>
+                <li>Support weekly operations for a club of 150+ members, ensuring smooth event coordination and communication.</li>
+                <li>Developing event management, leadership, and communication skills.</li>
+              </ul>
             </div>
             <div class="bg-white/5 p-6 rounded-lg">
               <div class="flex items-center gap-3 mb-2">
@@ -1041,6 +1055,26 @@ document.addEventListener("DOMContentLoaded", () => {
           
           <div class="grid gap-8">
             <div class="group bg-white/5 rounded-xl p-6 hover:bg-white/10 transition-all duration-300
+                        border border-white/10 hover:border-green-500/50">
+              <div class="flex items-center gap-4 mb-4">
+                <div class="text-3xl text-green-400 p-3 bg-white/5 rounded-lg">
+                  <i class="fas fa-laptop-code"></i>
+                </div>
+                <div>
+                  <h3 class="text-xl font-bold group-hover:text-green-400 transition-colors">
+                    Software Developer
+                  </h3>
+                  <div class="text-blue-300">e12.io</div>
+                  <div class="text-gray-400">March 2025 - Present</div>
+                </div>
+              </div>
+              <ul class="text-gray-300 leading-relaxed space-y-2">
+                <li>• Built responsive web interfaces in Svelte and SvelteKit for device onboarding, data visualization, and vendor/product management.</li>
+                <li>• Implemented secure JWT and OAuth 2.0 authentication flows, enabling protected access and role-based control across the platform.</li>
+                <li>• Integrated with and extended Node.js APIs to support frontend functionality for a scalable IoT data system.</li>
+              </ul>
+            </div>
+            <div class="group bg-white/5 rounded-xl p-6 hover:bg-white/10 transition-all duration-300
                         border border-white/10 hover:border-purple-500/50">
               <div class="flex items-center gap-4 mb-4">
                 <div class="text-3xl text-purple-400 p-3 bg-white/5 rounded-lg">
@@ -1054,9 +1088,11 @@ document.addEventListener("DOMContentLoaded", () => {
                   <div class="text-gray-400">May 2025 - Present</div>
                 </div>
               </div>
-              <p class="text-gray-300 leading-relaxed">
-                Serving as a general executive for the University of Sydney Chess Club.
-              </p>
+              <ul class="text-gray-300 leading-relaxed space-y-2">
+                <li>• Assist in organizing events and tournaments to engage chess enthusiasts across campus.</li>
+                <li>• Support weekly operations for a club of 150+ members, ensuring smooth event coordination and communication.</li>
+                <li>• Developing event management, leadership, and communication skills.</li>
+              </ul>
             </div>
             <div class="group bg-white/5 rounded-xl p-6 hover:bg-white/10 transition-all duration-300
                         border border-white/10 hover:border-orange-500/50">
