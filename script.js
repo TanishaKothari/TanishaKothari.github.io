@@ -481,7 +481,6 @@ document.addEventListener("DOMContentLoaded", () => {
     // if we're already on “projects” and the grid exists, just update text
     if (currentScene === 'projects' && document.querySelector('.project-grid')) {
       updateProjectDescription();
-      return;
     }
 
     // Add a fade-out animation to the current content
