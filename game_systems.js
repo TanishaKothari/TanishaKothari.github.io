@@ -70,6 +70,14 @@ const achievements = {
     icon: '<i class="fas fa-moon"></i>',
     unlocked: false,
     xpReward: 25
+  },
+  artifactCollector: {
+    id: "artifactCollector",
+    name: "Artifact Collector",
+    description: "Discover all projects in the gallery",
+    icon: '<i class="fas fa-trophy"></i>',
+    unlocked: false,
+    xpReward: 100
   }
 };
 

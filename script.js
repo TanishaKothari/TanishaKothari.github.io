@@ -7,7 +7,8 @@ const gameState = {
     achievements: []
   },
   darkMode: false,
-  collectedGems: 0
+  collectedGems: 0,
+  discoveredProjects: []
 };
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -32,7 +33,7 @@ document.addEventListener("DOMContentLoaded", () => {
         </div>`,
         choices: [
           { text: "Game Maker's Odyssey", nextScene: "gamedev" },
-          { text: "Visit Project Gallery", nextScene: "projects" },
+          { text: "Enter Project Vault", nextScene: "projects" },
           { text: "Explore Skills Chamber", nextScene: "skills" },
           { text: "Quest for Knowledge", nextScene: "academics" },
           { text: "Path of the Chess Master", nextScene: "chess" },
@@ -46,7 +47,7 @@ document.addEventListener("DOMContentLoaded", () => {
       background: "bg-gradient-to-r from-purple-900 to-blue-900",
       content: {
         title: "Game Maker's Odyssey",
-        description: "My path in game development:<br><small class='text-blue-300'>💡 Next: Check out my Project Gallery to see these skills in action!</small>",
+        description: "My path in game development:<br><small class='text-blue-300'>💡 Next: Check out my Project Vault to see these skills in action!</small>",
         devJourney: [
           {
             year: "2022",
@@ -92,8 +93,8 @@ document.addEventListener("DOMContentLoaded", () => {
     projects: {
       background: "bg-gradient-to-b from-indigo-900 to-violet-900",
       content: {
-        title: "Project Gallery",
-        description: "Behold the artifacts of power (16 projects and counting!):<br><small class='text-blue-300'>💡 Discover the skills behind these projects in the Skills Chamber!</small>",
+        title: "Project Vault",
+        description: "Unearth hidden gems in the Project Vault:<br><small class='text-blue-300'>💡 Click the treasure chests to reveal each project's details!</small>",
         items: [
           {
             name: "Firearm Frenzy",
@@ -162,8 +163,8 @@ document.addEventListener("DOMContentLoaded", () => {
           {
             title: "Developer Tools",
             skills: [
+              { name: "Git & GitHub", level: 90, icon: '<i class="fab fa-github"></i>' },
               { name: "VS Code", level: 85, icon: '<i class="fas fa-code"></i>' },
-              { name: "Git & GitHub", level: 80, icon: '<i class="fab fa-github"></i>' },
             ]
           }
         ]
@@ -441,6 +442,18 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   };
 
+  function updateProjectDescription() {
+  const total = scenes.projects.content.items.length;
+  const discovered = gameState.discoveredProjects.length;
+  const tip = discovered < total
+    ? "💡 Click the treasure chests to reveal each project's details!"
+    : "💡 Discover the skills behind these projects in the Skills Chamber!";
+  const html = `Unearth hidden gems in the Project Vault:<br>
+    <small class="text-blue-300">${tip}</small>`;
+  const desc = document.querySelector('.content-container p');
+  if (desc) desc.innerHTML = html;
+}
+
   const renderScene = () => {
     const scene = scenes[currentScene];
 
@@ -464,6 +477,12 @@ document.addEventListener("DOMContentLoaded", () => {
       "bg-gradient-to-b from-purple-900 to-indigo-900": gameState.darkMode ?
         "var(--bg-gradient)" : "linear-gradient(to bottom, #4c1d95, #312e81)"
     };
+
+    // if we're already on “projects” and the grid exists, just update text
+    if (currentScene === 'projects' && document.querySelector('.project-grid')) {
+      updateProjectDescription();
+      return;
+    }
 
     // Add a fade-out animation to the current content
     app.style.opacity = "0";
@@ -516,42 +535,8 @@ document.addEventListener("DOMContentLoaded", () => {
             ` : ""}
 
             ${currentScene === "projects" ? `
-              <div class="grid gap-6 md:grid-cols-2 animate-fade-in">
-                ${scene.content.items.map(project => `
-                  <div class="bg-white/10 p-6 rounded-lg transform hover:scale-105 transition-all">
-                    <div class="flex items-center gap-4 mb-4">
-                      ${project.icon}
-                      <h3 class="text-xl font-bold">${project.name}</h3>
-                    </div>
-                    <div class="flex items-center gap-2 text-blue-300 mb-2">
-                      <i class="fas fa-code"></i>
-                      <span>${project.tech}</span>
-                    </div>
-                    <p class="mb-4">${project.description}</p>
-                    <div class="flex items-center gap-4">
-                      <a href="${project.link}" target="_blank" rel="noopener noreferrer" 
-                          class="flex items-center gap-2 text-blue-300 hover:text-blue-100 transition-colors">
-                        <i class="fab fa-github"></i>
-                        <span>View Code</span>
-                      </a>
-                      ${project.name === "PortalPaths: Maze Multiverse" ? `
-                        <a href="https://tanishakothari.itch.io/portalpaths-maze-multiverse" target="_blank" rel="noopener noreferrer"
-                            class="flex items-center gap-2 text-blue-300 hover:text-blue-100 transition-colors">
-                          <i class="fas fa-external-link-alt"></i>
-                          <span>Play Game</span>
-                        </a>
-                      ` : ''
-                      }
-                      ${project.name === "ExploreEase" ? `
-                        <a href="https://exploreease-4cf23960f067.herokuapp.com/login" target="_blank" rel="noopener noreferrer" 
-                            class="flex items-center gap-2 text-blue-300 hover:text-blue-100 transition-colors">
-                          <i class="fas fa-external-link-alt"></i>
-                          <span>View Project</span>
-                        </a>
-                      ` : ''}
-                    </div>
-                  </div>
-                `).join("")}
+              <div class="project-grid grid gap-6 md:grid-cols-3 animate-fade-in">
+                ${scene.content.items.map(getTreasureChestHTML).join("")}
               </div>
             ` : ""}
 
@@ -746,6 +731,57 @@ document.addEventListener("DOMContentLoaded", () => {
     renderScene();
     checkAchievements();
   };
+
+  window.discoverProject = (projectName) => {
+    const wrapper = document.querySelector(`.chest-wrapper[data-project="${projectName}"]`);
+    if (!wrapper || wrapper.classList.contains('opened')) return;
+
+    // Add to discovered projects
+    if (!gameState.discoveredProjects.includes(projectName)) {
+      gameState.discoveredProjects.push(projectName);
+    }
+
+    // Visual effects
+    wrapper.classList.add('opened');
+    
+    // Get chest position
+    const chest = wrapper.querySelector('.treasure-chest');
+    const rect = chest.getBoundingClientRect();
+    
+    // Particle effect
+    GameSystems.particleSystem.burst(
+      rect.left + rect.width/2,
+      rect.top + rect.height/2,
+      15, 
+      'collect'
+    );
+    
+    // XP reward
+    GameSystems.awardXP(15);
+
+    setTimeout(syncGridAlign, 650);
+
+    // Update achievements
+    checkAchievements();
+
+    // if user is viewing projects, refresh only the description
+    if (currentScene === 'projects') {
+      updateProjectDescription();
+    }
+  };
+
+  // sync the grid’s align-bottom class
+  function syncGridAlign() {
+    const grid = document.querySelector(".project-grid");
+    if (!grid) return;
+    const anyOpen = !!grid.querySelector(".chest-wrapper.opened");
+    grid.classList.toggle("align-bottom", anyOpen);
+  }
+
+  // Add resize observer
+  new ResizeObserver(entries => {
+    syncGridAlign();
+  }).observe(document.querySelector("#app"));
 
   renderScene(); // Initial page load
 
@@ -1333,6 +1369,14 @@ document.addEventListener("DOMContentLoaded", () => {
                 showAchievementNotification(achievement.name, achievement.xpReward);
               }
               break;
+            case "artifactCollector":
+              const projectCount = scenes.projects.content.items.length;
+              if (gameState.discoveredProjects.length >= projectCount && !achievement.unlocked) {
+                achievement.unlocked = true;
+                GameSystems.awardXP(achievement.xpReward);
+                showAchievementNotification(achievement.name, achievement.xpReward);
+              }
+              break;
           }
         }
       }
@@ -1472,3 +1516,1002 @@ document.addEventListener("DOMContentLoaded", () => {
     requestAnimationFrame(GameSystems.createRandomCollectible);
   }, Math.random() * 5000 + 5000);
 });
+
+/**
+ * Returns the full 3D chest + toggle markup for a project
+ */
+function getTreasureChestHTML(project) {
+  const isDiscovered = gameState.discoveredProjects.includes(project.name);
+  
+  return `
+    <div class="chest-wrapper ${isDiscovered ? 'opened' : ''}" 
+         data-project="${project.name}"
+         onclick="if(!this.classList.contains('opened')) discoverProject('${project.name}')">
+      <div class="chest-container">
+        <div class="treasure-chest">
+            <div class="lid">
+              <div class="lid-left">
+                <div class="side-panel"></div>
+                <div class="side-panel"></div>
+                <div class="side-panel"></div>
+                <div class="side-panel"></div>
+                <div class="side-panel"></div>
+              </div>
+              <div class="lid-panels">
+                <div class="panel" id="panel-0">
+                  <div class="board top"></div>
+                  <div class="board bottom"></div>
+                  <div class="iron-band left">
+                    <div class="circle"></div>
+                    <div class="circle"></div>
+                    <div class="circle"></div>
+                    <div class="circle"></div>
+                    <div class="circle"></div>
+                    <div class="circle"></div>
+                    <div class="circle"></div>
+                    <div class="circle"></div>
+                  </div>
+                  <div class="iron-band middle">
+                    <div class="circle"></div>
+                    <div class="circle"></div>
+                    <div class="circle"></div>
+                    <div class="circle"></div>
+                    <div class="circle"></div>
+                    <div class="circle"></div>
+                    <div class="circle"></div>
+                    <div class="circle"></div>
+                  </div>
+                  <div class="iron-band right">
+                    <div class="circle"></div>
+                    <div class="circle"></div>
+                    <div class="circle"></div>
+                    <div class="circle"></div>
+                    <div class="circle"></div>
+                    <div class="circle"></div>
+                    <div class="circle"></div>
+                    <div class="circle"></div>
+                  </div>
+                </div>
+                <div class="panel" id="panel-1">
+                  <div class="board top"></div>
+                  <div class="board bottom"></div>
+                  <div class="iron-band left">
+                    <div class="circle"></div>
+                    <div class="circle"></div>
+                    <div class="circle"></div>
+                    <div class="circle"></div>
+                    <div class="circle"></div>
+                    <div class="circle"></div>
+                    <div class="circle"></div>
+                    <div class="circle"></div>
+                  </div>
+                  <div class="iron-band middle">
+                    <div class="circle"></div>
+                    <div class="circle"></div>
+                    <div class="circle"></div>
+                    <div class="circle"></div>
+                    <div class="circle"></div>
+                    <div class="circle"></div>
+                    <div class="circle"></div>
+                    <div class="circle"></div>
+                  </div>
+                  <div class="iron-band right">
+                    <div class="circle"></div>
+                    <div class="circle"></div>
+                    <div class="circle"></div>
+                    <div class="circle"></div>
+                    <div class="circle"></div>
+                    <div class="circle"></div>
+                    <div class="circle"></div>
+                    <div class="circle"></div>
+                  </div>
+                </div>
+                <div class="panel" id="panel-2">
+                  <div class="board top"></div>
+                  <div class="board bottom"></div>
+                  <div class="iron-band left">
+                    <div class="circle"></div>
+                    <div class="circle"></div>
+                    <div class="circle"></div>
+                    <div class="circle"></div>
+                    <div class="circle"></div>
+                    <div class="circle"></div>
+                    <div class="circle"></div>
+                    <div class="circle"></div>
+                  </div>
+                  <div class="iron-band middle">
+                    <div class="circle"></div>
+                    <div class="circle"></div>
+                    <div class="circle"></div>
+                    <div class="circle"></div>
+                    <div class="circle"></div>
+                    <div class="circle"></div>
+                    <div class="circle"></div>
+                    <div class="circle"></div>
+                  </div>
+                  <div class="iron-band right">
+                    <div class="circle"></div>
+                    <div class="circle"></div>
+                    <div class="circle"></div>
+                    <div class="circle"></div>
+                    <div class="circle"></div>
+                    <div class="circle"></div>
+                    <div class="circle"></div>
+                    <div class="circle"></div>
+                  </div>
+                </div>
+                <div class="panel" id="panel-3">
+                  <div class="board top"></div>
+                  <div class="board bottom"></div>
+                  <div class="iron-band left">
+                    <div class="circle"></div>
+                    <div class="circle"></div>
+                    <div class="circle"></div>
+                    <div class="circle"></div>
+                    <div class="circle"></div>
+                    <div class="circle"></div>
+                    <div class="circle"></div>
+                    <div class="circle"></div>
+                  </div>
+                  <div class="iron-band middle">
+                    <div class="circle"></div>
+                    <div class="circle"></div>
+                    <div class="circle"></div>
+                    <div class="circle"></div>
+                    <div class="circle"></div>
+                    <div class="circle"></div>
+                    <div class="circle"></div>
+                    <div class="circle"></div>
+                  </div>
+                  <div class="iron-band right">
+                    <div class="circle"></div>
+                    <div class="circle"></div>
+                    <div class="circle"></div>
+                    <div class="circle"></div>
+                    <div class="circle"></div>
+                    <div class="circle"></div>
+                    <div class="circle"></div>
+                    <div class="circle"></div>
+                  </div>
+                </div>
+                <div class="panel" id="panel-4">
+                  <div class="board top"></div>
+                  <div class="board bottom"></div>
+                  <div class="iron-band left">
+                    <div class="circle"></div>
+                    <div class="circle"></div>
+                    <div class="circle"></div>
+                    <div class="circle"></div>
+                    <div class="circle"></div>
+                    <div class="circle"></div>
+                    <div class="circle"></div>
+                    <div class="circle"></div>
+                  </div>
+                  <div class="iron-band middle">
+                    <div class="circle"></div>
+                    <div class="circle"></div>
+                    <div class="circle"></div>
+                    <div class="circle"></div>
+                    <div class="circle"></div>
+                    <div class="circle"></div>
+                    <div class="circle"></div>
+                    <div class="circle"></div>
+                  </div>
+                  <div class="iron-band right">
+                    <div class="circle"></div>
+                    <div class="circle"></div>
+                    <div class="circle"></div>
+                    <div class="circle"></div>
+                    <div class="circle"></div>
+                    <div class="circle"></div>
+                    <div class="circle"></div>
+                    <div class="circle"></div>
+                  </div>
+                </div>
+              </div>
+              <div class="lid-right">
+                <div class="side-panel"></div>
+                <div class="side-panel"></div>
+                <div class="side-panel"></div>
+                <div class="side-panel"></div>
+                <div class="side-panel"></div>
+              </div>
+            </div>
+            <div class="chest">
+              <div class="front-panel">
+                <div class="side-chest-panel"></div>
+                <div class="side-chest-panel"></div>
+                <div class="side-chest-panel"></div>
+                <div class="side-chest-panel"></div>
+                <div class="iron-bars">
+                  <div class="top-bar iron-bar long">
+                    <div class="circle-cont">
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                    </div>
+                    <div class="circle-cont">
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                    </div>
+                    <div class="circle-cont">
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                    </div>
+                    <div class="circle-cont">
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                    </div>
+                    <div class="circle-cont">
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                    </div>
+                    <div class="circle-cont">
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                    </div>
+                  </div>
+                  <div class="bottom-bar iron-bar long">
+                    <div class="circle-cont">
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                    </div>
+                    <div class="circle-cont">
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                    </div>
+                    <div class="circle-cont">
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                    </div>
+                    <div class="circle-cont">
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                    </div>
+                    <div class="circle-cont">
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                    </div>
+                    <div class="circle-cont">
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                    </div>
+                  </div>
+                  <div class="middle-bar iron-bar short">
+                    <div class="lock">
+                      <div class="keyhole"></div>
+                    </div>
+                  </div>
+                  <div class="left-bar iron-bar short">
+                    <div class="circle-cont">
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                    </div>
+                    <div class="circle-cont">
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                    </div>
+                    <div class="circle-cont">
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                    </div>
+                    <div class="circle-cont">
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                    </div>
+                  </div>
+                  <div class="right-bar iron-bar short">
+                    <div class="circle-cont">
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                    </div>
+                    <div class="circle-cont">
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                    </div>
+                    <div class="circle-cont">
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                    </div>
+                    <div class="circle-cont">
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="left-panel">
+                <div class="side-chest-panel"></div>
+                <div class="side-chest-panel"></div>
+                <div class="side-chest-panel"></div>
+                <div class="side-chest-panel"></div>
+                <div class="iron-bars">
+                  <div class="top-bar iron-bar long">
+                    <div class="circle-cont">
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                    </div>
+                    <div class="circle-cont">
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                    </div>
+                    <div class="circle-cont">
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                    </div>
+                  </div>
+                  <div class="bottom-bar iron-bar long">
+                    <div class="circle-cont">
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                    </div>
+                    <div class="circle-cont">
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                    </div>
+                    <div class="circle-cont">
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                    </div>
+                  </div>
+                  <div class="left-bar iron-bar short">
+                    <div class="circle-cont">
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                    </div>
+                    <div class="circle-cont">
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                    </div>
+                    <div class="circle-cont">
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                    </div>
+                    <div class="circle-cont">
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                    </div>
+                  </div>
+                  <div class="right-bar iron-bar short">
+                    <div class="circle-cont">
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                    </div>
+                    <div class="circle-cont">
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                    </div>
+                    <div class="circle-cont">
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                    </div>
+                    <div class="circle-cont">
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="bottom-panel">
+                <div class="side-chest-panel"></div>
+                <div class="side-chest-panel"></div>
+                <div class="side-chest-panel"></div>
+                <div class="side-chest-panel"></div>
+              </div>
+              <div class="right-panel">
+                <div class="side-chest-panel"></div>
+                <div class="side-chest-panel"></div>
+                <div class="side-chest-panel"></div>
+                <div class="side-chest-panel"></div>
+                <div class="iron-bars">
+                  <div class="top-bar iron-bar long">
+                    <div class="circle-cont">
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                    </div>
+                    <div class="circle-cont">
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                    </div>
+                    <div class="circle-cont">
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                    </div>
+                  </div>
+                  <div class="bottom-bar iron-bar long">
+                    <div class="circle-cont">
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                    </div>
+                    <div class="circle-cont">
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                    </div>
+                    <div class="circle-cont">
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                    </div>
+                  </div>
+                  <div class="left-bar iron-bar short">
+                    <div class="circle-cont">
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                    </div>
+                    <div class="circle-cont">
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                    </div>
+                    <div class="circle-cont">
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                    </div>
+                    <div class="circle-cont">
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                    </div>
+                  </div>
+                  <div class="right-bar iron-bar short">
+                    <div class="circle-cont">
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                    </div>
+                    <div class="circle-cont">
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                    </div>
+                    <div class="circle-cont">
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                    </div>
+                    <div class="circle-cont">
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="back-panel">
+                <div class="side-chest-panel"></div>
+                <div class="side-chest-panel"></div>
+                <div class="side-chest-panel"></div>
+                <div class="side-chest-panel"></div>
+                <div class="iron-bars">
+                  <div class="top-bar iron-bar long">
+                    <div class="circle-cont">
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                    </div>
+                    <div class="circle-cont">
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                    </div>
+                    <div class="circle-cont">
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                    </div>
+                    <div class="circle-cont">
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                    </div>
+                    <div class="circle-cont">
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                    </div>
+                    <div class="circle-cont">
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                    </div>
+                  </div>
+                  <div class="middle-bar iron-bar short"></div>
+                  <div class="bottom-bar iron-bar long">
+                    <div class="circle-cont">
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                    </div>
+                    <div class="circle-cont">
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                    </div>
+                    <div class="circle-cont">
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                    </div>
+                    <div class="circle-cont">
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                    </div>
+                    <div class="circle-cont">
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                    </div>
+                    <div class="circle-cont">
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                    </div>
+                  </div>
+                  <div class="left-bar iron-bar short">
+                    <div class="circle-cont">
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                    </div>
+                    <div class="circle-cont">
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                    </div>
+                    <div class="circle-cont">
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                    </div>
+                    <div class="circle-cont">
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                    </div>
+                  </div>
+                  <div class="right-bar iron-bar short">
+                    <div class="circle-cont">
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                    </div>
+                    <div class="circle-cont">
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                    </div>
+                    <div class="circle-cont">
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                    </div>
+                    <div class="circle-cont">
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </label>
+        </div>
+        <div class="project-info-card">
+          <div class="project-info-content">
+            <div class="flex items-center gap-4 mb-4">
+              ${project.icon}
+              <h3 class="text-xl font-bold">${project.name}</h3>
+            </div>
+            <div class="flex items-center gap-2 mb-2" style="color: yellow">
+              <i class="fas fa-code"></i>
+              <span>${project.tech}</span>
+            </div>
+            <p class="mb-4">${project.description}</p>
+            <div class="flex items-center gap-4" style="color: yellow">
+              <a href="${project.link}" target="_blank" rel="noopener noreferrer"
+                  class="flex items-center gap-2 hover:text-yellow-200 transition-colors">
+                <i class="fab fa-github"></i>
+                <span>View Code</span>
+              </a>
+              ${project.name === "PortalPaths: Maze Multiverse" ? `
+                <a href="https://tanishakothari.itch.io/portalpaths-maze-multiverse" target="_blank" rel="noopener noreferrer"
+                    class="flex items-center gap-2 hover:text-yellow-200 transition-colors">
+                  <i class="fas fa-external-link-alt"></i>
+                  <span>Play Game</span>
+                </a>
+              ` : ''}
+              ${project.name === "ExploreEase" ? `
+                <a href="https://exploreease-4cf23960f067.herokuapp.com/login" target="_blank" rel="noopener noreferrer" 
+                    class="flex items-center gap-2 hover:text-yellow-200 transition-colors">
+                  <i class="fas fa-external-link-alt"></i>
+                  <span>View Project</span>
+                </a>
+              ` : ''}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  `;
+}
