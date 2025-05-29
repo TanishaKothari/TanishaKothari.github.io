@@ -8,7 +8,8 @@ const gameState = {
   },
   darkMode: false,
   collectedGems: 0,
-  discoveredProjects: []
+  discoveredProjects: [],
+  unlockedSkillCategories: []
 };
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -153,7 +154,7 @@ document.addEventListener("DOMContentLoaded", () => {
             skills: [
               { name: "Python & Flask", level: 80, icon: '<i class="fab fa-python"></i>' },
               { name: "JavaScript", level: 70, icon: '<i class="fab fa-js"></i>' },
-              { name: "SvelteKit", level: 65, icon: '<i class="fas fa-fire"></i>' },
+              { name: "Svelte & SvelteKit", level: 65, icon: '<i class="fas fa-fire"></i>' },
               { name: "C++", level: 75, icon: '<i class="fas fa-code"></i>' },
               { name: "MySQL & SQLite", level: 72, icon: '<i class="fas fa-database"></i>' },
               { name: "HTML & CSS", level: 75, icon: '<i class="fab fa-html5"></i>' },
@@ -375,7 +376,7 @@ document.addEventListener("DOMContentLoaded", () => {
             </div>
 
             <p class="mt-4">
-              <a href="Tanisha Kothari-Game Developer.pdf" target="_blank" rel="noopener noreferrer" class="inline-flex items-center px-4 py-2 bg-blue-600 rounded-lg hover:bg-blue-700 transition-colors">
+              <a href="assets/Tanisha Kothari-Game Developer.pdf" target="_blank" rel="noopener noreferrer" class="inline-flex items-center px-4 py-2 bg-blue-600 rounded-lg hover:bg-blue-700 transition-colors">
                 <i class="fas fa-file-alt mr-2"></i>
                 Download Resume
               </a>
@@ -540,27 +541,28 @@ document.addEventListener("DOMContentLoaded", () => {
             ` : ""}
 
             ${currentScene === "skills" ? `
-              <div class="space-y-8 animate-fade-in">
                 ${scene.content.skillCategories.map(category => `
-                  <div class="bg-white/5 p-6 rounded-lg backdrop-blur-sm">
+                  <div class="skill-scroll parchment mb-8 animate-fade-in"
+                      onclick="toggleSkillScroll(this,'${category.title}')">
                     <h3 class="text-2xl font-bold mb-4">${category.title}</h3>
-                    <div class="space-y-4">
+                    <div class="scroll-content space-y-4">
                       ${category.skills.map(skill => `
-                        <div class="bg-white/10 p-4 rounded-lg transform hover:scale-102 transition-all">
-                          <div class="flex items-center gap-4 mb-2">
+                        <div class="transform hover:scale-102 transition-all">
+                          <div class="flex items-center justify-center gap-4 mb-2">
                             ${skill.icon}
                             <span class="text-lg font-semibold">${skill.name}</span>
                           </div>
-                          <div class="w-full bg-gray-700 rounded-full h-4">
-                            <div class="bg-blue-500 rounded-full h-4 progress-bar" style="width: 0%"></div>
+                          <div class="progress-container">
+                            <div class="w-full bg-gray-700 rounded-full h-4">
+                              <div class="bg-blue-500 rounded-full h-4 progress-bar" style="width: 0%"></div>
+                            </div>
                           </div>
                         </div>
-                      `).join("")}
+                      `).join('')}
                     </div>
                   </div>
-                `).join("")}
-              </div>
-            ` : ""}
+                `).join('')}
+            ` : "" }
 
             ${currentScene === "academics" ? `
               <div class="space-y-8 animate-fade-in">
@@ -782,6 +784,18 @@ document.addEventListener("DOMContentLoaded", () => {
     syncGridAlign();
   }).observe(document.querySelector("#app"));
 
+  // Open skill scroll and unlock category
+  window.toggleSkillScroll = (el, title) => {
+    if (!el.classList.contains('open')) {
+      el.classList.add('open');
+      if (!gameState.unlockedSkillCategories.includes(title)) {
+        gameState.unlockedSkillCategories.push(title);
+        GameSystems.awardXP(20);
+        showAchievementNotification(`📜 Unlocked ${title}`, 20);
+      }
+    }
+  };
+
   renderScene(); // Initial page load
 
   function setupTraditionalView() {
@@ -948,7 +962,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 Passionate about creating immersive gaming experiences through efficient code and creative problem-solving.
               </p>
             </div>
-            <a href="Tanisha Kothari-Game Developer.pdf" target="_blank" rel="noopener noreferrer" 
+            <a href="assets/Tanisha Kothari-Game Developer.pdf" target="_blank" rel="noopener noreferrer" 
               class="inline-flex items-center gap-2 px-6 py-3 bg-blue-600 hover:bg-blue-700 rounded-lg transition-colors">
               <i class="fas fa-file-alt"></i>
               <span>Download Resume</span>
@@ -1362,7 +1376,8 @@ document.addEventListener("DOMContentLoaded", () => {
               }
               break;
             case "skillMaster":
-              if (currentScene === "skills" && !gameState.player.achievements.some(a => a.id === "skillMaster")) {
+              if (!gameState.player.achievements.some(a => a.id === "skillMaster")
+                    && gameState.unlockedSkillCategories.length === scenes.skills.content.skillCategories.length) {
                 achievement.unlocked = true;
                 GameSystems.awardXP(achievement.xpReward);
                 showAchievementNotification(achievement.name, achievement.xpReward);

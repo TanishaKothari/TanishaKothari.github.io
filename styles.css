@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=MedievalSharp&display=swap');
+
 /* Transitions and animations */
 #app {
   transition: opacity 0.3s ease-in-out;
@@ -1286,6 +1288,72 @@ input[type="checkbox"] {
 
 .chest-wrapper.opened .treasure-chest {
   animation: chestOpen 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+/* Parchment styling for skill scroll */
+.parchment {
+  background: url('assets/parchment.png') no-repeat center/cover;
+  font-family: 'MedievalSharp', serif;
+  color: #3e2f1b;
+  padding: 1rem !important;
+  border: none !important;
+  border-radius: 0 !important;
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Center content horizontally */
+}
+
+/* Scroll-open hover effect */
+.skill-scroll {
+  background-clip: padding-box;        /* keep parchment graphic behind all content */
+  overflow: hidden;                    /* hide inner content when “closed” */
+  max-height: 4rem;                    /* only enough to show the title bar */
+  transform-origin: top center;
+  transition:
+    transform 0.3s ease,
+    max-height 0.5s ease;
+  cursor: pointer;
+}
+
+/* hide inner skills */
+.skill-scroll .scroll-content {
+  opacity: 0;
+  transition: opacity 0.3s ease 0.2s;
+}
+
+.scroll-content {
+  padding: 1rem;
+  max-width: 55%;
+  width: 100%; /* Take full available width */
+  margin: 0 auto; /* Center the content block */
+}
+
+.skill-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Center skill items */
+  margin-bottom: 1rem;
+}
+
+/* Progress bar container */
+.progress-container {
+  width: 100%;
+  margin: 0 auto; /* Center progress bar */
+}
+
+.skill-scroll.open {
+  max-height: 100vh;      /* big enough to show all skills */
+  transform: none !important;
+}
+
+/* reveal on click */
+.skill-scroll.open .scroll-content {
+  opacity: 1;
+}
+
+/* slight tilt on hover (still closed) */
+.skill-scroll:not(.open):hover {
+  max-height: 4.5rem;
 }
 
 .xp-reward {
