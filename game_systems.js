@@ -78,6 +78,14 @@ const achievements = {
     icon: '<i class="fas fa-trophy"></i>',
     unlocked: false,
     xpReward: 100
+  },
+  scholar: {
+    id: "scholar",
+    name: "Scholar",
+    description: "Complete all educational quests",
+    icon: '<i class="fas fa-graduation-cap"></i>',
+    unlocked: false,
+    xpReward: 50
   }
 };
 
