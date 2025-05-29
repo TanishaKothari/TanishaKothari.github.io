@@ -398,10 +398,10 @@ document.addEventListener("DOMContentLoaded", () => {
         description: "Connect with me through these magical portals:",
         socialLinks: [
           {
-            name: "GitHub",
-            icon: '<i class="fab fa-github"></i>',
-            link: "https://github.com/TanishaKothari",
-            color: "hover:bg-gray-700"
+            name: "Email",
+            icon: '<i class="fas fa-envelope"></i>',
+            link: "mailto:kotharitanisha50@gmail.com",
+            color: "hover:bg-red-700"
           },
           {
             name: "LinkedIn",
@@ -410,10 +410,10 @@ document.addEventListener("DOMContentLoaded", () => {
             color: "hover:bg-blue-700"
           },
           {
-            name: "Email",
-            icon: '<i class="fas fa-envelope"></i>',
-            link: "mailto:kotharitanisha50@gmail.com",
-            color: "hover:bg-red-700"
+            name: "GitHub",
+            icon: '<i class="fab fa-github"></i>',
+            link: "https://github.com/TanishaKothari",
+            color: "hover:bg-gray-700"
           }
         ]
       }
