@@ -1022,7 +1022,7 @@ document.addEventListener("DOMContentLoaded", () => {
           </h2>
           ${scenes.skills.content.skillCategories.map(category => `
             <div class="mb-12 last:mb-0">
-              <h3 class="text-2xl font-bold mb-6 text-gray-200">${category.title.replace(' Arsenal', '').replace(' Spells', '')}</h3>
+              <h3 class="text-2xl font-bold mb-6 text-gray-200">${category.title.replace(' Arsenal', '').replace(' Spellbook', ' Development')}</h3>
               <div class="grid gap-6 md:grid-cols-2">
                 ${category.skills.map(skill => `
                   <div class="group bg-white/5 p-5 rounded-lg border border-white/10">
