@@ -651,14 +651,8 @@ document.addEventListener("DOMContentLoaded", () => {
             ` : ""}
 
             ${currentScene === "contact" ? `
-              <div class="grid gap-6 md:grid-cols-3 animate-fade-in">
-                ${scene.content.socialLinks?.map(social => `
-                  <a href="${social.link}" target="_blank" rel="noopener noreferrer" 
-                      class="bg-white/10 p-6 rounded-lg text-center transform hover:scale-105 transition-all ${social.color}">
-                    <div class="text-4xl mb-2">${social.icon}</div>
-                    <div class="text-lg font-semibold">${social.name}</div>
-                  </a>
-                `).join("") || ""}
+              <div class="portal-stone-grid animate-fade-in">
+                ${scene.content.socialLinks?.map(getPortalStoneHTML).join("") || ""}
               </div>
             ` : ""}
 
@@ -883,6 +877,15 @@ document.addEventListener("DOMContentLoaded", () => {
       </div>
     `
   };
+
+  function getPortalStoneHTML(social) {
+    return `
+      <div class="portal-stone" onclick="window.open('${social.link}', '_blank')" title="${social.name}">
+        <div class="portal-icon">${social.icon}</div>
+        <span class="rune-label">${social.name}</span>
+      </div>
+    `;
+  }
 
   renderScene(); // Initial page load
 

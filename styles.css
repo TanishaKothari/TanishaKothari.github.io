@@ -1363,7 +1363,7 @@ input[type="checkbox"] {
   margin-bottom: -30%;
 }
 
-/* Trophy Room and Trophy Styles */
+/* Chess Trophy Styles */
 .trophy-wrapper:not(.opened):hover {
   cursor: pointer;
 }
@@ -1389,6 +1389,62 @@ input[type="checkbox"] {
 .dark-mode .trophy-wrapper.opened svg {
   filter: drop-shadow(0 0 8px rgba(200, 200, 200, 0.4))
           drop-shadow(0 0 4px rgba(200, 200, 200, 0.3));
+}
+
+/* Contact Portal Styles */
+.portal-stone-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(6rem, 1fr));
+  gap: 2rem;
+  justify-items: center;
+  margin-top: 1rem;
+}
+
+.portal-stone {
+  position: relative;
+  width: 6rem;
+  height: 6rem;
+  background: radial-gradient(circle at center, #2a2a5e, #000);
+  border-radius: 50%;
+  box-shadow: 0 0 10px var(--accent-color);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.portal-stone:hover {
+  transform: scale(1.1);
+  box-shadow: 0 0 20px var(--accent-color), 0 0 40px var(--accent-color);
+}
+
+.portal-stone:active {
+  transform: scale(0.95) rotate(-5deg);
+}
+
+.portal-icon {
+  font-size: 2rem;
+  color: var(--accent-color);
+  animation: portalSwirl 5s linear infinite;
+}
+
+@keyframes portalSwirl {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+
+.rune-label {
+  position: absolute;
+  bottom: -1.5rem;
+  font-size: 0.85rem;
+  color: var(--accent-color);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.portal-stone:hover .rune-label {
+  opacity: 1;
 }
 
 .xp-reward {
