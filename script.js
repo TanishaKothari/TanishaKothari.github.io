@@ -9,7 +9,8 @@ const gameState = {
   darkMode: false,
   collectedGems: 0,
   discoveredProjects: [],
-  unlockedSkillCategories: []
+  unlockedSkillCategories: [],
+  collectedTrophies: []
 };
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -218,7 +219,8 @@ document.addEventListener("DOMContentLoaded", () => {
       background: "bg-gradient-to-r from-blue-900 to-purple-900",
       content: {
         title: "Path of the Chess Master",
-        description: "My achievements in chess:",
+        description: `My achievements in chess:<br>
+            <small class="text-blue-300">💡 Click each trophy to reveal its details!</small>`,
         achievements: [
           {
             title: "Arena Candidate Master",
@@ -233,16 +235,16 @@ document.addEventListener("DOMContentLoaded", () => {
             details: "School Chess Team Captain, led team to CBSE Nationals",
           },
           {
-            title: "FIDE Rating Peak",
-            rating: "~1750",
-            details: "Active tournament player since 2022",
-            icon: '<i class="fas fa-chart-line text-blue-400"></i>'
-          },
-          {
             title: "Tournament Recognition",
             count: "2",
             details: "Best Female Player awards in rated tournaments",
             icon: '<i class="fas fa-bullseye text-green-400"></i>'
+          },
+          {
+            title: "FIDE Rating Peak",
+            rating: "~1750",
+            details: "Active tournament player since 2022",
+            icon: '<i class="fas fa-chart-line text-blue-400"></i>'
           }
         ],
         skills: [
@@ -605,31 +607,13 @@ document.addEventListener("DOMContentLoaded", () => {
               </div>
             ` : ""}
 
-          
             ${currentScene === "chess" ? `
               <div class="grid md:grid-cols-2 gap-8 animate-fade-in">
                 <!-- Achievements -->
                 <div>
-                  <h3 class="text-xl font-semibold mb-4">Chess Achievements</h3>
-                  <div class="space-y-4">
-                    ${scene.content.achievements.map(achievement => `
-                      <div class="flex items-start space-x-4 p-4 bg-white/5 rounded-lg hover:bg-white/10 transition-colors">
-                        ${achievement.icon}
-                        <div>
-                          <div class="font-bold">${achievement.title}</div>
-                          ${achievement.rating ? `
-                            <div class="text-lg text-yellow-400">${achievement.rating}</div>
-                          ` : ""}
-                          ${achievement.date ? `
-                            <div class="text-sm text-blue-300">${achievement.date}</div>
-                          ` : ""}
-                          ${achievement.count ? `
-                            <div class="text-lg text-green-400">${achievement.count}</div>
-                          ` : ""}
-                          <div class="text-sm text-gray-300">${achievement.details}</div>
-                        </div>
-                      </div>
-                    `).join("")}
+                  <h3 class="text-xl font-semibold mb-4">Achievements</h3>
+                  <div class="trophy-case-grid">
+                    ${scene.content.achievements.map(getTrophyCaseHTML).join("")}
                   </div>
                 </div>
           
@@ -798,6 +782,109 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   };
 
+  // called when user clicks a trophy
+  window.collectChessTrophy = (idx) => {
+    if (!gameState.collectedTrophies.includes(idx)) {
+      gameState.collectedTrophies.push(idx);
+      checkAchievements();
+    }
+  };
+
+  // build one trophy’s HTML
+  const getTrophyCaseHTML = (ach, idx) => {
+    // prepare the four possible lines and filter out empty ones
+    const lines = [
+      { text: ach.date,    fill: '#60A5FA' },
+      { text: ach.rating,  fill: '#34D399' },
+      { text: ach.count,   fill: '#C084FC' },
+      { text: ach.details, fill: '#071D49' }
+    ].filter(l => l.text);
+
+    // line-height is 1.2em at font-size 20 => 24px
+    const fontSize = 20;
+    const lineHeight = fontSize * 1.2;
+    // reserve a fixed slot for up to 4 wrapped lines
+    const maxLines = 4;
+    const boxHeight = lineHeight * maxLines;  
+    // vertically center around y=450
+    const centerY = 450;
+    const yPos = centerY - boxHeight / 2;
+
+    return `
+      <div class="trophy-wrapper${gameState.collectedTrophies.includes(idx) ? ' opened' : ''}"
+          onclick="collectChessTrophy(${idx}); this.classList.add('opened')">
+        <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+          viewBox="180 350 400 420" xml:space="preserve">
+
+          <defs>
+            <linearGradient id="woodGradient" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0%" style="stop-color:#8B4513; stop-opacity:1" />
+              <stop offset="100%" style="stop-color:#A0522D; stop-opacity:1" />
+            </linearGradient>
+            <pattern id="woodTexture" patternUnits="userSpaceOnUse" width="40" height="40">
+              <rect width="40" height="40" fill="url(#woodGradient)"/>
+              <path d="M0,10 Q20,20 40,10 M0,30 Q20,40 40,30" stroke="#5C3317" stroke-width="1" fill="none"/>
+            </pattern>
+          </defs>
+
+        <g class="trophy-base">
+          <g>
+            <rect x="180.9" y="645.1" fill-rule="evenodd" clip-rule="evenodd" fill="url(#woodTexture)" width="300.6" height="75.7"/>
+            <rect x="310.9" y="645.1" fill-rule="evenodd" clip-rule="evenodd" fill="url(#woodTexture)" width="150.6" height="75.7"/>
+          </g>
+          <text x="331.2" y="695.9" text-anchor="middle" fill="#000000" font-family="'Lato-Light'" font-size="30">${ach.title}</text>
+        </g>
+        <g id="trophy" class="trophies">
+          <g>
+            <g>
+              <path fill-rule="evenodd" clip-rule="evenodd" fill="#FEDD06" d="M228.8,360.6c-21.3,109.9,21.5,148.7,84.3,211.6h16.1V355.6
+                c-30.5,0-61,0-91.5,0C233.3,355.6,230.2,357,228.8,360.6z"/>
+              <path fill-rule="evenodd" clip-rule="evenodd" fill="#FEDD06" d="M228.2,368.1h-14.7c-20.5,0.1-24,6.7-25.2,11.7
+                c-10.2,51.4,11.7,95.7,77.6,119.6c-6.6-7.3-12.6-14.5-17.9-21.9c-38.3-19.7-47.6-50.4-38.6-90.3c1.6-4.2,5.9-6.5,13.3-6.4h3.6
+                C226.8,376.7,227.4,372.5,228.2,368.1z"/>
+              <path fill-rule="evenodd" clip-rule="evenodd" fill="#FDD40F" d="M260.3,645.3h68.9v-11.8h-68.9c-1.8,0-3.2,1.4-3.2,3.2v5.3
+                C257.1,643.9,258.5,645.3,260.3,645.3z"/>
+              <path fill-rule="evenodd" clip-rule="evenodd" fill="#FDD40F" d="M294.5,621.8h34.7v11.8h-34.7c-1.8,0-3.2-1.4-3.2-3.2V625
+                C291.2,623.3,292.7,621.8,294.5,621.8z"/>
+              <path fill-rule="evenodd" clip-rule="evenodd" fill="#FDD40F" d="M303.2,621.8h26v-11.8v-37.8h-16c0,48-13.2,36.1-13.2,41.1v5.3
+                C300,620.4,301.4,621.8,303.2,621.8z"/>
+              <path fill-rule="evenodd" clip-rule="evenodd" fill="#FDD40F" d="M429.5,360.6c21.3,109.9-21.5,148.7-84.3,211.6h-16.1V355.6
+                c30.5,0,61,0,91.5,0C425,355.6,428.2,357,429.5,360.6z"/>
+              <path fill-rule="evenodd" clip-rule="evenodd" fill="#FDD40F" d="M430.2,368.1h14.7c20.5,0.1,24,6.7,25.2,11.7
+                c10.2,51.4-11.7,95.7-77.6,119.6c6.6-7.3,12.6-14.5,17.9-21.9c38.3-19.7,47.6-50.4,38.6-90.3c-1.6-4.2-5.9-6.5-13.3-6.4H432
+                C431.6,376.7,430.9,372.5,430.2,368.1z"/>
+              <path fill-rule="evenodd" clip-rule="evenodd" fill="#FBC51E" d="M398.1,645.3h-68.9v-11.8h68.9c1.8,0,3.2,1.4,3.2,3.2v5.3
+                C401.3,643.9,399.8,645.3,398.1,645.3z"/>
+              <path fill-rule="evenodd" clip-rule="evenodd" fill="#FDD40F" d="M363.9,621.8h-34.7v11.8h34.7c1.8,0,3.2-1.4,3.2-3.2V625
+                C367.1,623.3,365.7,621.8,363.9,621.8z"/>
+              <path fill-rule="evenodd" clip-rule="evenodd" fill="#FBC51E" d="M355.2,621.8h-26v-11.8v-37.8h16c0,48,13.2,36.1,13.2,41.1v5.3
+                C358.4,620.4,357,621.8,355.2,621.8z"/>
+            </g>
+            
+            <foreignObject x="230" y="${yPos}" width="200" height="${boxHeight}">
+              <div xmlns="http://www.w3.org/1999/xhtml"
+                  style="
+                      display: flex;
+                      flex-direction: column;
+                      justify-content: center;
+                      align-items: center;
+                      text-align: center;
+                      width: 100%;
+                      height: 100%;
+                      font: ${fontSize}px 'Lato-Light';
+                      line-height: ${lineHeight}px;
+                      overflow-wrap: break-word;
+                  ">
+                ${lines.map(l => `<div style="color: ${l.fill}">${l.text}</div>`).join('')}
+              </div>
+            </foreignObject>
+          </g>
+        </g>
+        </svg>
+      </div>
+    `
+  };
+
   renderScene(); // Initial page load
 
   // Add traditional view toggle
@@ -863,6 +950,14 @@ document.addEventListener("DOMContentLoaded", () => {
             case "artifactCollector":
               const projectCount = scenes.projects.content.items.length;
               if (gameState.discoveredProjects.length >= projectCount && !achievement.unlocked) {
+                achievement.unlocked = true;
+                GameSystems.awardXP(achievement.xpReward);
+                showAchievementNotification(achievement.name, achievement.xpReward);
+              }
+              break;
+            case "chessMaster":
+              if (gameState.collectedTrophies.length === scenes.chess.content.achievements.length
+                  && !achievement.unlocked) {
                 achievement.unlocked = true;
                 GameSystems.awardXP(achievement.xpReward);
                 showAchievementNotification(achievement.name, achievement.xpReward);

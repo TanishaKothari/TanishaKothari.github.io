@@ -86,6 +86,14 @@ const achievements = {
     icon: '<i class="fas fa-graduation-cap"></i>',
     unlocked: false,
     xpReward: 50
+  },
+  chessMaster: {
+    id: "chessMaster",
+    name: "Grandmaster",
+    description: "Unlocked all chess trophies",
+    icon: '<i class="fas fa-chess-king text-yellow-400"></i>',
+    unlocked: false,
+    xpReward: 50
   }
 };
 
