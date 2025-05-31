@@ -340,7 +340,7 @@ document.addEventListener("DOMContentLoaded", () => {
         description: `
           <div class="space-y-4">
             <p>A passionate game developer with a love for creating interactive experiences. First-year student at the University of Sydney, pursuing Bachelor of Advanced Computing with a Computer Science major and Software Development minor.</p>
-            <p>Arena Candidate Master in chess with a FIDE rating of ~1750. Actively seeking internship opportunities in game development, web development and software engineering.</p>
+            <p>Arena Candidate Master in chess. Actively seeking internship opportunities in game development, software engineering, and web development.</p>
 
             <div class="mt-6">
               <h3 class="text-xl font-semibold mb-4">Volunteer Experience</h3>
@@ -388,7 +388,7 @@ document.addEventListener("DOMContentLoaded", () => {
         `,
         stats: {
           "GitHub Projects": 16,
-          "Chess Rating": "~1750",
+          "Chess Rating": "~1630",
           "Bugs Squashed": "500+"
         },
       },
@@ -503,7 +503,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 <div class="mb-8">
                   <h3 class="text-xl font-semibold mb-4">Development Timeline</h3>
                   <div class="space-y-4">
-                    ${scene.content.devJourney.map(milestone => `
+                    ${scene.content.devJourney?.map(milestone => `
                       <div class="flex items-start space-x-4 p-4 bg-white/5 rounded-lg hover:bg-white/10 transition-colors">
                         <div class="text-2xl">${milestone.icon}</div>
                         <div>
@@ -512,7 +512,7 @@ document.addEventListener("DOMContentLoaded", () => {
                           <div class="text-sm text-gray-300">${milestone.details}</div>
                         </div>
                       </div>
-                    `).join("")}
+                    `).join("") || ""}
                   </div>
                 </div>
           
@@ -520,7 +520,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 <div>
                   <h3 class="text-xl font-semibold mb-4">Engine Expertise</h3>
                   <div class="grid md:grid-cols-3 gap-4">
-                    ${scene.content.engineExpertise.map(engine => `
+                    ${scene.content.engineExpertise?.map(engine => `
                       <div class="p-4 bg-white/5 rounded-lg hover:bg-white/10 transition-colors">
                         <div class="text-2xl mb-2">${engine.icon}</div>
                         <div class="font-bold mb-2">${engine.name}</div>
@@ -531,7 +531,7 @@ document.addEventListener("DOMContentLoaded", () => {
                           ${engine.skills.join(" • ")}
                         </div>
                       </div>
-                    `).join("")}
+                    `).join("") || ""}
                   </div>
                 </div>
               </div>
@@ -539,17 +539,17 @@ document.addEventListener("DOMContentLoaded", () => {
 
             ${currentScene === "projects" ? `
               <div class="project-grid grid gap-6 md:grid-cols-3 animate-fade-in">
-                ${scene.content.items.map(getTreasureChestHTML).join("")}
+                ${scene.content.items?.map(getTreasureChestHTML).join("") || ""}
               </div>
             ` : ""}
 
             ${currentScene === "skills" ? `
-                ${scene.content.skillCategories.map(category => `
+                ${scene.content.skillCategories?.map(category => `
                   <div class="skill-scroll parchment mb-8 animate-fade-in${gameState.unlockedSkillCategories.includes(category.title) ? ' open' : ''}"
                       onclick="toggleSkillScroll(this,'${category.title}')">
                     <h3 class="text-2xl font-bold mb-4">${category.title}</h3>
                     <div class="scroll-content space-y-4">
-                      ${category.skills.map(skill => `
+                      ${category.skills?.map(skill => `
                         <div class="transform hover:scale-102 transition-all">
                           <div class="flex items-center justify-center gap-4 mb-2">
                             ${skill.icon}
@@ -561,10 +561,10 @@ document.addEventListener("DOMContentLoaded", () => {
                             </div>
                           </div>
                         </div>
-                      `).join('')}
+                      `).join('') || ""}
                     </div>
                   </div>
-                `).join('')}
+                `).join('') || ""}
             ` : "" }
 
             ${currentScene === "academics" ? `
@@ -575,13 +575,13 @@ document.addEventListener("DOMContentLoaded", () => {
                   <div class="p-4 bg-white/10 rounded-lg">
                     <div class="flex items-center gap-3 mb-2">
                       <i class="fas fa-university text-2xl text-blue-400"></i>
-                      <span class="text-xl font-bold">${scene.content.education.university.name}</span>
+                      <span class="text-xl font-bold">${scene.content.education?.university?.name || ""}</span>
                     </div>
                     <div class="space-y-2 ml-9">
-                      <div class="text-blue-300">${scene.content.education.university.degree}</div>
-                      <div>Major: ${scene.content.education.university.major}</div>
-                      <div>Minor: ${scene.content.education.university.minor}</div>
-                      <div class="text-sm text-gray-300">${scene.content.education.university.period}</div>
+                      <div class="text-blue-300">${scene.content.education?.university?.degree || ""}</div>
+                      <div>Major: ${scene.content.education?.university?.major || ""}</div>
+                      <div>Minor: ${scene.content.education?.university?.minor || ""}</div>
+                      <div class="text-sm text-gray-300">${scene.content.education?.university?.period || ""}</div>
                     </div>
                   </div>
                 </div>
@@ -590,7 +590,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 <div class="bg-white/5 p-6 rounded-lg">
                   <h3 class="text-xl font-semibold mb-4">Professional Certifications</h3>
                   <div class="grid gap-4 md:grid-cols-2">
-                    ${scene.content.education.certifications.map(cert => `
+                    ${scene.content.education?.certifications?.map(cert => `
                       <div class="p-4 bg-white/10 rounded-lg transform hover:scale-102 transition-all">
                         <div class="flex items-center gap-3 mb-2">
                           ${cert.icon}
@@ -601,7 +601,7 @@ document.addEventListener("DOMContentLoaded", () => {
                           </div>
                         </div>
                       </div>
-                    `).join('')}
+                    `).join('') || ""}
                   </div>
                 </div>
               </div>
@@ -613,7 +613,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 <div>
                   <h3 class="text-xl font-semibold mb-4">Achievements</h3>
                   <div class="trophy-case-grid">
-                    ${scene.content.achievements.map(getTrophyCaseHTML).join("")}
+                    ${scene.content.achievements?.map(getTrophyCaseHTML).join("") || ""}
                   </div>
                 </div>
           
@@ -621,7 +621,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 <div>
                   <h3 class="text-xl font-semibold mb-4">Transferable Skills</h3>
                   <div class="grid gap-4">
-                    ${scene.content.skills.map(skill => `
+                    ${scene.content.skills?.map(skill => `
                       <div class="p-4 bg-white/5 rounded-lg hover:bg-white/10 transition-colors">
                         <div class="font-semibold">${skill.name}</div>
                         <div class="w-full bg-gray-800 h-2 rounded-full mt-2">
@@ -630,7 +630,7 @@ document.addEventListener("DOMContentLoaded", () => {
                           </div>
                         </div>
                       </div>
-                    `).join("")}
+                    `).join("") || ""}
                   </div>
                 </div>
               </div>
@@ -640,25 +640,25 @@ document.addEventListener("DOMContentLoaded", () => {
               <div class="animate-fade-in">
                   
                 <div class="grid gap-6 md:grid-cols-3 mt-8">
-                  ${Object.entries(scene.content.stats).map(([stat, value]) => `
+                  ${Object.entries(scene.content.stats || {}).map(([stat, value]) => `
                     <div class="bg-white/10 p-6 rounded-lg text-center transform hover:scale-105 transition-all">
                       <div class="text-3xl font-bold mb-2">${value}</div>
                       <div class="text-lg capitalize">${stat.replace("_", " ")}</div>
                     </div>
-                  `).join("")}
+                  `).join("") || ""}
                 </div>
               </div>
             ` : ""}
 
             ${currentScene === "contact" ? `
               <div class="grid gap-6 md:grid-cols-3 animate-fade-in">
-                ${scene.content.socialLinks.map(social => `
+                ${scene.content.socialLinks?.map(social => `
                   <a href="${social.link}" target="_blank" rel="noopener noreferrer" 
                       class="bg-white/10 p-6 rounded-lg text-center transform hover:scale-105 transition-all ${social.color}">
                     <div class="text-4xl mb-2">${social.icon}</div>
                     <div class="text-lg font-semibold">${social.name}</div>
                   </a>
-                `).join("")}
+                `).join("") || ""}
               </div>
             ` : ""}
 
@@ -699,9 +699,8 @@ document.addEventListener("DOMContentLoaded", () => {
       if (currentScene === "skills") {
         setTimeout(() => {
           document.querySelectorAll('.progress-bar').forEach((bar, index) => {
-            const skill = scene.content.skillCategories
-              .flatMap(category => category.skills)[index];
-            bar.style.width = `${skill.level}%`;
+            const skill = scene.content.skillCategories?.flatMap(category => category.skills || [])[index];
+            if (skill) bar.style.width = `${skill.level}%`;
           });
         }, 100);
       }
