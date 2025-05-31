@@ -793,6 +793,7 @@ document.addEventListener("DOMContentLoaded", () => {
         gameState.unlockedSkillCategories.push(title);
         GameSystems.awardXP(20);
         showAchievementNotification(`📜 Unlocked ${title}`, 20);
+        checkAchievements();
       }
     }
   };
