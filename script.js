@@ -10,7 +10,8 @@ const gameState = {
   collectedGems: 0,
   discoveredProjects: [],
   unlockedSkillCategories: [],
-  collectedTrophies: []
+  collectedTrophies: [],
+  collectedExperiences: []
 };
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -286,321 +287,326 @@ document.addEventListener("DOMContentLoaded", () => {
     experience: {
       background: "bg-gradient-to-b from-purple-900 to-indigo-900",
       content: {
-        title: "Search for Experience",
-        description: `
-          <div class="space-y-8">
-            <div class="bg-white/5 p-6 rounded-lg">
-              <div class="flex items-center gap-3 mb-2">
-                <i class="fas fa-laptop-code text-green-400 text-2xl"></i>
-                <span class="font-bold text-lg">Software Developer</span>
-              </div>
-              <div class="text-blue-300 mb-1">e12.io</div>
-              <div class="text-gray-400 mb-2">March 2025 - Present</div>
-              <ul class="list-disc ml-6 text-gray-300 space-y-1">
-                <li>Built responsive web interfaces in Svelte and SvelteKit for device onboarding, data visualization, and vendor/product management.</li>
-                <li>Implemented secure JWT and OAuth 2.0 authentication flows, enabling protected access and role-based control across the platform.</li>
-                <li>Integrated with and extended Node.js APIs to support frontend functionality for a scalable IoT data system.</li>
-              </ul>
-            </div>
-            <div class="bg-white/5 p-6 rounded-lg">
-              <div class="flex items-center gap-3 mb-2">
-                <i class="fas fa-chess text-purple-400 text-2xl"></i>
-                <span class="font-bold text-lg">USYD Chess Club General Executive</span>
-              </div>
-              <div class="text-blue-300 mb-1">University of Sydney</div>
-              <div class="text-gray-400 mb-2">May 2025 - Present</div>
-              <ul class="list-disc ml-6 text-gray-300 space-y-1">
-                <li>Assist in organizing events and tournaments to engage chess enthusiasts across campus.</li>
-                <li>Support weekly operations for a club of 150+ members, ensuring smooth event coordination and communication.</li>
-                <li>Developing event management, leadership, and communication skills.</li>
-              </ul>
-            </div>
-            <div class="bg-white/5 p-6 rounded-lg">
-              <div class="flex items-center gap-3 mb-2">
-                <i class="fas fa-users text-orange-400 text-2xl"></i>
-                <span class="font-bold text-lg">ENGO Peer Mentor</span>
-              </div>
-              <div class="text-blue-300 mb-1">University of Sydney</div>
-              <div class="text-gray-400 mb-2">February 2025 - Present</div>
-              <ul class="list-disc ml-6 text-gray-300 space-y-1">
-                <li>Mentoring first-year students to facilitate their transition to university life</li>
-                <li>Providing academic guidance and social support</li>
-                <li>Contributing to building an inclusive learning environment</li>
-                <li>Developing leadership and communication skills</li>
-              </ul>
-            </div>
-          </div>
-        `,
+        title: "Adventure Timeline",
+        description: "Follow my professional journey and unlock achievements:<br><small class='text-blue-300'>💡 Click each milestone to discover the adventure details!</small>",
+        timeline: [
+          {
+            id: "e12_dev",
+            title: "Software Developer",
+            company: "e12.io",
+            period: "March 2025 - Present",
+            type: "development",
+            icon: '<i class="fas fa-laptop-code"></i>',
+            achievements: ["Full-Stack Explorer", "UI/UX Architect", "API Master"],
+            details: [
+              "Built responsive web interfaces in Svelte and SvelteKit for device onboarding, data visualization, and vendor/product management.",
+              "Implemented secure JWT and OAuth 2.0 authentication flows, enabling protected access and role-based control across the platform.",
+              "Integrated with and extended Node.js APIs to support frontend functionality for a scalable IoT data system."
+            ],
+            skills: ["Svelte", "SvelteKit", "JWT", "OAuth 2.0", "Node.js"]
+          },
+          {
+            id: "chess_exec",
+            title: "USYD Chess Club General Executive",
+            company: "University of Sydney",
+            period: "May 2025 - Present",
+            type: "leadership",
+            icon: '<i class="fas fa-chess"></i>',
+            achievements: ["Community Leader", "Event Coordinator", "Team Player"],
+            details: [
+              "Assist in organizing events and tournaments to engage chess enthusiasts across campus.",
+              "Support weekly operations for a club of 150+ members, ensuring smooth event coordination and communication.",
+              "Developing event management, leadership, and communication skills."
+            ],
+            skills: ["Event Management", "Communication", "Team Coordination"]
+          },
+          {
+            id: "peer_mentor",
+            title: "ENGO Peer Mentor",
+            company: "University of Sydney",
+            period: "February 2025 - Present",
+            type: "mentorship",
+            icon: '<i class="fas fa-users"></i>',
+            achievements: ["Mentor Master", "Guide", "Support Specialist"],
+            details: [
+              "Mentoring first-year students to facilitate their transition to university life",
+              "Providing academic guidance and social support",
+              "Contributing to building an inclusive learning environment",
+              "Developing leadership and communication skills"
+            ],
+            skills: ["Mentoring", "Academic Guidance", "Leadership", "Communication"]
+          }
+        ]
       }
     },
     about: {
-  background: "bg-gradient-to-b from-violet-900 to-purple-900",
-  content: {
-    title: "Character Sheet",
-    description: `
-      <div class="character-sheet-container">
-        <!-- Character Portrait & Basic Info -->
-        <div class="character-portrait-section">
-          <div class="character-portrait">
-            <div class="portrait-frame">
-              <div class="portrait-image">
-                <i class="fas fa-user-graduate text-4xl text-blue-400"></i>
-              </div>
-            </div>
-            <div class="character-info">
-              <h3 class="character-name">Tanisha Kothari</h3>
-              <p class="character-class">Game Developer • Code Apprentice</p>
-              <p class="character-location">🌏 Sydney, Australia</p>
-            </div>
-          </div>
-        </div>
-
-        <!-- Character Stats -->
-        <div class="character-stats-section">
-          <h3 class="section-title">Character Attributes</h3>
-          <div class="stats-grid">
-            <div class="stat-item">
-              <div class="stat-icon"><i class="fas fa-code text-blue-400"></i></div>
-              <div class="stat-info">
-                <span class="stat-name">Programming</span>
-                <div class="stat-bar">
-                  <div class="stat-fill" style="width: 85%"></div>
-                </div>
-                <span class="stat-value">85/100</span>
-              </div>
-            </div>
-            
-            <div class="stat-item">
-              <div class="stat-icon"><i class="fas fa-gamepad text-purple-400"></i></div>
-              <div class="stat-info">
-                <span class="stat-name">Game Development</span>
-                <div class="stat-bar">
-                  <div class="stat-fill" style="width: 80%"></div>
-                </div>
-                <span class="stat-value">80/100</span>
-              </div>
-            </div>
-
-            <div class="stat-item">
-              <div class="stat-icon"><i class="fas fa-lightbulb text-orange-400"></i></div>
-              <div class="stat-info">
-                <span class="stat-name">Problem Solving</span>
-                <div class="stat-bar">
-                  <div class="stat-fill" style="width: 88%"></div>
-                </div>
-                <span class="stat-value">88/100</span>
-              </div>
-            </div>
-
-            <div class="stat-item">
-              <div class="stat-icon"><i class="fas fa-chess text-yellow-400"></i></div>
-              <div class="stat-info">
-                <span class="stat-name">Strategic Thinking</span>
-                <div class="stat-bar">
-                  <div class="stat-fill" style="width: 90%"></div>
-                </div>
-                <span class="stat-value">90/100</span>
-              </div>
-            </div>
-
-            <div class="stat-item">
-              <div class="stat-icon"><i class="fas fa-bug text-red-400"></i></div>
-              <div class="stat-info">
-                <span class="stat-name">Debugging</span>
-                <div class="stat-bar">
-                  <div class="stat-fill" style="width: 92%"></div>
-                </div>
-                <span class="stat-value">92/100</span>
-              </div>
-            </div>
-
-            <div class="stat-item">
-              <div class="stat-icon"><i class="fas fa-users text-green-400"></i></div>
-              <div class="stat-info">
-                <span class="stat-name">Leadership</span>
-                <div class="stat-bar">
-                  <div class="stat-fill" style="width: 78%"></div>
-                </div>
-                <span class="stat-value">78/100</span>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Side Quests (Volunteer Work) -->
-        <div class="side-quests-section">
-          <h3 class="section-title">Completed Side Quests</h3>
-          <div class="quest-log space-y-2">
-            
-            <div class="quest-item completed" onclick="toggleQuestDetails(this)">
-              <div class="quest-header">
-                <div class="quest-icon">
-                  <i class="fas fa-heart text-pink-400"></i>
-                </div>
-                <div class="quest-info">
-                  <h4 class="quest-title">Guardian of Young Minds</h4>
-                  <p class="quest-type">Empathy Quest • Special Education</p>
-                  <div class="quest-rewards">
-                    <span class="reward">+15 Empathy</span>
-                    <span class="reward">+10 Patience</span>
-                    <span class="reward">+5 Teaching</span>
+      background: "bg-gradient-to-b from-violet-900 to-purple-900",
+      content: {
+        title: "Character Sheet",
+        description: `
+          <div class="character-sheet-container">
+            <!-- Character Portrait & Basic Info -->
+            <div class="character-portrait-section">
+              <div class="character-portrait">
+                <div class="portrait-frame">
+                  <div class="portrait-image">
+                    <i class="fas fa-user-graduate text-4xl text-blue-400"></i>
                   </div>
                 </div>
-                <div class="quest-status">
-                  <i class="fas fa-check-circle text-green-400"></i>
-                </div>
-              </div>
-              <div class="quest-details">
-                <p class="quest-description">
-                  Assisted as a yoga instructor at a specialized school for autistic children. 
-                  Demonstrated exceptional attention to detail and infinite patience while guiding 
-                  students through exercises, helping create a calming and supportive environment.
-                </p>
-                <div class="quest-achievements">
-                  <span class="achievement">🏆 Patience Master</span>
-                  <span class="achievement">🎯 Detail Oriented</span>
-                  <span class="achievement">💝 Special Needs Advocate</span>
+                <div class="character-info">
+                  <h3 class="character-name">Tanisha Kothari</h3>
+                  <p class="character-class">Game Developer • Code Apprentice</p>
+                  <p class="character-location">🌏 Sydney, Australia</p>
                 </div>
               </div>
             </div>
 
-            <div class="quest-item completed" onclick="toggleQuestDetails(this)">
-              <div class="quest-header">
-                <div class="quest-icon">
-                  <i class="fas fa-hands-helping text-blue-400"></i>
-                </div>
-                <div class="quest-info">
-                  <h4 class="quest-title">Community Feast Coordinator</h4>
-                  <p class="quest-type">Service Quest • Community Outreach</p>
-                  <div class="quest-rewards">
-                    <span class="reward">+20 Leadership</span>
-                    <span class="reward">+15 Teamwork</span>
-                    <span class="reward">+10 Communication</span>
+            <!-- Character Stats -->
+            <div class="character-stats-section">
+              <h3 class="section-title">Character Attributes</h3>
+              <div class="stats-grid">
+                <div class="stat-item">
+                  <div class="stat-icon"><i class="fas fa-code text-blue-400"></i></div>
+                  <div class="stat-info">
+                    <span class="stat-name">Programming</span>
+                    <div class="stat-bar">
+                      <div class="stat-fill" style="width: 85%"></div>
+                    </div>
+                    <span class="stat-value">85/100</span>
                   </div>
                 </div>
-                <div class="quest-status">
-                  <i class="fas fa-check-circle text-green-400"></i>
+                
+                <div class="stat-item">
+                  <div class="stat-icon"><i class="fas fa-gamepad text-purple-400"></i></div>
+                  <div class="stat-info">
+                    <span class="stat-name">Game Development</span>
+                    <div class="stat-bar">
+                      <div class="stat-fill" style="width: 80%"></div>
+                    </div>
+                    <span class="stat-value">80/100</span>
+                  </div>
                 </div>
-              </div>
-              <div class="quest-details">
-                <p class="quest-description">
-                  Coordinated meal distribution for over 100 blue-collar workers, developing 
-                  effective communication strategies and advanced teamwork skills through 
-                  collaborative volunteer efforts.
-                </p>
-                <div class="quest-achievements">
-                  <span class="achievement">👥 Team Coordinator</span>
-                  <span class="achievement">📢 Communication Expert</span>
-                  <span class="achievement">🍽️ Community Helper</span>
+
+                <div class="stat-item">
+                  <div class="stat-icon"><i class="fas fa-lightbulb text-orange-400"></i></div>
+                  <div class="stat-info">
+                    <span class="stat-name">Problem Solving</span>
+                    <div class="stat-bar">
+                      <div class="stat-fill" style="width: 88%"></div>
+                    </div>
+                    <span class="stat-value">88/100</span>
+                  </div>
+                </div>
+
+                <div class="stat-item">
+                  <div class="stat-icon"><i class="fas fa-chess text-yellow-400"></i></div>
+                  <div class="stat-info">
+                    <span class="stat-name">Strategic Thinking</span>
+                    <div class="stat-bar">
+                      <div class="stat-fill" style="width: 90%"></div>
+                    </div>
+                    <span class="stat-value">90/100</span>
+                  </div>
+                </div>
+
+                <div class="stat-item">
+                  <div class="stat-icon"><i class="fas fa-bug text-red-400"></i></div>
+                  <div class="stat-info">
+                    <span class="stat-name">Debugging</span>
+                    <div class="stat-bar">
+                      <div class="stat-fill" style="width: 92%"></div>
+                    </div>
+                    <span class="stat-value">92/100</span>
+                  </div>
+                </div>
+
+                <div class="stat-item">
+                  <div class="stat-icon"><i class="fas fa-users text-green-400"></i></div>
+                  <div class="stat-info">
+                    <span class="stat-name">Leadership</span>
+                    <div class="stat-bar">
+                      <div class="stat-fill" style="width: 78%"></div>
+                    </div>
+                    <span class="stat-value">78/100</span>
+                  </div>
                 </div>
               </div>
             </div>
 
-            <div class="quest-item completed" onclick="toggleQuestDetails(this)">
-              <div class="quest-header">
-                <div class="quest-icon">
-                  <i class="fas fa-hand-holding-heart text-red-400"></i>
-                </div>
-                <div class="quest-info">
-                  <h4 class="quest-title">Life Saver's Assistant</h4>
-                  <p class="quest-type">Healthcare Quest • Blood Donation</p>
-                  <div class="quest-rewards">
-                    <span class="reward">+10 Organization</span>
-                    <span class="reward">+15 Community Service</span>
-                    <span class="reward">+5 Healthcare Support</span>
+            <!-- Side Quests (Volunteer Work) -->
+            <div class="side-quests-section">
+              <h3 class="section-title">Completed Side Quests</h3>
+              <div class="quest-log space-y-2">
+                
+                <div class="quest-item completed" onclick="toggleQuestDetails(this)">
+                  <div class="quest-header">
+                    <div class="quest-icon">
+                      <i class="fas fa-heart text-pink-400"></i>
+                    </div>
+                    <div class="quest-info">
+                      <h4 class="quest-title">Guardian of Young Minds</h4>
+                      <p class="quest-type">Empathy Quest • Special Education</p>
+                      <div class="quest-rewards">
+                        <span class="reward">+15 Empathy</span>
+                        <span class="reward">+10 Patience</span>
+                        <span class="reward">+5 Teaching</span>
+                      </div>
+                    </div>
+                    <div class="quest-status">
+                      <i class="fas fa-check-circle text-green-400"></i>
+                    </div>
+                  </div>
+                  <div class="quest-details">
+                    <p class="quest-description">
+                      Assisted as a yoga instructor at a specialized school for autistic children. 
+                      Demonstrated exceptional attention to detail and infinite patience while guiding 
+                      students through exercises, helping create a calming and supportive environment.
+                    </p>
+                    <div class="quest-achievements">
+                      <span class="achievement">🏆 Patience Master</span>
+                      <span class="achievement">🎯 Detail Oriented</span>
+                      <span class="achievement">💝 Special Needs Advocate</span>
+                    </div>
                   </div>
                 </div>
-                <div class="quest-status">
-                  <i class="fas fa-check-circle text-green-400"></i>
+
+                <div class="quest-item completed" onclick="toggleQuestDetails(this)">
+                  <div class="quest-header">
+                    <div class="quest-icon">
+                      <i class="fas fa-hands-helping text-blue-400"></i>
+                    </div>
+                    <div class="quest-info">
+                      <h4 class="quest-title">Community Feast Coordinator</h4>
+                      <p class="quest-type">Service Quest • Community Outreach</p>
+                      <div class="quest-rewards">
+                        <span class="reward">+20 Leadership</span>
+                        <span class="reward">+15 Teamwork</span>
+                        <span class="reward">+10 Communication</span>
+                      </div>
+                    </div>
+                    <div class="quest-status">
+                      <i class="fas fa-check-circle text-green-400"></i>
+                    </div>
+                  </div>
+                  <div class="quest-details">
+                    <p class="quest-description">
+                      Coordinated meal distribution for over 100 blue-collar workers, developing 
+                      effective communication strategies and advanced teamwork skills through 
+                      collaborative volunteer efforts.
+                    </p>
+                    <div class="quest-achievements">
+                      <span class="achievement">👥 Team Coordinator</span>
+                      <span class="achievement">📢 Communication Expert</span>
+                      <span class="achievement">🍽️ Community Helper</span>
+                    </div>
+                  </div>
                 </div>
-              </div>
-              <div class="quest-details">
-                <p class="quest-description">
-                  Managed certificate distribution at a community blood donation camp, 
-                  ensuring smooth operations and supporting this vital healthcare initiative 
-                  that saves lives in the community.
-                </p>
-                <div class="quest-achievements">
-                  <span class="achievement">📋 Event Organizer</span>
-                  <span class="achievement">❤️ Life Supporter</span>
-                  <span class="achievement">🎫 Certificate Manager</span>
+
+                <div class="quest-item completed" onclick="toggleQuestDetails(this)">
+                  <div class="quest-header">
+                    <div class="quest-icon">
+                      <i class="fas fa-hand-holding-heart text-red-400"></i>
+                    </div>
+                    <div class="quest-info">
+                      <h4 class="quest-title">Life Saver's Assistant</h4>
+                      <p class="quest-type">Healthcare Quest • Blood Donation</p>
+                      <div class="quest-rewards">
+                        <span class="reward">+10 Organization</span>
+                        <span class="reward">+15 Community Service</span>
+                        <span class="reward">+5 Healthcare Support</span>
+                      </div>
+                    </div>
+                    <div class="quest-status">
+                      <i class="fas fa-check-circle text-green-400"></i>
+                    </div>
+                  </div>
+                  <div class="quest-details">
+                    <p class="quest-description">
+                      Managed certificate distribution at a community blood donation camp, 
+                      ensuring smooth operations and supporting this vital healthcare initiative 
+                      that saves lives in the community.
+                    </p>
+                    <div class="quest-achievements">
+                      <span class="achievement">📋 Event Organizer</span>
+                      <span class="achievement">❤️ Life Supporter</span>
+                      <span class="achievement">🎫 Certificate Manager</span>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="quest-item completed" onclick="toggleQuestDetails(this)">
+                  <div class="quest-header">
+                    <div class="quest-icon">
+                      <i class="fas fa-globe text-green-400"></i>
+                    </div>
+                    <div class="quest-info">
+                      <h4 class="quest-title">Diplomatic Interviewer</h4>
+                      <p class="quest-type">Diplomatic Quest • International Relations</p>
+                      <div class="quest-rewards">
+                        <span class="reward">+25 Communication</span>
+                        <span class="reward">+20 Cultural Awareness</span>
+                        <span class="reward">+15 Interview Skills</span>
+                      </div>
+                    </div>
+                    <div class="quest-status">
+                      <i class="fas fa-check-circle text-green-400"></i>
+                    </div>
+                  </div>
+                  <div class="quest-details">
+                    <p class="quest-description">
+                      Conducted an insightful interview with former New Zealand Parliament member 
+                      Mr. Kanwaljit Singh Bakshi, exploring India's role as a soft power in global 
+                      politics and international relations.
+                    </p>
+                    <div class="quest-achievements">
+                      <span class="achievement">🎤 Master Interviewer</span>
+                      <span class="achievement">🌏 Global Perspective</span>
+                      <span class="achievement">🤝 Diplomatic Relations</span>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
 
-            <div class="quest-item completed" onclick="toggleQuestDetails(this)">
-              <div class="quest-header">
-                <div class="quest-icon">
-                  <i class="fas fa-globe text-green-400"></i>
-                </div>
-                <div class="quest-info">
-                  <h4 class="quest-title">Diplomatic Interviewer</h4>
-                  <p class="quest-type">Diplomatic Quest • International Relations</p>
-                  <div class="quest-rewards">
-                    <span class="reward">+25 Communication</span>
-                    <span class="reward">+20 Cultural Awareness</span>
-                    <span class="reward">+15 Interview Skills</span>
+            <!-- Character Bio -->
+            <div class="character-bio-section">
+              <h3 class="section-title">Character Background</h3>
+              <div class="bio-content">
+                <p class="bio-text">
+                  A passionate game developer with a love for creating interactive experiences. 
+                  Currently on a quest for knowledge at the University of Sydney, pursuing a 
+                  Bachelor of Advanced Computing with expertise in Computer Science and Software Development.
+                </p>
+                <p class="bio-text">
+                  Achieved the prestigious rank of Arena Candidate Master in chess, demonstrating 
+                  strategic thinking and tactical prowess. Actively seeking new adventures in 
+                  game development, software engineering, and web development.
+                </p>
+                
+                <div class="character-achievements">
+                  <h4 class="achievements-subtitle">Notable Achievements</h4>
+                  <div class="achievement-badges">
+                    <span class="badge">💻 16+ Github Projects</span>
+                    <span class="badge">🏆 500+ Bugs Squashed</span>
+                    <span class="badge">♟️ Arena Candidate Master</span>
+                    <span class="badge">📈 ~1630 Chess Rating</span>
                   </div>
                 </div>
-                <div class="quest-status">
-                  <i class="fas fa-check-circle text-green-400"></i>
-                </div>
               </div>
-              <div class="quest-details">
-                <p class="quest-description">
-                  Conducted an insightful interview with former New Zealand Parliament member 
-                  Mr. Kanwaljit Singh Bakshi, exploring India's role as a soft power in global 
-                  politics and international relations.
-                </p>
-                <div class="quest-achievements">
-                  <span class="achievement">🎤 Master Interviewer</span>
-                  <span class="achievement">🌏 Global Perspective</span>
-                  <span class="achievement">🤝 Diplomatic Relations</span>
-                </div>
-              </div>
+            </div>
+
+            <!-- Download Resume Button -->
+            <div class="character-actions">
+              <a href="assets/Tanisha Kothari-Game Developer.pdf" target="_blank" rel="noopener noreferrer" 
+                class="character-sheet-btn">
+                <i class="fas fa-scroll mr-2"></i>
+                Download Character Sheet (Resume)
+              </a>
             </div>
           </div>
-        </div>
-
-        <!-- Character Bio -->
-        <div class="character-bio-section">
-          <h3 class="section-title">Character Background</h3>
-          <div class="bio-content">
-            <p class="bio-text">
-              A passionate game developer with a love for creating interactive experiences. 
-              Currently on a quest for knowledge at the University of Sydney, pursuing a 
-              Bachelor of Advanced Computing with expertise in Computer Science and Software Development.
-            </p>
-            <p class="bio-text">
-              Achieved the prestigious rank of Arena Candidate Master in chess, demonstrating 
-              strategic thinking and tactical prowess. Actively seeking new adventures in 
-              game development, software engineering, and web development.
-            </p>
-            
-            <div class="character-achievements">
-              <h4 class="achievements-subtitle">Notable Achievements</h4>
-              <div class="achievement-badges">
-                <span class="badge">💻 16+ Github Projects</span>
-                <span class="badge">🏆 500+ Bugs Squashed</span>
-                <span class="badge">♟️ Arena Candidate Master</span>
-                <span class="badge">📈 ~1630 Chess Rating</span>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Download Resume Button -->
-        <div class="character-actions">
-          <a href="assets/Tanisha Kothari-Game Developer.pdf" target="_blank" rel="noopener noreferrer" 
-             class="character-sheet-btn">
-            <i class="fas fa-scroll mr-2"></i>
-            Download Character Sheet (Resume)
-          </a>
-        </div>
-      </div>
-    `,
-  },
-},
+        `,
+      },
+    },
     contact: {
       background: "bg-gradient-to-b from-green-900 to-blue-900",
       content: {
@@ -655,16 +661,16 @@ document.addEventListener("DOMContentLoaded", () => {
   };
 
   function updateProjectDescription() {
-  const total = scenes.projects.content.items.length;
-  const discovered = gameState.discoveredProjects.length;
-  const tip = discovered < total
-    ? "💡 Click the treasure chests to reveal each project's details!"
-    : "💡 Discover the skills behind these projects in the Skills Chamber!";
-  const html = `Unearth hidden gems in the Project Vault:<br>
+    const total = scenes.projects.content.items.length;
+    const discovered = gameState.discoveredProjects.length;
+    const tip = discovered < total
+      ? "💡 Click the treasure chests to reveal each project's details!"
+      : "💡 Discover the skills behind these projects in the Skills Chamber!";
+    const html = `Unearth hidden gems in the Project Vault:<br>
     <small class="text-blue-300">${tip}</small>`;
-  const desc = document.querySelector('.content-container p');
-  if (desc) desc.innerHTML = html;
-}
+    const desc = document.querySelector('.content-container p');
+    if (desc) desc.innerHTML = html;
+  }
 
   const renderScene = () => {
     const scene = scenes[currentScene];
@@ -773,7 +779,7 @@ document.addEventListener("DOMContentLoaded", () => {
                     </div>
                   </div>
                 `).join('') || ""}
-            ` : "" }
+            ` : ""}
 
             ${currentScene === "academics" ? `
               <div class="space-y-8 animate-fade-in">
@@ -840,6 +846,55 @@ document.addEventListener("DOMContentLoaded", () => {
                       </div>
                     `).join("") || ""}
                   </div>
+                </div>
+              </div>
+            ` : ""}
+
+            ${currentScene === "experience" ? `
+              <div class="adventure-timeline animate-fade-in">
+                <div class="timeline-path"></div>
+                ${scene.content.timeline?.map((milestone, index) => `
+                  <div class="timeline-milestone ${gameState.collectedExperiences.includes(milestone.id) ? 'collected' : ''}"
+                      onclick="collectExperience('${milestone.id}', this)"
+                      data-milestone="${milestone.id}">
+                    <div class="milestone-content">
+                      <div class="milestone-card">
+                        <div class="milestone-header">
+                          <h3 class="milestone-title">${milestone.title}</h3>
+                          <p class="milestone-company">${milestone.company}</p>
+                          <p class="milestone-period">${milestone.period}</p>
+                          <span class="milestone-type">${milestone.type}</span>
+                        </div>
+                        <div class="milestone-achievements">
+                          ${milestone.achievements?.map(achievement => `
+                            <span class="achievement-badge">${achievement}</span>
+                          `).join('') || ''}
+                        </div>
+                        <div class="milestone-details">
+                          ${milestone.details?.map(detail => `
+                            <div class="detail-item">${detail}</div>
+                          `).join('') || ''}
+                          <div class="milestone-skills">
+                            ${milestone.skills?.map(skill => `
+                              <span class="skill-tag">${skill}</span>
+                            `).join('') || ''}
+                          </div>
+                        </div>
+                      </div>
+                      <div class="milestone-flag">
+                        ${milestone.icon}
+                      </div>
+                    </div>
+                  </div>
+                `).join('') || ''}
+              </div>
+              
+              <div class="timeline-progress">
+                <div class="progress-text">
+                  Adventure Progress: ${gameState.collectedExperiences.length}/${scene.content.timeline?.length || 0}
+                </div>
+                <div class="progress-bar-container">
+                  <div class="progress-bar-fill" style="width: ${scene.content.timeline?.length ? (gameState.collectedExperiences.length / scene.content.timeline.length) * 100 : 0}%"></div>
                 </div>
               </div>
             ` : ""}
@@ -930,19 +985,19 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Visual effects
     wrapper.classList.add('opened');
-    
+
     // Get chest position
     const chest = wrapper.querySelector('.treasure-chest');
     const rect = chest.getBoundingClientRect();
-    
+
     // Particle effect
     GameSystems.particleSystem.burst(
-      rect.left + rect.width/2,
-      rect.top + rect.height/2,
-      15, 
+      rect.left + rect.width / 2,
+      rect.top + rect.height / 2,
+      15,
       'collect'
     );
-    
+
     // XP reward
     GameSystems.awardXP(15);
 
@@ -995,9 +1050,9 @@ document.addEventListener("DOMContentLoaded", () => {
   const getTrophyCaseHTML = (ach, idx) => {
     // prepare the four possible lines and filter out empty ones
     const lines = [
-      { text: ach.date,    fill: '#60A5FA' },
-      { text: ach.rating,  fill: '#34D399' },
-      { text: ach.count,   fill: '#C084FC' },
+      { text: ach.date, fill: '#60A5FA' },
+      { text: ach.rating, fill: '#34D399' },
+      { text: ach.count, fill: '#C084FC' },
       { text: ach.details, fill: '#071D49' }
     ].filter(l => l.text);
 
@@ -1006,7 +1061,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const lineHeight = fontSize * 1.2;
     // reserve a fixed slot for up to 4 wrapped lines
     const maxLines = 4;
-    const boxHeight = lineHeight * maxLines;  
+    const boxHeight = lineHeight * maxLines;
     // vertically center around y=450
     const centerY = 450;
     const yPos = centerY - boxHeight / 2;
@@ -1088,21 +1143,73 @@ document.addEventListener("DOMContentLoaded", () => {
 
   window.toggleQuestDetails = (questElement) => {
     questElement.classList.toggle('expanded');
-    
+
     // Award XP for exploring quest details
     if (questElement.classList.contains('expanded')) {
       GameSystems.awardXP(5);
-      
+
       // Add sparkle effect
       const rect = questElement.getBoundingClientRect();
+
+      // Scroll offsets to get correct absolute position
+      const scrollX = window.pageXOffset || document.documentElement.scrollLeft;
+      const scrollY = window.pageYOffset || document.documentElement.scrollTop;
+
       GameSystems.particleSystem.burst(
-        rect.left + rect.width/2,
-        rect.top + rect.height/2,
+        rect.left + rect.width / 2 + scrollX,
+        rect.top + rect.height / 2 + scrollY,
         5,
         'collect'
       );
     }
-};
+  };
+
+  window.collectExperience = (experienceId, element) => {
+    if (!gameState.collectedExperiences.includes(experienceId)) {
+      gameState.collectedExperiences.push(experienceId);
+
+      // Visual effects
+      element.classList.add('collected');
+
+      // Get milestone position for particle effect
+      const flag = element.querySelector('.milestone-flag');
+      const rect = flag.getBoundingClientRect();
+
+      // Scroll offsets to get correct absolute position
+      const scrollX = window.pageXOffset || document.documentElement.scrollLeft;
+      const scrollY = window.pageYOffset || document.documentElement.scrollTop;
+
+      // Particle effect
+      GameSystems.particleSystem.burst(
+        rect.left + rect.width / 2 + scrollX,
+        rect.top + rect.height / 2 + scrollY,
+        12,
+        'collect'
+      );
+
+      // XP reward
+      GameSystems.awardXP(25);
+      showAchievementNotification(`🎯 Experience Unlocked: ${experienceId}`, 25);
+
+      // Update progress bar
+      const progressBar = document.querySelector('.progress-bar-fill');
+      const totalExperiences = scenes.experience.content.timeline.length;
+      const collectedCount = gameState.collectedExperiences.length;
+
+      if (progressBar) {
+        progressBar.style.width = `${(collectedCount / totalExperiences) * 100}%`;
+      }
+
+      // Update progress text
+      const progressText = document.querySelector('.progress-text');
+      if (progressText) {
+        progressText.textContent = `Adventure Progress: ${collectedCount}/${totalExperiences}`;
+      }
+
+      // Check for completion achievement
+      checkAchievements();
+    }
+  };
 
   function getPortalStoneHTML(social) {
     return `
@@ -1169,7 +1276,7 @@ document.addEventListener("DOMContentLoaded", () => {
               break;
             case "skillMaster":
               if (!gameState.player.achievements.some(a => a.id === "skillMaster")
-                    && gameState.unlockedSkillCategories.length === scenes.skills.content.skillCategories.length) {
+                && gameState.unlockedSkillCategories.length === scenes.skills.content.skillCategories.length) {
                 achievement.unlocked = true;
                 GameSystems.awardXP(achievement.xpReward);
                 showAchievementNotification(achievement.name, achievement.xpReward);
@@ -1185,7 +1292,15 @@ document.addEventListener("DOMContentLoaded", () => {
               break;
             case "chessMaster":
               if (gameState.collectedTrophies.length === scenes.chess.content.achievements.length
-                  && !achievement.unlocked) {
+                && !achievement.unlocked) {
+                achievement.unlocked = true;
+                GameSystems.awardXP(achievement.xpReward);
+                showAchievementNotification(achievement.name, achievement.xpReward);
+              }
+              break;
+            case "experiencedAdventurer":
+              const totalExperiences = scenes.experience.content.timeline?.length || 0;
+              if (gameState.collectedExperiences.length >= totalExperiences && !achievement.unlocked) {
                 achievement.unlocked = true;
                 GameSystems.awardXP(achievement.xpReward);
                 showAchievementNotification(achievement.name, achievement.xpReward);
@@ -1336,7 +1451,7 @@ document.addEventListener("DOMContentLoaded", () => {
  */
 function getTreasureChestHTML(project) {
   const isDiscovered = gameState.discoveredProjects.includes(project.name);
-  
+
   return `
     <div class="chest-wrapper ${isDiscovered ? 'opened' : ''}" 
          data-project="${project.name}"

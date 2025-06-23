@@ -1391,6 +1391,386 @@ input[type="checkbox"] {
           drop-shadow(0 0 4px rgba(200, 200, 200, 0.3));
 }
 
+/* Adventure Timeline Styles */
+.adventure-timeline {
+  position: relative;
+  padding: 2rem 0;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.timeline-path {
+  position: absolute;
+  left: 50%;
+  top: 0;
+  bottom: 0;
+  width: 4px;
+  background: linear-gradient(to bottom, 
+    var(--accent-color) 0%, 
+    rgba(96, 165, 250, 0.5) 50%, 
+    var(--accent-color) 100%);
+  transform: translateX(-50%);
+  border-radius: 2px;
+  box-shadow: 0 0 10px rgba(96, 165, 250, 0.3);
+}
+
+.timeline-milestone {
+  position: relative;
+  margin: 3rem 0;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.timeline-milestone:nth-child(even) .milestone-content {
+  flex-direction: row-reverse;
+  text-align: right;
+}
+
+.timeline-milestone:nth-child(even) .milestone-details {
+  text-align: left;
+}
+
+.milestone-content {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  position: relative;
+}
+
+.milestone-flag {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 60px;
+  height: 60px;
+  background: linear-gradient(45deg, var(--accent-color), #7c3aed);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  color: white;
+  border: 4px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 0 20px rgba(96, 165, 250, 0.4);
+  z-index: 10;
+  transition: all 0.3s ease;
+}
+
+.milestone-flag::before {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background: linear-gradient(45deg, var(--accent-color), #7c3aed);
+  opacity: 0;
+  transform: scale(1.2);
+  transition: all 0.3s ease;
+  z-index: -1;
+}
+
+.timeline-milestone:hover .milestone-flag {
+  transform: translate(-50%, -50%) scale(1.1);
+  box-shadow: 0 0 30px rgba(96, 165, 250, 0.6);
+}
+
+.timeline-milestone:hover .milestone-flag::before {
+  opacity: 0.3;
+  transform: scale(1.5);
+}
+
+.milestone-card {
+  flex: 1;
+  max-width: 400px;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 1rem;
+  padding: 1.5rem;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  transition: all 0.3s ease;
+  transform: translateY(20px);
+  opacity: 0.8;
+}
+
+.timeline-milestone.collected .milestone-card {
+  background: rgba(96, 165, 250, 0.1);
+  border-color: var(--accent-color);
+  box-shadow: 0 0 20px rgba(96, 165, 250, 0.3);
+  transform: translateY(0);
+  opacity: 1;
+}
+
+.timeline-milestone.collected .milestone-flag {
+  background: linear-gradient(45deg, #10b981, #059669);
+  animation: flagCollected 0.6s ease-out;
+}
+
+.milestone-header {
+  margin-bottom: 1rem;
+}
+
+.milestone-title {
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: var(--accent-color);
+  margin: 0 0 0.25rem 0;
+}
+
+.milestone-company {
+  color: #a5b4fc;
+  margin: 0 0 0.25rem 0;
+}
+
+.milestone-period {
+  color: #9ca3af;
+  font-size: 0.9rem;
+  margin: 0;
+}
+
+.milestone-type {
+  display: inline-block;
+  background: rgba(168, 85, 247, 0.2);
+  color: #a855f7;
+  padding: 0.25rem 0.5rem;
+  border-radius: 0.25rem;
+  font-size: 0.8rem;
+  margin-top: 0.5rem;
+}
+
+.milestone-achievements {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  margin: 1rem 0;
+}
+
+.timeline-milestone:nth-child(even) .milestone-achievements {
+  justify-content: flex-end;
+}
+
+.achievement-badge {
+  background: rgba(34, 197, 94, 0.2);
+  color: #10b981;
+  padding: 0.25rem 0.5rem;
+  border-radius: 0.25rem;
+  font-size: 0.8rem;
+  font-weight: 500;
+  animation: badgeUnlock 0.5s ease-out;
+}
+
+.milestone-description {
+  color: #d1d5db;
+  line-height: 1.6;
+  margin-bottom: 1rem;
+}
+
+.milestone-details {
+  max-height: 0;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+.timeline-milestone.collected .milestone-details {
+  max-height: 300px;
+  margin-top: 1rem;
+  padding-top: 1rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  overflow-y: auto; /* Enable vertical scrolling */
+  -webkit-overflow-scrolling: touch;
+}
+
+.milestone-details::-webkit-scrollbar {
+  width: 6px;
+}
+
+.milestone-details::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 3px;
+}
+
+.milestone-details::-webkit-scrollbar-thumb {
+  background: rgba(96, 165, 250, 0.6);
+  border-radius: 3px;
+}
+
+.milestone-details::-webkit-scrollbar-thumb:hover {
+  background: rgba(96, 165, 250, 0.8);
+}
+
+.detail-item {
+  color: #d1d5db;
+  margin-bottom: 0.5rem;
+  padding-left: 1rem;
+  position: relative;
+}
+
+.detail-item::before {
+  content: '▶';
+  position: absolute;
+  left: 0;
+  color: var(--accent-color);
+  font-size: 0.8rem;
+}
+
+.milestone-skills {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  margin-top: 1rem;
+}
+
+/* Ensure milestone header doesn't scroll */
+.milestone-header {
+  margin-bottom: 1rem;
+  flex-shrink: 0; /* Prevent header from shrinking */
+}
+
+/* Ensure achievement badges don't scroll */
+.milestone-achievements {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  margin: 1rem 0;
+  flex-shrink: 0; /* Prevent badges from shrinking */
+}
+
+.skill-tag {
+  background: rgba(79, 70, 229, 0.2);
+  color: #818cf8;
+  padding: 0.25rem 0.5rem;
+  border-radius: 0.25rem;
+  font-size: 0.8rem;
+}
+
+/* Progress Indicator */
+.timeline-progress {
+  position: fixed;
+  bottom: 2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(0, 0, 0, 0.8);
+  padding: 1rem 2rem;
+  border-radius: 2rem;
+  border: 2px solid var(--accent-color);
+  z-index: 100;
+  transition: all 0.3s ease;
+}
+
+.progress-text {
+  color: var(--accent-color);
+  font-weight: bold;
+  text-align: center;
+}
+
+.progress-bar-container {
+  width: 200px;
+  height: 6px;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 3px;
+  margin-top: 0.5rem;
+  overflow: hidden;
+}
+
+.progress-bar-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--accent-color), #10b981);
+  border-radius: 3px;
+  transition: width 0.5s ease;
+}
+
+/* Animations */
+@keyframes flagCollected {
+  0% { transform: translate(-50%, -50%) scale(1); }
+  50% { transform: translate(-50%, -50%) scale(1.3) rotate(180deg); }
+  100% { transform: translate(-50%, -50%) scale(1) rotate(360deg); }
+}
+
+@keyframes badgeUnlock {
+  0% { transform: scale(0) rotate(-180deg); opacity: 0; }
+  70% { transform: scale(1.2) rotate(0deg); }
+  100% { transform: scale(1) rotate(0deg); opacity: 1; }
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 768px) {
+  .adventure-timeline {
+    padding: 1rem;
+  }
+  
+  .timeline-path {
+    left: 2rem;
+  }
+
+  .timeline-milestone:nth-child(even) .milestone-achievements {
+    justify-content: flex-start;
+  }
+  
+  .milestone-content {
+    flex-direction: column !important;
+    text-align: center !important;
+    padding-left: 4rem;
+  }
+  
+  .milestone-flag {
+    left: 2rem !important;
+  }
+  
+  .milestone-card {
+    max-width: 100%;
+  }
+  
+  .milestone-details {
+    text-align: left !important;
+  }
+
+  /* Ensure milestone details are properly scrollable on mobile */
+  .timeline-milestone.collected .milestone-details {
+    max-height: 250px; /* Reduced height for mobile */
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+  
+  /* Make skill tags wrap better on mobile */
+  .milestone-skills {
+    gap: 0.25rem;
+  }
+  
+  .skill-tag {
+    font-size: 0.75rem;
+    padding: 0.2rem 0.4rem;
+  }
+  
+  /* Ensure detail items are readable on mobile */
+  .detail-item {
+    margin-bottom: 0.75rem;
+    line-height: 1.5;
+  }
+  
+  .timeline-progress {
+    bottom: 1rem;
+    left: 1rem;
+    right: 1rem;
+    transform: none;
+  }
+  
+  .progress-bar-container {
+    width: 100%;
+  }
+}
+
+@media (min-width: 769px) {
+  .timeline-milestone.collected .milestone-details {
+    max-height: 350px; /* Slightly larger for desktop */
+    overflow-y: auto;
+  }
+  
+  /* Show scrollbar on hover for desktop */
+  .milestone-details:hover::-webkit-scrollbar-thumb {
+    background: rgba(96, 165, 250, 0.8);
+  }
+}
+
 /* Character Sheet Styles */
 .character-sheet-container {
   max-width: 1000px;

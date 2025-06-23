@@ -87,6 +87,14 @@ const achievements = {
     unlocked: false,
     xpReward: 50
   },
+  experiencedAdventurer: {
+    id: "experiencedAdventurer",
+    name: "Experienced Adventurer",
+    description: "Collected all experience milestones",
+    icon: '<i class="fas fa-map-marked-alt text-yellow-400"></i>',
+    unlocked: false,
+    xpReward: 150
+  },
   chessMaster: {
     id: "chessMaster",
     name: "Grandmaster",
