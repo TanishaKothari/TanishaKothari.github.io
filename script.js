@@ -334,65 +334,273 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     },
     about: {
-      background: "bg-gradient-to-b from-violet-900 to-purple-900",
-      content: {
-        title: "About the Developer",
-        description: `
-          <div class="space-y-4">
-            <p>A passionate game developer with a love for creating interactive experiences. First-year student at the University of Sydney, pursuing Bachelor of Advanced Computing with a Computer Science major and Software Development minor.</p>
-            <p>Arena Candidate Master in chess. Actively seeking internship opportunities in game development, software engineering, and web development.</p>
+  background: "bg-gradient-to-b from-violet-900 to-purple-900",
+  content: {
+    title: "Character Sheet",
+    description: `
+      <div class="character-sheet-container">
+        <!-- Character Portrait & Basic Info -->
+        <div class="character-portrait-section">
+          <div class="character-portrait">
+            <div class="portrait-frame">
+              <div class="portrait-image">
+                <i class="fas fa-user-graduate text-4xl text-blue-400"></i>
+              </div>
+            </div>
+            <div class="character-info">
+              <h3 class="character-name">Tanisha Kothari</h3>
+              <p class="character-class">Game Developer • Code Apprentice</p>
+              <p class="character-location">🌏 Sydney, Australia</p>
+            </div>
+          </div>
+        </div>
 
-            <div class="mt-6">
-              <h3 class="text-xl font-semibold mb-4">Volunteer Experience</h3>
-                  <div class="bg-white/5 p-4 rounded-lg">
-                      <div class="flex items-center gap-2 mb-2">
-                          <i class="fas fa-heart text-pink-400"></i>
-                          <span class="font-semibold">Special Education Support</span>
-                      </div>
-                      <p>Assisted as a yoga teacher at a school for autistic children, showcasing exceptional attention to detail and patience in guiding students through exercises.</p>
-                  </div>
-                  
-                  <div class="bg-white/5 p-4 rounded-lg">
-                      <div class="flex items-center gap-2 mb-2">
-                          <i class="fas fa-hands-helping text-blue-400"></i>
-                          <span class="font-semibold">Community Service</span>
-                      </div>
-                      <p>Contributed to the distribution of meals to over 100 blue-collar workers, developing effective communication and teamwork skills by collaborating with other volunteers.</p>
-                  </div>
-                  
-                  <div class="bg-white/5 p-4 rounded-lg">
-                      <div class="flex items-center gap-2 mb-2">
-                          <i class="fas fa-hand-holding-heart text-red-400"></i>
-                          <span class="font-semibold">Healthcare Support</span>
-                      </div>
-                      <p>Assisted in running a community blood donation camp by managing certificate distribution to donors, contributing to the smooth operation of the event.</p>
-                  </div>
+        <!-- Character Stats -->
+        <div class="character-stats-section">
+          <h3 class="section-title">Character Attributes</h3>
+          <div class="stats-grid">
+            <div class="stat-item">
+              <div class="stat-icon"><i class="fas fa-code text-blue-400"></i></div>
+              <div class="stat-info">
+                <span class="stat-name">Programming</span>
+                <div class="stat-bar">
+                  <div class="stat-fill" style="width: 85%"></div>
+                </div>
+                <span class="stat-value">85/100</span>
+              </div>
+            </div>
+            
+            <div class="stat-item">
+              <div class="stat-icon"><i class="fas fa-gamepad text-purple-400"></i></div>
+              <div class="stat-info">
+                <span class="stat-name">Game Development</span>
+                <div class="stat-bar">
+                  <div class="stat-fill" style="width: 80%"></div>
+                </div>
+                <span class="stat-value">80/100</span>
+              </div>
+            </div>
 
-                  <div class="bg-white/5 p-4 rounded-lg">
-                    <div class="flex items-center gap-2 mb-2">
-                        <i class="fas fa-globe text-green-400"></i>
-                        <span class="font-semibold">Delegate</span>
-                    </div>
-                    <p>I had the privilege of delegating an insightful interview with former member of parliament at New Zealand Parliament Mr. Kanwaljit Singh Bakshi on the role of India as a soft power in the global scenario.</p>
+            <div class="stat-item">
+              <div class="stat-icon"><i class="fas fa-lightbulb text-orange-400"></i></div>
+              <div class="stat-info">
+                <span class="stat-name">Problem Solving</span>
+                <div class="stat-bar">
+                  <div class="stat-fill" style="width: 88%"></div>
+                </div>
+                <span class="stat-value">88/100</span>
+              </div>
+            </div>
+
+            <div class="stat-item">
+              <div class="stat-icon"><i class="fas fa-chess text-yellow-400"></i></div>
+              <div class="stat-info">
+                <span class="stat-name">Strategic Thinking</span>
+                <div class="stat-bar">
+                  <div class="stat-fill" style="width: 90%"></div>
+                </div>
+                <span class="stat-value">90/100</span>
+              </div>
+            </div>
+
+            <div class="stat-item">
+              <div class="stat-icon"><i class="fas fa-bug text-red-400"></i></div>
+              <div class="stat-info">
+                <span class="stat-name">Debugging</span>
+                <div class="stat-bar">
+                  <div class="stat-fill" style="width: 92%"></div>
+                </div>
+                <span class="stat-value">92/100</span>
+              </div>
+            </div>
+
+            <div class="stat-item">
+              <div class="stat-icon"><i class="fas fa-users text-green-400"></i></div>
+              <div class="stat-info">
+                <span class="stat-name">Leadership</span>
+                <div class="stat-bar">
+                  <div class="stat-fill" style="width: 78%"></div>
+                </div>
+                <span class="stat-value">78/100</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Side Quests (Volunteer Work) -->
+        <div class="side-quests-section">
+          <h3 class="section-title">Completed Side Quests</h3>
+          <div class="quest-log space-y-2">
+            
+            <div class="quest-item completed" onclick="toggleQuestDetails(this)">
+              <div class="quest-header">
+                <div class="quest-icon">
+                  <i class="fas fa-heart text-pink-400"></i>
+                </div>
+                <div class="quest-info">
+                  <h4 class="quest-title">Guardian of Young Minds</h4>
+                  <p class="quest-type">Empathy Quest • Special Education</p>
+                  <div class="quest-rewards">
+                    <span class="reward">+15 Empathy</span>
+                    <span class="reward">+10 Patience</span>
+                    <span class="reward">+5 Teaching</span>
+                  </div>
+                </div>
+                <div class="quest-status">
+                  <i class="fas fa-check-circle text-green-400"></i>
+                </div>
+              </div>
+              <div class="quest-details">
+                <p class="quest-description">
+                  Assisted as a yoga instructor at a specialized school for autistic children. 
+                  Demonstrated exceptional attention to detail and infinite patience while guiding 
+                  students through exercises, helping create a calming and supportive environment.
+                </p>
+                <div class="quest-achievements">
+                  <span class="achievement">🏆 Patience Master</span>
+                  <span class="achievement">🎯 Detail Oriented</span>
+                  <span class="achievement">💝 Special Needs Advocate</span>
                 </div>
               </div>
             </div>
 
-            <p class="mt-4">
-              <a href="assets/Tanisha Kothari-Game Developer.pdf" target="_blank" rel="noopener noreferrer" class="inline-flex items-center px-4 py-2 bg-blue-600 rounded-lg hover:bg-blue-700 transition-colors">
-                <i class="fas fa-file-alt mr-2"></i>
-                Download Resume
-              </a>
-            </p>
+            <div class="quest-item completed" onclick="toggleQuestDetails(this)">
+              <div class="quest-header">
+                <div class="quest-icon">
+                  <i class="fas fa-hands-helping text-blue-400"></i>
+                </div>
+                <div class="quest-info">
+                  <h4 class="quest-title">Community Feast Coordinator</h4>
+                  <p class="quest-type">Service Quest • Community Outreach</p>
+                  <div class="quest-rewards">
+                    <span class="reward">+20 Leadership</span>
+                    <span class="reward">+15 Teamwork</span>
+                    <span class="reward">+10 Communication</span>
+                  </div>
+                </div>
+                <div class="quest-status">
+                  <i class="fas fa-check-circle text-green-400"></i>
+                </div>
+              </div>
+              <div class="quest-details">
+                <p class="quest-description">
+                  Coordinated meal distribution for over 100 blue-collar workers, developing 
+                  effective communication strategies and advanced teamwork skills through 
+                  collaborative volunteer efforts.
+                </p>
+                <div class="quest-achievements">
+                  <span class="achievement">👥 Team Coordinator</span>
+                  <span class="achievement">📢 Communication Expert</span>
+                  <span class="achievement">🍽️ Community Helper</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="quest-item completed" onclick="toggleQuestDetails(this)">
+              <div class="quest-header">
+                <div class="quest-icon">
+                  <i class="fas fa-hand-holding-heart text-red-400"></i>
+                </div>
+                <div class="quest-info">
+                  <h4 class="quest-title">Life Saver's Assistant</h4>
+                  <p class="quest-type">Healthcare Quest • Blood Donation</p>
+                  <div class="quest-rewards">
+                    <span class="reward">+10 Organization</span>
+                    <span class="reward">+15 Community Service</span>
+                    <span class="reward">+5 Healthcare Support</span>
+                  </div>
+                </div>
+                <div class="quest-status">
+                  <i class="fas fa-check-circle text-green-400"></i>
+                </div>
+              </div>
+              <div class="quest-details">
+                <p class="quest-description">
+                  Managed certificate distribution at a community blood donation camp, 
+                  ensuring smooth operations and supporting this vital healthcare initiative 
+                  that saves lives in the community.
+                </p>
+                <div class="quest-achievements">
+                  <span class="achievement">📋 Event Organizer</span>
+                  <span class="achievement">❤️ Life Supporter</span>
+                  <span class="achievement">🎫 Certificate Manager</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="quest-item completed" onclick="toggleQuestDetails(this)">
+              <div class="quest-header">
+                <div class="quest-icon">
+                  <i class="fas fa-globe text-green-400"></i>
+                </div>
+                <div class="quest-info">
+                  <h4 class="quest-title">Diplomatic Interviewer</h4>
+                  <p class="quest-type">Diplomatic Quest • International Relations</p>
+                  <div class="quest-rewards">
+                    <span class="reward">+25 Communication</span>
+                    <span class="reward">+20 Cultural Awareness</span>
+                    <span class="reward">+15 Interview Skills</span>
+                  </div>
+                </div>
+                <div class="quest-status">
+                  <i class="fas fa-check-circle text-green-400"></i>
+                </div>
+              </div>
+              <div class="quest-details">
+                <p class="quest-description">
+                  Conducted an insightful interview with former New Zealand Parliament member 
+                  Mr. Kanwaljit Singh Bakshi, exploring India's role as a soft power in global 
+                  politics and international relations.
+                </p>
+                <div class="quest-achievements">
+                  <span class="achievement">🎤 Master Interviewer</span>
+                  <span class="achievement">🌏 Global Perspective</span>
+                  <span class="achievement">🤝 Diplomatic Relations</span>
+                </div>
+              </div>
+            </div>
           </div>
-        `,
-        stats: {
-          "GitHub Projects": 16,
-          "Chess Rating": "~1630",
-          "Bugs Squashed": "500+"
-        },
-      },
-    },
+        </div>
+
+        <!-- Character Bio -->
+        <div class="character-bio-section">
+          <h3 class="section-title">Character Background</h3>
+          <div class="bio-content">
+            <p class="bio-text">
+              A passionate game developer with a love for creating interactive experiences. 
+              Currently on a quest for knowledge at the University of Sydney, pursuing a 
+              Bachelor of Advanced Computing with expertise in Computer Science and Software Development.
+            </p>
+            <p class="bio-text">
+              Achieved the prestigious rank of Arena Candidate Master in chess, demonstrating 
+              strategic thinking and tactical prowess. Actively seeking new adventures in 
+              game development, software engineering, and web development.
+            </p>
+            
+            <div class="character-achievements">
+              <h4 class="achievements-subtitle">Notable Achievements</h4>
+              <div class="achievement-badges">
+                <span class="badge">💻 16+ Github Projects</span>
+                <span class="badge">🏆 500+ Bugs Squashed</span>
+                <span class="badge">♟️ Arena Candidate Master</span>
+                <span class="badge">📈 ~1630 Chess Rating</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Download Resume Button -->
+        <div class="character-actions">
+          <a href="assets/Tanisha Kothari-Game Developer.pdf" target="_blank" rel="noopener noreferrer" 
+             class="character-sheet-btn">
+            <i class="fas fa-scroll mr-2"></i>
+            Download Character Sheet (Resume)
+          </a>
+        </div>
+      </div>
+    `,
+  },
+},
     contact: {
       background: "bg-gradient-to-b from-green-900 to-blue-900",
       content: {
@@ -877,6 +1085,24 @@ document.addEventListener("DOMContentLoaded", () => {
       </div>
     `
   };
+
+  window.toggleQuestDetails = (questElement) => {
+    questElement.classList.toggle('expanded');
+    
+    // Award XP for exploring quest details
+    if (questElement.classList.contains('expanded')) {
+      GameSystems.awardXP(5);
+      
+      // Add sparkle effect
+      const rect = questElement.getBoundingClientRect();
+      GameSystems.particleSystem.burst(
+        rect.left + rect.width/2,
+        rect.top + rect.height/2,
+        5,
+        'collect'
+      );
+    }
+};
 
   function getPortalStoneHTML(social) {
     return `
