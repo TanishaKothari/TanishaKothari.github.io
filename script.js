@@ -10,6 +10,7 @@ const gameState = {
   collectedGems: 0,
   discoveredProjects: [],
   unlockedSkillCategories: [],
+  completedAcademicQuests: [],
   collectedTrophies: [],
   collectedExperiences: []
 };
@@ -177,40 +178,67 @@ document.addEventListener("DOMContentLoaded", () => {
     academics: {
       background: "bg-gradient-to-b from-green-900 to-purple-900",
       content: {
-        title: "Quest for Knowledge",
-        description: "Exploring the realms of knowledge:",
+        title: "Quest Log",
+        description: "Complete educational quests to unlock knowledge and skills:<br><small class='text-blue-300'>💡 Click each quest to see completion details!</small>",
         education: {
-          university: {
-            name: "The University of Sydney",
-            degree: "Bachelor of Advanced Computing",
-            major: "Computer Science",
-            minor: "Software Development",
-            period: "July 2024 - July 2028"
-          },
+          university: [
+            {
+              name: "The University of Sydney",
+              degree: "Bachelor of Advanced Computing",
+              major: "Computer Science",
+              minor: "Software Development",
+              period: "July 2024 - July 2028",
+              questType: "Main Quest",
+              status: "In Progress",
+              icon: '<i class="fas fa-university"></i>',
+              rewards: ["Advanced Computing Knowledge", "Problem Solving Skills", "Software Development Expertise"],
+              description: "Embark on the ultimate academic adventure to master computer science and software development."
+            }
+          ],
           certifications: [
             {
+              id: "ue5_cpp",
               name: "UE5 C++ Developer: Code Your Own Unreal Games",
               provider: "GameDev.tv",
               date: "January 2025",
-              icon: '<i class="fas fa-gamepad"></i>'
+              icon: '<i class="fas fa-gamepad"></i>',
+              questType: "Skill Quest",
+              status: "Completed",
+              rewards: ["Unreal Engine Mastery", "C++ Game Programming", "3D Game Development"],
+              description: "Master the art of game development using Unreal Engine 5 and C++ programming."
             },
             {
+              id: "cpp_fundamentals",
               name: "C++ Fundamentals: Game Programming For Beginners",
               provider: "GameDev.tv",
               date: "November 2024",
-              icon: '<i class="fas fa-code"></i>'
+              icon: '<i class="fas fa-code"></i>',
+              questType: "Foundation Quest",
+              status: "Completed",
+              rewards: ["C++ Programming", "Object-Oriented Design", "Optimization"],
+              description: "Build a solid foundation in C++ programming specifically for game development."
             },
             {
+              id: "ea_experience",
               name: "Electronic Arts Software Engineering Virtual Experience",
               provider: "Forage",
               date: "November 2024",
-              icon: '<i class="fas fa-laptop-code"></i>'
+              icon: '<i class="fas fa-laptop-code"></i>',
+              questType: "Industry Quest",
+              status: "Completed",
+              rewards: ["Industry Experience", "Software Engineering", "Professional Development"],
+              description: "Gain real-world software engineering experience through EA's virtual program."
             },
             {
+              id: "cs50x",
               name: "CS50x",
               provider: "Harvard University",
               date: "April 2024 - May 2024",
-              icon: '<i class="fas fa-university"></i>'
+              icon: '<i class="fas fa-university"></i>',
+              questType: "Foundation Quest",
+              status: "Completed",
+              rewards: ["Computer Science Fundamentals", "Algorithmic Thinking", "Programming Principles"],
+              description: "Harvard's introduction to computer science and programming fundamentals."
             }
           ]
         }
@@ -782,40 +810,28 @@ document.addEventListener("DOMContentLoaded", () => {
             ` : ""}
 
             ${currentScene === "academics" ? `
-              <div class="space-y-8 animate-fade-in">
-                <!-- University Education -->
-                <div class="bg-white/5 p-6 rounded-lg">
-                  <h3 class="text-xl font-semibold mb-4">University Education</h3>
-                  <div class="p-4 bg-white/10 rounded-lg">
-                    <div class="flex items-center gap-3 mb-2">
-                      <i class="fas fa-university text-2xl text-blue-400"></i>
-                      <span class="text-xl font-bold">${scene.content.education?.university?.name || ""}</span>
-                    </div>
-                    <div class="space-y-2 ml-9">
-                      <div class="text-blue-300">${scene.content.education?.university?.degree || ""}</div>
-                      <div>Major: ${scene.content.education?.university?.major || ""}</div>
-                      <div>Minor: ${scene.content.education?.university?.minor || ""}</div>
-                      <div class="text-sm text-gray-300">${scene.content.education?.university?.period || ""}</div>
-                    </div>
+              <div class="quest-log-container animate-fade-in">
+                <!-- Main Quest: University Education -->
+                <div class="main-quest-section mb-8">
+                  <h3 class="section-title mb-6">
+                    <i class="fas fa-crown text-yellow-400 mr-2"></i>
+                    Main Quest - University Education
+                  </h3>
+                  <div class="university-medal-container">
+                    ${getUniversityMedalHTML(scene.content.education?.university)}
                   </div>
                 </div>
 
-                <!-- Professional Certifications -->
-                <div class="bg-white/5 p-6 rounded-lg">
-                  <h3 class="text-xl font-semibold mb-4">Professional Certifications</h3>
-                  <div class="grid gap-4 md:grid-cols-2">
-                    ${scene.content.education?.certifications?.map(cert => `
-                      <div class="p-4 bg-white/10 rounded-lg transform hover:scale-102 transition-all">
-                        <div class="flex items-center gap-3 mb-2">
-                          ${cert.icon}
-                          <div>
-                            <div class="font-semibold">${cert.name}</div>
-                            <div class="text-sm text-blue-300">${cert.provider}</div>
-                            <div class="text-sm text-gray-300">${cert.date}</div>
-                          </div>
-                        </div>
-                      </div>
-                    `).join('') || ""}
+                <!-- Side Quests: Certifications -->
+                <div class="side-quests-section">
+                  <h3 class="section-title mb-6">
+                    <i class="fas fa-scroll text-purple-400 mr-2"></i>
+                    Completed Certification Badges
+                  </h3>
+                  <div class="certification-badges-grid">
+                    ${scene.content.education?.certifications?.map((cert, index) =>
+        getCertificationBadgeHTML(cert, index)
+      ).join('') || ''}
                   </div>
                 </div>
               </div>
@@ -1037,6 +1053,86 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     }
   };
+
+  window.collectAcademicQuest = (questId, element) => {
+    if (!gameState.completedAcademicQuests.includes(questId)) {
+      gameState.completedAcademicQuests.push(questId);
+
+      // Find the quest data to get XP reward
+      let quest = scenes.academics.content.education.certifications.find(cert => cert.id === questId);
+      // If not found in certifications, check universities
+      if (!quest && questId.startsWith('university-medal-')) {
+        const universityIndex = parseInt(questId.split('-')[2]);
+        quest = scenes.academics.content.education.university[universityIndex];
+      }
+
+      if (quest) {
+        // Award XP
+        GameSystems.awardXP(25);
+
+        // Visual effects
+        const isMedal = questId.startsWith('university-medal-');
+        const wrapperClass = isMedal ? 'medal-completed' : 'badge-collected';
+        const svgSelector = isMedal ? '.medal-svg' : '.badge-svg';
+        const glowFilter = isMedal
+          ? 'drop-shadow(0 0 10px #fbbf24)'
+          : 'drop-shadow(0 0 8px #8b5cf6)';
+
+        // add class for future re‐renders
+        element.classList.add(wrapperClass);
+        // force immediate glow
+        const svg = element.querySelector(svgSelector);
+        if (svg) svg.style.filter = glowFilter;
+
+        // Get element position for particle effect
+        const targetElement = element.querySelector(questId.startsWith('university-medal-') ? '.medal-svg' : '.badge-svg');
+        const rect = targetElement.getBoundingClientRect();
+        const scrollX = window.pageXOffset || document.documentElement.scrollLeft;
+        const scrollY = window.pageYOffset || document.documentElement.scrollTop;
+
+        // Particle effect
+        GameSystems.particleSystem.burst(
+          rect.left + rect.width / 2 + scrollX,
+          rect.top + rect.height / 2 + scrollY,
+          15,
+          'collect'
+        );
+
+        // Show achievement notification
+        showAchievementNotification(`🏅 Badge Earned: ${quest.name}`, 25);
+
+        // Check for Scholar achievement
+        checkAchievements();
+      }
+    }
+  };
+
+  window.toggleAcademicDetails = (detailsId) => {
+    const details = document.getElementById(detailsId);
+    if (details) {
+      // Close any other open details first
+      document.querySelectorAll('.medal-details.show, .badge-details.show').forEach(panel => {
+        if (panel !== details) {
+          panel.classList.remove('show');
+        }
+      });
+
+      details.classList.toggle('show');
+    }
+  };
+
+  // Close details when clicking outside
+  document.addEventListener('click', (event) => {
+    // Check if click is outside any badge/medal or their details
+    const isInsideBadgeArea = event.target.closest('.badge-wrapper, .medal-wrapper, .badge-details, .medal-details');
+
+    if (!isInsideBadgeArea) {
+      document.querySelectorAll('.medal-details.show, .badge-details.show').forEach(panel => {
+        panel.classList.remove('show');
+        panel.style.transform = ''; // Reset transforms
+      });
+    }
+  });
 
   // called when user clicks a trophy
   window.collectChessTrophy = (idx) => {
@@ -1285,6 +1381,27 @@ document.addEventListener("DOMContentLoaded", () => {
             case "artifactCollector":
               const projectCount = scenes.projects.content.items.length;
               if (gameState.discoveredProjects.length >= projectCount && !achievement.unlocked) {
+                achievement.unlocked = true;
+                GameSystems.awardXP(achievement.xpReward);
+                showAchievementNotification(achievement.name, achievement.xpReward);
+              }
+              break;
+            case "scholar":
+              // Get all academic quests (both certifications and universities)
+              const totalCertifications = scenes.academics.content.education.certifications.length;
+              const totalUniversities = scenes.academics.content.education.university.length; // Now always an array
+              const totalAcademicQuests = totalCertifications + totalUniversities;
+
+              // Count completed quests
+              const completedCertifications = gameState.completedAcademicQuests.filter(id =>
+                scenes.academics.content.education.certifications.some(cert => cert.id === id)
+              ).length;
+              const completedUniversities = gameState.completedAcademicQuests.filter(id =>
+                id.startsWith('university-medal-')
+              ).length;
+              const totalCompleted = completedCertifications + completedUniversities;
+
+              if (totalCompleted >= totalAcademicQuests && !achievement.unlocked) {
                 achievement.unlocked = true;
                 GameSystems.awardXP(achievement.xpReward);
                 showAchievementNotification(achievement.name, achievement.xpReward);
@@ -2437,6 +2554,141 @@ function getTreasureChestHTML(project) {
                   <span>View Project</span>
                 </a>
               ` : ''}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  `;
+}
+
+// University Star Medal HTML Generator
+function getUniversityMedalHTML(universityData) {
+  if (!universityData) return '';
+
+  return universityData.map((university, index) => {
+    const medalId = `university-medal-${index}`;
+    const isCompleted = gameState.completedAcademicQuests.includes(medalId);
+    const medalClass = isCompleted ? 'medal-completed' : 'medal-in-progress';
+
+    return `
+      <div class="medal-wrapper ${medalClass}" onclick="collectAcademicQuest('${medalId}', this); toggleAcademicDetails('${medalId}-details')">
+        <div class="star-medal" id="${medalId}">
+          <!-- Star Medal SVG -->
+          <svg viewBox="0 0 200 240" class="medal-svg">
+            <!-- Medal Ribbon -->
+            <defs>
+              <linearGradient id="ribbonGradient-${index}" x1="0%" y1="0%" x2="100%" y2="0%">
+                <stop offset="0%" style="stop-color:#1e40af;stop-opacity:1" />
+                <stop offset="50%" style="stop-color:#3b82f6;stop-opacity:1" />
+                <stop offset="100%" style="stop-color:#1e40af;stop-opacity:1" />
+              </linearGradient>
+              <linearGradient id="starGradient-${index}" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" style="stop-color:#fbbf24;stop-opacity:1" />
+                <stop offset="100%" style="stop-color:#d97706;stop-opacity:1" />
+              </linearGradient>
+            </defs>
+            
+            <!-- Ribbon -->
+            <rect x="80" y="0" width="40" height="100" fill="url(#ribbonGradient-${index})" />
+            <polygon points="80,100 120,100 100,120" fill="url(#ribbonGradient-${index})" />
+            
+            <!-- Star Medal -->
+            <g transform="translate(100,160) scale(1.2)">
+              <polygon points="0,-30 8.7,-9.3 30,-9.3 12.4,3.8 21.1,24.5 0,10.4 -21.1,24.5 -12.4,3.8 -30,-9.3 -8.7,-9.3" 
+                       fill="url(#starGradient-${index})" stroke="#b45309" stroke-width="2"/>
+              
+              <!-- University Icon -->
+              <text x="0" y="8" text-anchor="middle" font-size="16" fill="#1e40af" font-family="FontAwesome">&#xf19c;</text>
+            </g>
+          </svg>
+          
+          <!-- Medal Details Panel -->
+          <div class="medal-details" id="${medalId}-details">
+            <div class="medal-info-content">
+              <h4 class="medal-title">${university.name}</h4>
+              <div class="medal-subtitle">${university.degree}</div>
+              <div class="medal-meta">
+                <div><strong>Major:</strong> ${university.major}</div>
+                ${university.minor ? `<div><strong>Minor:</strong> ${university.minor}</div>` : ''}
+                <div><strong>Duration:</strong> ${university.period}</div>
+                <div><strong>Status:</strong> ${university.status}</div>
+              </div>
+              <p class="medal-description">${university.description}</p>
+              <div class="medal-rewards">
+                ${university.rewards?.map(reward => `
+                  <span class="reward-badge">+ ${reward}</span>
+                `).join('') || ''}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    `;
+  }).join('');
+}
+
+// Certification Shield Badge HTML Generator
+function getCertificationBadgeHTML(cert, index) {
+  const isCollected = gameState.completedAcademicQuests.includes(cert.id);
+  const badgeClass = isCollected ? 'badge-collected' : 'badge-available';
+
+  return `
+    <div class="badge-wrapper ${badgeClass}" onclick="collectAcademicQuest('${cert.id}', this); toggleAcademicDetails('badge-${cert.id}-details')">
+      <div class="shield-badge" id="badge-${cert.id}">
+        <!-- Shield Badge SVG -->
+        <svg viewBox="0 0 120 140" class="badge-svg">
+          <defs>
+            <linearGradient id="shieldGradient-${index}" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" style="stop-color:#8b5cf6;stop-opacity:1" />
+              <stop offset="100%" style="stop-color:#5b21b6;stop-opacity:1" />
+            </linearGradient>
+            <filter id="glow-${index}">
+              <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+              <feMerge> 
+                <feMergeNode in="coloredBlur"/>
+                <feMergeNode in="SourceGraphic"/>
+              </feMerge>
+            </filter>
+          </defs>
+          
+          <!-- Shield Shape -->
+          <path d="M60 10 L100 30 L100 70 Q100 100 60 120 Q20 100 20 70 L20 30 Z" 
+                fill="url(#shieldGradient-${index})" 
+                stroke="#6d28d9" 
+                stroke-width="2"
+                filter="${isCollected ? `url(#glow-${index})` : 'none'}"/>
+          
+          <!-- Inner Shield Details -->
+          <path d="M60 20 L90 35 L90 65 Q90 85 60 100 Q30 85 30 65 L30 35 Z" 
+                fill="rgba(255,255,255,0.1)" 
+                stroke="rgba(255,255,255,0.3)" 
+                stroke-width="1"/>
+          
+          <!-- Badge Icon inside shield -->
+          <foreignObject x="35" y="35" width="50" height="50">
+            <div xmlns="http://www.w3.org/1999/xhtml"
+                 style="width:100%;height:100%;display:flex;align-items:center;justify-content:center;color:#fbbf24;font-size:1.5rem;">
+              ${cert.icon}
+            </div>
+          </foreignObject>
+        </svg>
+        
+        <!-- Badge Details Panel -->
+        <div class="badge-details" id="badge-${cert.id}-details">
+          <div class="badge-info-content">
+            <h4 class="badge-title">${cert.name}</h4>
+            <div class="badge-subtitle">${cert.provider}</div>
+            <div class="badge-meta">
+              <div><strong>Type:</strong> ${cert.questType}</div>
+              <div><strong>Period:</strong> ${cert.date}</div>
+              <div><strong>Status:</strong> ${cert.status}</div>
+            </div>
+            <p class="badge-description">${cert.description}</p>
+            <div class="badge-rewards">
+              ${cert.rewards?.map(reward => `
+                <span class="reward-badge">+ ${reward}</span>
+              `).join('') || ''}
             </div>
           </div>
         </div>
