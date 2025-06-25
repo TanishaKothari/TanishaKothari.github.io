@@ -200,7 +200,7 @@ document.addEventListener("DOMContentLoaded", () => {
               id: "ue5_cpp",
               name: "UE5 C++ Developer: Code Your Own Unreal Games",
               provider: "GameDev.tv",
-              date: "January 2025",
+              date: "December 2024 - January 2025",
               icon: '<i class="fas fa-gamepad"></i>',
               questType: "Skill Quest",
               status: "Completed",
