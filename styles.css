@@ -555,6 +555,157 @@ input[type="checkbox"] {
   display: none;
 }
 
+/* Canvas Map Styles */
+.canvas-map-container {
+  position: relative;
+  width: 100%;
+  max-width: 800px;
+  margin: 0 auto;
+  transform: translateX(-40px);
+  border: 3px solid #8b4513;
+  border-radius: 1rem;
+  overflow: hidden;
+  box-shadow: 
+    inset 0 0 50px rgba(0, 0, 0, 0.3),
+    0 0 20px rgba(96, 165, 250, 0.3);
+  background: #1f2937; /* Fallback background */
+  aspect-ratio: 4/3; /* Force 4:3 aspect ratio */
+}
+
+#fantasyMapCanvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  cursor: default;
+  transition: cursor 0.2s ease;
+  background: transparent;
+}
+
+/* Map Legend */
+.map-legend {
+  position: absolute;
+  bottom: 1rem;
+  right: 1rem;
+  background: rgba(0, 0, 0, 0.8);
+  border: 2px solid rgba(96, 165, 250, 0.5);
+  border-radius: 0.5rem;
+  padding: 1rem;
+  color: white;
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.legend-item:last-child {
+  margin-bottom: 0;
+}
+
+.legend-icon {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  border: 2px solid rgba(255, 255, 255, 0.8);
+}
+
+.undiscovered-icon {
+  background: #ffd700;
+  animation: legendPulse 2s ease-in-out infinite;
+}
+
+.discovered-icon {
+  background: #10b981;
+}
+
+@keyframes legendPulse {
+  0%, 100% { 
+    opacity: 0.6;
+    transform: scale(1);
+  }
+  50% { 
+    opacity: 1;
+    transform: scale(1.1);
+  }
+}
+
+/* Location Details Card */
+.location-details-card {
+  position: absolute;
+  background: rgba(0, 0, 0, 0.9) !important;
+  border: 2px solid var(--accent-color) !important;
+  border-radius: 1rem !important;
+  padding: 1.5rem !important;
+  color: white !important;
+  box-shadow: 0 0 20px rgba(96, 165, 250, 0.4) !important;
+  backdrop-filter: blur(10px) !important;
+  font-family: inherit !important;
+  z-index: 1000 !important;
+}
+
+.location-details-card .details-header h3 {
+  color: var(--accent-color) !important;
+  font-size: 1.25rem !important;
+  font-weight: bold !important;
+  margin: 0 0 0.5rem 0 !important;
+}
+
+.location-details-card .details-content {
+  line-height: 1.5 !important;
+}
+
+/* Dark Mode Adjustments for Details Card */
+.dark-mode .location-details-card {
+  background: rgba(15, 23, 42, 0.95) !important;
+  border-color: var(--accent-color) !important;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .canvas-map-container {
+    margin: 0 1rem;
+  }
+  
+  .map-legend {
+    bottom: 0.5rem;
+    right: 0.5rem;
+    padding: 0.75rem;
+    font-size: 0.8rem;
+  }
+  
+  .location-details-card {
+    max-width: 90vw !important;
+    min-width: 250px !important;
+    font-size: 0.9rem !important;
+    padding: 1rem !important;
+  }
+  
+  .location-details-card .details-header h3 {
+    font-size: 1.1rem !important;
+  }
+}
+
+/* Dark Mode Adjustments */
+.dark-mode .canvas-map-container {
+  border-color: #6b4423;
+  box-shadow: 
+    inset 0 0 50px rgba(0, 0, 0, 0.5),
+    0 0 20px rgba(93, 176, 255, 0.4);
+}
+
+.dark-mode .map-progress-indicator {
+  background: rgba(15, 23, 42, 0.8);
+  border-color: rgba(93, 176, 255, 0.4);
+}
+
+.dark-mode .map-legend {
+  background: rgba(15, 23, 42, 0.9);
+  border-color: rgba(93, 176, 255, 0.6);
+}
+
 /* size and preserve-3d - scaled to 12rem */
 .treasure-chest-positioner,
 .treasure-chest {

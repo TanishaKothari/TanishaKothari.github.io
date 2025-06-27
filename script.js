@@ -8,6 +8,7 @@ const gameState = {
   },
   darkMode: false,
   collectedGems: 0,
+  discoveredLocations: [],
   discoveredProjects: [],
   unlockedSkillCategories: [],
   completedAcademicQuests: [],
@@ -51,27 +52,41 @@ document.addEventListener("DOMContentLoaded", () => {
       background: "bg-gradient-to-r from-purple-900 to-blue-900",
       content: {
         title: "Game Maker's Odyssey",
-        description: "My path in game development:<br><small class='text-blue-300'>💡 Next: Check out my Project Vault to see these skills in action!</small>",
-        devJourney: [
-          {
-            year: "2022",
-            milestone: "Started Game Development",
-            details: "First Unity project, learned C#",
-            icon: '<i class="fas fa-gamepad"></i>'
-          },
-          {
-            year: "2024",
-            milestone: "Expanded to Unreal Engine",
-            details: "Mastered C++ fundamentals",
-            icon: '<i class="fas fa-bolt"></i>'
-          },
-          {
-            year: "2025",
-            milestone: "Portfolio Growth",
-            details: "Building diverse game projects",
-            icon: '<i class="fas fa-rocket"></i>'
-          }
-        ],
+        description: "Explore the map! Click each location to reveal a milestone in my game development journey:<br><small class='text-blue-300'>💡 Use Tab to navigate between locations, Enter to discover them!</small>",
+        worldMap: {
+          locations: [
+            {
+              id: "unity-village",
+              name: "Unity Village",
+              year: "2022",
+              milestone: "Started Game Development",
+              details: "First Unity project, learned C#",
+              icon: '<i class="fas fa-gamepad"></i>',
+              position: { x: 20, y: 60 }, // percentage positions
+              discovered: false
+            },
+            {
+              id: "unreal-mountains",
+              name: "Unreal Mountains", 
+              year: "2024",
+              milestone: "Expanded to Unreal Engine",
+              details: "Mastered C++ fundamentals",
+              icon: '<i class="fas fa-bolt"></i>',
+              position: { x: 70, y: 30 },
+              discovered: false
+            },
+            {
+              id: "portfolio-castle",
+              name: "Portfolio Castle",
+              year: "2025", 
+              milestone: "Portfolio Growth",
+              details: "Building diverse game projects",
+              icon: '<i class="fas fa-rocket"></i>',
+              position: { x: 50, y: 80 },
+              discovered: false
+            }
+          ]
+        },
         engineExpertise: [
           {
             name: "Unreal Engine",
@@ -733,6 +748,9 @@ document.addEventListener("DOMContentLoaded", () => {
     app.style.opacity = "0";
 
     setTimeout(() => {
+      // Clean up previous canvas map if exists
+      destroyCanvasMap();
+
       app.innerHTML = `
         <div class="min-h-screen p-8 text-white content-container" style="background: ${gradientMap[scene.background]}">
           <div class="max-w-4xl mx-auto">
@@ -741,24 +759,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
             ${currentScene === "gamedev" ? `
               <div class="space-y-8 animate-fade-in">
-                <!-- Timeline -->
-                <div class="mb-8">
-                  <h3 class="text-xl font-semibold mb-4">Development Timeline</h3>
-                  <div class="space-y-4">
-                    ${scene.content.devJourney?.map(milestone => `
-                      <div class="flex items-start space-x-4 p-4 bg-white/5 rounded-lg hover:bg-white/10 transition-colors">
-                        <div class="text-2xl">${milestone.icon}</div>
-                        <div>
-                          <div class="font-bold">${milestone.year}</div>
-                          <div class="text-lg text-blue-300">${milestone.milestone}</div>
-                          <div class="text-sm text-gray-300">${milestone.details}</div>
-                        </div>
-                      </div>
-                    `).join("") || ""}
-                  </div>
-                </div>
-          
-                <!-- Engine Expertise -->
+                <!-- World Map -->
+                ${getWorldMapHTML(scenes)}
+                
+                <!-- Engine Expertise (below the map) -->
                 <div>
                   <h3 class="text-xl font-semibold mb-4">Engine Expertise</h3>
                   <div class="grid md:grid-cols-3 gap-4">
@@ -978,6 +982,13 @@ document.addEventListener("DOMContentLoaded", () => {
         }, 100);
       }
 
+      // Initialize canvas map for gamedev scene
+      if (currentScene === "gamedev") {
+        setTimeout(() => {
+          initializeCanvasMap(scenes);
+        }, 100);
+      }
+
       // Fade in the new content
       app.style.opacity = "1";
     }, 300); // Wait for fade out before updating content
@@ -987,6 +998,40 @@ document.addEventListener("DOMContentLoaded", () => {
     unlockArea(nextScene);
     currentScene = nextScene;
     renderScene();
+    checkAchievements();
+  };
+
+  // World Map Discovery Function
+  window.discoverLocation = (locationId) => {
+    const location = scenes.gamedev.content.worldMap.locations.find(loc => loc.id === locationId);
+    if (!location || gameState.discoveredLocations.includes(locationId)) return;
+
+    // Add to discovered locations
+    gameState.discoveredLocations.push(locationId);
+    location.discovered = true;
+
+    // Visual effects - for canvas map, the redraw happens in the canvas class
+    if (canvasMapInstance) {
+      canvasMapInstance.updateLocations(scenes.gamedev.content.worldMap.locations);
+    }
+
+    // Particle effect at canvas center (since we can't get exact element position)
+    const canvas = document.getElementById('fantasyMapCanvas');
+    if (canvas) {
+      const rect = canvas.getBoundingClientRect();
+      GameSystems.particleSystem.burst(
+        rect.left + rect.width / 2,
+        rect.top + rect.height / 2,
+        20,
+        'discover'
+      );
+    }
+
+    // XP reward
+    GameSystems.awardXP(20);
+    showAchievementNotification(`🗺️ Discovered: ${location.name}`, 10);
+    
+    // Check for World Explorer achievement
     checkAchievements();
   };
 
@@ -1370,6 +1415,14 @@ document.addEventListener("DOMContentLoaded", () => {
                 showAchievementNotification(achievement.name, achievement.xpReward);
               }
               break;
+            case "worldExplorer":
+              const totalLocations = scenes.gamedev.content.worldMap.locations.length;
+              if (gameState.discoveredLocations.length >= totalLocations && !achievement.unlocked) {
+                achievement.unlocked = true;
+                GameSystems.awardXP(achievement.xpReward);
+                showAchievementNotification(achievement.name, achievement.xpReward);
+              }
+              break;
             case "skillMaster":
               if (!gameState.player.achievements.some(a => a.id === "skillMaster")
                 && gameState.unlockedSkillCategories.length === scenes.skills.content.skillCategories.length) {
@@ -1562,6 +1615,34 @@ document.addEventListener("DOMContentLoaded", () => {
     requestAnimationFrame(GameSystems.createRandomCollectible);
   }, Math.random() * 5000 + 5000);
 });
+
+// Generate World Map HTML
+function getWorldMapHTML(scenes) {
+  const locations = scenes.gamedev.content.worldMap.locations;
+  const totalLocations = locations.length;
+  const discoveredCount = gameState.discoveredLocations.length;
+
+  return `
+    <div class="world-map-container">
+      <!-- Canvas Map -->
+      <div class="canvas-map-container">
+        <canvas id="fantasyMapCanvas" width="800" height="600"></canvas>
+        
+        <!-- Map Legend -->
+        <div class="map-legend">
+          <div class="legend-item">
+            <div class="legend-icon undiscovered-icon"></div>
+            <span>Undiscovered</span>
+          </div>
+          <div class="legend-item">
+            <div class="legend-icon discovered-icon"></div>
+            <span>Discovered</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  `;
+}
 
 /**
  * Returns the full 3D chest + toggle markup for a project
@@ -2695,4 +2776,518 @@ function getCertificationBadgeHTML(cert, index) {
       </div>
     </div>
   `;
+}
+
+class CanvasMap {
+  constructor(canvasId, locations) {
+    this.canvas = document.getElementById(canvasId);
+    if (!this.canvas) {
+      console.error('Canvas element not found');
+      return;
+    }
+    
+    this.ctx = this.canvas.getContext('2d');
+    this.locations = locations;
+    this.mapImage = new Image();
+    this.hoveredLocation = null;
+    this.selectedLocation = null;
+    this.detailsCard = null;
+    this.imageLoaded = false;
+    
+    // Set canvas size immediately
+    this.canvas.width = 800;
+    this.canvas.height = 600;
+    
+    // Create details card element
+    this.createDetailsCard();
+    
+    // Bind event handlers
+    this.handleClick = this.handleClick.bind(this);
+    this.handleMouseMove = this.handleMouseMove.bind(this);
+    this.handleMouseLeave = this.handleMouseLeave.bind(this);
+    
+    // Set up canvas first, then load image
+    this.setupCanvas();
+    this.loadMapImage();
+  }
+
+  createDetailsCard() {
+    this.detailsCard = document.createElement('div');
+    this.detailsCard.className = 'location-details-card';
+    this.detailsCard.style.cssText = `
+      position: absolute;
+      background: rgba(0, 0, 0, 0.9);
+      border: 2px solid var(--accent-color);
+      border-radius: 1rem;
+      padding: 1.5rem;
+      color: white;
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.3s ease;
+      z-index: 1000;
+      max-width: 300px;
+      min-width: 250px;
+      box-shadow: 0 0 20px rgba(96, 165, 250, 0.4);
+      backdrop-filter: blur(10px);
+      pointer-events: none;
+    `;
+    
+    // Insert the card right after the canvas
+    this.canvas.parentElement.style.position = 'relative';
+    this.canvas.parentElement.appendChild(this.detailsCard);
+  }
+
+  loadMapImage() {
+    // First, draw fallback immediately
+    this.drawFallbackBackground();
+    this.drawLocations();
+    
+    this.mapImage.onload = () => {
+      this.imageLoaded = true;
+      this.hardcodeLocationPositions();
+      this.draw();
+    };
+    
+    this.mapImage.onerror = (error) => {
+      console.error('Failed to load map image:', error);
+      console.log('Using fallback background');
+      this.imageLoaded = false;
+      this.hardcodeLocationPositions();
+      this.drawFallbackBackground();
+      this.drawLocations();
+    };
+    
+    // Try to load the image
+    this.mapImage.src = './assets/fantasy_map.png?v=${Date.now()}';
+    
+    // Fallback timeout in case image takes too long
+    setTimeout(() => {
+      if (!this.imageLoaded) {
+        console.log('Image load timeout, using fallback');
+        this.hardcodeLocationPositions();
+        this.drawFallbackBackground();
+        this.drawLocations();
+      }
+    }, 3000);
+  }
+
+  hardcodeLocationPositions() {
+    // Hardcode positions based on your actual map
+    this.locations.forEach(location => {
+      switch(location.id) {
+        case "unity-village":
+          location.position = { x: 20, y: 60 };
+          break;
+        case "unreal-mountains":
+          location.position = { x: 49.75, y: 7 };
+          break;
+        case "portfolio-castle":
+          location.position = { x: 72.75, y: 35 };
+          break;
+        default:
+          break;
+      }
+    });
+  }
+
+  setupCanvas() {
+    // Set up canvas event listeners
+    this.canvas.addEventListener('click', this.handleClick);
+    this.canvas.addEventListener('mousemove', this.handleMouseMove);
+    this.canvas.addEventListener('mouseleave', this.handleMouseLeave);
+
+    // Close details card when clicking outside
+    document.addEventListener('click', (event) => {
+      if (!this.canvas.contains(event.target) && !this.detailsCard.contains(event.target)) {
+        this.hideDetailsCard();
+      }
+    });
+    
+    // Make canvas responsive
+    this.resizeCanvas();
+    window.addEventListener('resize', () => this.resizeCanvas());
+  }
+
+  resizeCanvas() {
+    const container = this.canvas.parentElement;
+    if (!container) return;
+    
+    // Get container dimensions
+    const containerRect = container.getBoundingClientRect();
+    const containerWidth = containerRect.width;
+    const containerHeight = containerRect.height;
+    
+    // Set canvas to fill container exactly
+    this.canvas.style.width = '100%';
+    this.canvas.style.height = '100%';
+    
+    // Update scale factors for click detection
+    this.scaleX = containerWidth / 800;
+    this.scaleY = containerHeight / 600;
+    
+    // Redraw after resize
+    if (this.imageLoaded) {
+      this.draw();
+    } else {
+      this.drawFallbackBackground();
+      this.drawLocations();
+    }
+  }
+
+  drawFallbackBackground() {
+    // Clear canvas first
+    this.ctx.clearRect(0, 0, 800, 600);
+    
+    // Draw a fantasy-style gradient background as fallback
+    const gradient = this.ctx.createLinearGradient(0, 0, 800, 600);
+    gradient.addColorStop(0, '#2d1b69');
+    gradient.addColorStop(0.3, '#1e40af');
+    gradient.addColorStop(0.7, '#064e3b');
+    gradient.addColorStop(1, '#1f2937');
+    
+    this.ctx.fillStyle = gradient;
+    this.ctx.fillRect(0, 0, 800, 600);
+    
+    // Add some decorative elements
+    this.drawDecorations();
+  }
+
+  drawDecorations() {
+    // Draw some simple mountain shapes
+    this.ctx.fillStyle = 'rgba(75, 85, 99, 0.6)';
+    this.ctx.beginPath();
+    this.ctx.moveTo(100, 400);
+    this.ctx.lineTo(200, 200);
+    this.ctx.lineTo(300, 400);
+    this.ctx.closePath();
+    this.ctx.fill();
+
+    // Second mountain
+    this.ctx.beginPath();
+    this.ctx.moveTo(500, 400);
+    this.ctx.lineTo(600, 150);
+    this.ctx.lineTo(700, 400);
+    this.ctx.closePath();
+    this.ctx.fill();
+
+    // Draw a river
+    this.ctx.strokeStyle = 'rgba(96, 165, 250, 0.4)';
+    this.ctx.lineWidth = 8;
+    this.ctx.beginPath();
+    this.ctx.moveTo(0, 300);
+    this.ctx.quadraticCurveTo(200, 250, 400, 350);
+    this.ctx.quadraticCurveTo(600, 450, 800, 400);
+    this.ctx.stroke();
+    
+    // Add some fantasy elements
+    this.ctx.fillStyle = 'rgba(255, 215, 0, 0.3)';
+    this.ctx.beginPath();
+    this.ctx.arc(150, 150, 30, 0, 2 * Math.PI);
+    this.ctx.fill();
+    
+    this.ctx.beginPath();
+    this.ctx.arc(650, 200, 25, 0, 2 * Math.PI);
+    this.ctx.fill();
+  }
+
+  draw() {
+    // Clear canvas
+    this.ctx.clearRect(0, 0, 800, 600);
+    
+    // Draw background image or fallback
+    if (this.imageLoaded && this.mapImage.complete && this.mapImage.naturalHeight !== 0) {
+      this.ctx.drawImage(this.mapImage, 0, 0, 800, 600);
+    } else {
+      this.drawFallbackBackground();
+    }
+    
+    // Always draw locations on top
+    this.drawLocations();
+  }
+
+  drawLocations() {
+    this.locations.forEach((location, index) => {
+      const x = (location.position.x / 100) * 800;
+      const y = (location.position.y / 100) * 600;
+      const isDiscovered = gameState.discoveredLocations.includes(location.id);
+      const isHovered = this.hoveredLocation === location.id;
+      const isSelected = this.selectedLocation === location.id;
+      
+      // Draw location base circle
+      this.ctx.save();
+      
+      // Outer glow effect
+      if (isHovered || isDiscovered || isSelected) {
+        const glowRadius = isSelected ? 40 : (isHovered ? 35 : 25);
+        const glowColor = isSelected ? 'rgba(96, 165, 250, 0.5)' : 
+                         (isDiscovered ? 'rgba(16, 185, 129, 0.3)' : 'rgba(255, 215, 0, 0.3)');
+        const glowGradient = this.ctx.createRadialGradient(x, y, 0, x, y, glowRadius);
+        glowGradient.addColorStop(0, glowColor);
+        glowGradient.addColorStop(1, 'rgba(255, 255, 255, 0)');
+        
+        this.ctx.fillStyle = glowGradient;
+        this.ctx.beginPath();
+        this.ctx.arc(x, y, glowRadius, 0, 2 * Math.PI);
+        this.ctx.fill();
+      }
+      
+      // Main location circle
+      const radius = isSelected ? 24 : (isHovered ? 22 : 18);
+      this.ctx.fillStyle = isSelected ? '#60a5fa' : (isDiscovered ? '#10b981' : '#ffd700');
+      this.ctx.beginPath();
+      this.ctx.arc(x, y, radius, 0, 2 * Math.PI);
+      this.ctx.fill();
+      
+      // Border
+      this.ctx.strokeStyle = 'rgba(255, 255, 255, 0.8)';
+      this.ctx.lineWidth = isSelected ? 3 : 2;
+      this.ctx.stroke();
+      
+      // Pulsing animation for undiscovered locations
+      if (!isDiscovered && !isSelected) {
+        const time = Date.now() / 1000;
+        const pulse = (Math.sin(time * 2 + index) + 1) / 2;
+        const pulseRadius = radius + pulse * 8;
+        
+        this.ctx.strokeStyle = `rgba(255, 215, 0, ${0.3 + pulse * 0.4})`;
+        this.ctx.lineWidth = 2;
+        this.ctx.beginPath();
+        this.ctx.arc(x, y, pulseRadius, 0, 2 * Math.PI);
+        this.ctx.stroke();
+      }
+      
+      // Draw icon (simplified text representation)
+      this.ctx.fillStyle = 'white';
+      this.ctx.font = 'bold 16px Arial';
+      this.ctx.textAlign = 'center';
+      this.ctx.textBaseline = 'middle';
+      
+      // Icon mapping for canvas (using Unicode)
+      let iconText = '📍'; // default icon
+      if (location.icon.includes('fa-gamepad')) iconText = '🎮';
+      else if (location.icon.includes('fa-bolt')) iconText = '⚡';
+      else if (location.icon.includes('fa-rocket')) iconText = '🚀';
+      
+      this.ctx.fillText(iconText, x, y);
+      
+      // Fog overlay for undiscovered locations
+      if (!isDiscovered) {
+        const fogGradient = this.ctx.createRadialGradient(x, y, 0, x, y, radius + 10);
+        fogGradient.addColorStop(0, 'rgba(200, 200, 200, 0.1)');
+        fogGradient.addColorStop(0.6, 'rgba(180, 180, 180, 0.6)');
+        fogGradient.addColorStop(1, 'rgba(120, 120, 120, 0.8)');
+        
+        this.ctx.fillStyle = fogGradient;
+        this.ctx.beginPath();
+        this.ctx.arc(x, y, radius + 5, 0, 2 * Math.PI);
+        this.ctx.fill();
+      }
+      
+      this.ctx.restore();
+    });
+  }
+
+  getLocationAt(mouseX, mouseY) {
+    // Convert mouse coordinates to canvas coordinates
+    const rect = this.canvas.getBoundingClientRect();
+    const canvasX = (mouseX - rect.left) / this.scaleX;
+    const canvasY = (mouseY - rect.top) / this.scaleY;
+    
+    // Check each location
+    for (const location of this.locations) {
+      const locationX = (location.position.x / 100) * 800;
+      const locationY = (location.position.y / 100) * 600;
+      const distance = Math.sqrt((canvasX - locationX) ** 2 + (canvasY - locationY) ** 2);
+      
+      if (distance <= 25) { // 25px click radius
+        return location;
+      }
+    }
+    return null;
+  }
+
+  handleClick(event) {
+    const location = this.getLocationAt(event.clientX, event.clientY);
+    if (location) {
+      // Set selected location and show details card
+      this.selectedLocation = location.id;
+      this.showDetailsCard(location, event.clientX, event.clientY);
+
+      discoverLocation(location.id); // Mark location as discovered
+      this.draw(); // Redraw to update visual state
+    } else {
+      // Clicked elsewhere on canvas, hide details card
+      this.hideDetailsCard();
+    }
+  }
+
+  handleMouseMove(event) {
+    const location = this.getLocationAt(event.clientX, event.clientY);
+    
+    if (location && location.id !== this.hoveredLocation) {
+      this.hoveredLocation = location.id;
+      this.canvas.style.cursor = 'pointer';
+      this.draw();
+    } else if (!location && this.hoveredLocation) {
+      this.hoveredLocation = null;
+      this.canvas.style.cursor = 'default';
+      this.draw();
+    }
+  }
+
+  handleMouseLeave() {
+    this.hoveredLocation = null;
+    this.canvas.style.cursor = 'default';
+    this.draw();
+  }
+
+  showDetailsCard(location, mouseX, mouseY) {
+    const isDiscovered = gameState.discoveredLocations.includes(location.id);
+    
+    // Update card content
+    this.detailsCard.innerHTML = `
+      <div class="details-header">
+        <h3 style="margin: 0 0 0.5rem 0; color: var(--accent-color); font-size: 1.25rem;">
+          ${location.name}
+        </h3>
+        <div style="color: #a5b4fc; font-size: 0.9rem; margin-bottom: 0.75rem;">
+          ${location.year}
+        </div>
+      </div>
+      <div class="details-content">
+        <div style="font-weight: 600; margin-bottom: 0.75rem; color: #ffd700;">
+          ${location.milestone}
+        </div>
+        <div style="color: #d1d5db; line-height: 1.5;">
+          ${location.details}
+        </div>
+      </div>
+    `;
+    
+    // Position the card next to the location
+    this.positionDetailsCard(location, mouseX, mouseY);
+    
+    // Show the card
+    this.detailsCard.style.opacity = '1';
+    this.detailsCard.style.visibility = 'visible';
+    this.detailsCard.style.pointerEvents = 'auto';
+  }
+
+  positionDetailsCard(location, mouseX, mouseY) {
+  const rect = this.canvas.getBoundingClientRect();
+  const containerRect = this.canvas.parentElement.getBoundingClientRect();
+  
+  // Calculate location position on screen
+  const locationX = (location.position.x / 100) * rect.width;
+  const locationY = (location.position.y / 100) * rect.height;
+  
+  // Get card dimensions (estimate)
+  const cardWidth = 300;
+  const cardHeight = 200;
+  
+  // Position relative to the canvas container
+  let cardX = locationX + 60; // Default: 60px to the right of location
+  let cardY = locationY - 50; // 50px above location center
+  
+  // Check if card would go off the right edge
+  if (cardX + cardWidth > rect.width) {
+    cardX = locationX - cardWidth - 20; // Move to left side
+  }
+  
+  // On mobile or small screens, prefer positioning above/below instead of left/right
+  if (rect.width < 768) {
+    // Mobile positioning: center the card horizontally and place above/below
+    cardX = Math.max(10, Math.min(rect.width - cardWidth - 10, locationX - cardWidth / 2));
+    
+    // Try to position above the location first
+    cardY = locationY - cardHeight - 30;
+    
+    // If it goes off the top, position below instead
+    if (cardY < 10) {
+      cardY = locationY + 60; // Below the location
+    }
+    
+    // Final check: ensure it doesn't go off the bottom
+    if (cardY + cardHeight > rect.height - 10) {
+      cardY = rect.height - cardHeight - 10;
+    }
+  } else {
+    // Desktop positioning: keep original left/right logic
+    // Adjust vertical position to keep within bounds
+    if (cardY < 0) {
+      cardY = 20; // Keep some margin from top
+    }
+    
+    if (cardY + cardHeight > rect.height) {
+      cardY = rect.height - cardHeight - 20; // Keep some margin from bottom
+    }
+  }
+  
+  // Final safety checks to ensure card stays within bounds
+  cardX = Math.max(10, Math.min(cardX, rect.width - cardWidth - 10));
+  cardY = Math.max(10, Math.min(cardY, rect.height - cardHeight - 10));
+  
+  // Apply position
+  this.detailsCard.style.left = `${cardX}px`;
+  this.detailsCard.style.top = `${cardY}px`;
+}
+
+  hideDetailsCard() {
+    this.selectedLocation = null;
+    this.detailsCard.style.opacity = '0';
+    this.detailsCard.style.visibility = 'hidden';
+    this.detailsCard.style.pointerEvents = 'none';
+    this.draw(); // Redraw to remove selection highlight
+  }
+
+  // Animation loop for pulsing effects
+  startAnimation() {
+    const animate = () => {
+      if (this.canvas && this.canvas.isConnected) {
+        this.draw();
+        requestAnimationFrame(animate);
+      }
+    };
+    animate();
+  }
+
+  // Update locations (called when gameState changes)
+  updateLocations(newLocations) {
+    this.locations = newLocations;
+    this.draw();
+  }
+
+  // Cleanup
+  destroy() {
+    if (this.canvas) {
+      this.canvas.removeEventListener('click', this.handleClick);
+      this.canvas.removeEventListener('mousemove', this.handleMouseMove);
+      this.canvas.removeEventListener('mouseleave', this.handleMouseLeave);
+    }
+    window.removeEventListener('resize', this.resizeCanvas);
+    if (this.detailsCard && this.detailsCard.parentNode) {
+      this.detailsCard.parentNode.removeChild(this.detailsCard);
+    }
+  }
+}
+
+// Global variable to store the map instance
+let canvasMapInstance = null;
+
+// Initialize canvas map when the gamedev scene is rendered
+function initializeCanvasMap(scenes) {
+  const canvas = document.getElementById('fantasyMapCanvas');
+  if (canvas && !canvasMapInstance) {
+    const locations = scenes.gamedev.content.worldMap.locations;
+    canvasMapInstance = new CanvasMap('fantasyMapCanvas', locations);
+    canvasMapInstance.startAnimation();
+  }
+}
+
+// Clean up canvas map when leaving the scene
+function destroyCanvasMap() {
+  if (canvasMapInstance) {
+    canvasMapInstance.destroy();
+    canvasMapInstance = null;
+  }
 }

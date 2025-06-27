@@ -71,6 +71,14 @@ const achievements = {
     unlocked: false,
     xpReward: 25
   },
+  worldExplorer: {
+    id: "worldExplorer",
+    name: "World Explorer",
+    description: "Discovered all locations on the Game Dev World Map",
+    icon: '<i class="fas fa-globe-americas text-yellow-400"></i>',
+    unlocked: false,
+    xpReward: 40
+  },
   artifactCollector: {
     id: "artifactCollector",
     name: "Artifact Collector",
