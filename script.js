@@ -52,7 +52,7 @@ document.addEventListener("DOMContentLoaded", () => {
       background: "bg-gradient-to-r from-purple-900 to-blue-900",
       content: {
         title: "Game Maker's Odyssey",
-        description: "Explore the map! Click each location to reveal a milestone in my game development journey:<br><small class='text-blue-300'>💡 Use Tab to navigate between locations, Enter to discover them!</small>",
+        description: "Explore the map! Click each location to reveal a milestone in my game development journey:<br><small class='text-blue-300'>💡 Click the icons to discover each milestone!</small>",
         worldMap: {
           locations: [
             {
