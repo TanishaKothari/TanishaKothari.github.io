@@ -2085,6 +2085,235 @@ input[type="checkbox"] {
   100% { transform: scale(1) rotate(0deg); opacity: 1; }
 }
 
+/* Battle Arena Styles */
+.battle-arena {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+.arena-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  margin-bottom: 2rem;
+  perspective: 1000px; /* for 3D effect */
+}
+
+.competition-card {
+  background-color: transparent;
+  width: 100%;
+  height: 320px;
+  cursor: pointer;
+}
+
+.competition-card-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  transition: transform 0.6s;
+  transform-style: preserve-3d;
+  display: grid;
+}
+
+.competition-card.is-flipped .competition-card-inner {
+  transform: rotateY(180deg);
+}
+
+.competition-card-front, .competition-card-back {
+  grid-area: 1 / 1; /* Place both faces in the same grid cell */
+  width: 100%;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  border-radius: 1rem;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  color: white;
+  padding: 1.5rem 1rem;
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  display: flex;
+  flex-direction: column;
+}
+
+.competition-card-front {
+  align-items: center;
+  justify-content: center;
+}
+
+.card-front-icon {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+  color: var(--accent-color);
+}
+
+.card-front-title {
+  font-size: 1.1rem;
+  font-weight: bold;
+  margin: 0;
+}
+
+.card-front-subtitle {
+  font-size: 0.9rem;
+  color: #a5b4fc;
+  margin-top: 0.25rem;
+}
+
+.card-front-date {
+  font-size: 0.8rem;
+  color: #9ca3af;
+  margin-top: 0.5rem;
+}
+
+.card-front-difficulty {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  padding: 0.25rem 0.5rem;
+  border-radius: 0.25rem;
+  font-size: 0.7rem;
+  font-weight: bold;
+}
+
+.card-front-prompt {
+  position: absolute;
+  bottom: 1rem;
+  font-size: 0.8rem;
+  color: #9ca3af;
+  opacity: 0.7;
+}
+
+.competition-card-back {
+  transform: rotateY(180deg);
+  overflow-y: auto;
+  text-align: left;
+  justify-content: flex-start;
+}
+
+.card-back-content {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.card-back-content strong {
+  color: var(--accent-color);
+}
+
+.achievement-tags, .award-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem;
+}
+
+.competition-info-content {
+  color: white;
+}
+
+.competition-title {
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #ff6b35;
+  margin-bottom: 0.5rem;
+}
+
+.competition-subtitle {
+  color: #93c5fd;
+  font-weight: 600;
+  margin-bottom: 1rem;
+}
+
+.competition-meta {
+  background: rgba(255, 255, 255, 0.05);
+  padding: 1rem;
+  border-radius: 0.5rem;
+  margin: 1rem 0;
+}
+
+.competition-meta div {
+  margin-bottom: 0.5rem;
+  color: #d1d5db;
+  font-size: 0.9rem;
+}
+
+.competition-meta div:last-child {
+  margin-bottom: 0;
+}
+
+.competition-description {
+  color: #e5e7eb;
+  line-height: 1.5;
+  margin: 1rem 0;
+}
+
+.competition-project {
+  color: #fbbf24;
+  margin: 1rem 0;
+  font-weight: 600;
+}
+
+.competition-tech {
+  margin: 1rem 0;
+}
+
+.tech-tags {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  margin-top: 0.5rem;
+}
+
+.tech-tag {
+  background: rgba(59, 130, 246, 0.2);
+  color: #60a5fa;
+  padding: 0.25rem 0.5rem;
+  border-radius: 0.25rem;
+  font-size: 0.8rem;
+}
+
+.competition-achievements {
+  margin: 1rem 0;
+}
+
+.achievement-badge {
+  background: rgba(34, 197, 94, 0.2);
+  color: #10b981;
+  padding: 0.25rem 0.5rem;
+  border-radius: 0.25rem;
+  font-size: 0.8rem;
+  margin: 0.25rem 0.25rem 0.25rem 0;
+  display: inline-block;
+}
+
+.competition-awards {
+  margin: 1rem 0;
+}
+
+.award-badge {
+  background: linear-gradient(45deg, #fbbf24, #f59e0b);
+  color: white;
+  padding: 0.25rem 0.75rem;
+  border-radius: 1rem;
+  font-size: 0.8rem;
+  font-weight: 500;
+  margin: 0.25rem 0.25rem 0.25rem 0;
+  display: inline-block;
+}
+
+/* Arena Stats */
+.arena-stats {
+  backdrop-filter: blur(10px);
+}
+
+.stat-card {
+  transition: transform 0.3s ease;
+}
+
+.stat-card:hover {
+  transform: translateY(-2px);
+}
+
 /* Mobile Responsiveness */
 @media (max-width: 768px) {
   .adventure-timeline {
@@ -2150,6 +2379,31 @@ input[type="checkbox"] {
   .progress-bar-container {
     width: 100%;
   }
+
+  .arena-grid {
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 2rem;
+  }
+  
+  .shield-svg {
+    width: 120px;
+    height: 140px;
+  }
+  
+  .competition-details {
+    min-width: 280px;
+    max-width: 90vw;
+    padding: 1rem;
+  }
+}
+
+.dark-mode .competition-details {
+  background: rgba(15, 23, 42, 0.95) !important;
+  backdrop-filter: blur(10px);
+}
+
+.dark-mode .competition-meta {
+  background: rgba(255, 255, 255, 0.03);
 }
 
 @media (min-width: 769px) {

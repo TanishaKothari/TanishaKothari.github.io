@@ -41,8 +41,9 @@ document.addEventListener("DOMContentLoaded", () => {
           { text: "Enter Project Vault", nextScene: "projects" },
           { text: "Explore Skills Chamber", nextScene: "skills" },
           { text: "Quest for Knowledge", nextScene: "academics" },
-          { text: "Path of the Chess Master", nextScene: "chess" },
           { text: "Search for Experience", nextScene: "experience" },
+          { text: "Enter Battle Arena", nextScene: "competitions" },
+          { text: "Path of the Chess Master", nextScene: "chess" },
           { text: "About the Developer", nextScene: "about" },
           { text: "Contact Portal", nextScene: "contact" }
         ],
@@ -144,6 +145,13 @@ document.addEventListener("DOMContentLoaded", () => {
             icon: '<i class="fas fa-puzzle-piece"></i>'
           },
           {
+            name: "EcoTrace",
+            tech: "Python, TypeScript, Next.js, React, TailwindCSS, SQLite",
+            description: "AI-powered environmental impact analyzer",
+            link: "https://github.com/TanishaKothari/EcoTrace",
+            icon: '<i class="fas fa-leaf"></i>'
+          },
+          {
             name: "ExploreEase",
             tech: "Python, Flask, HTML, CSS, JavaScript, MySQL",
             description: "A travel itinerary generator website",
@@ -172,8 +180,10 @@ document.addEventListener("DOMContentLoaded", () => {
             skills: [
               { name: "Python & Flask", level: 80, icon: '<i class="fab fa-python"></i>' },
               { name: "JavaScript", level: 70, icon: '<i class="fab fa-js"></i>' },
+              { name: "Node.js", level: 65, icon: '<i class="fab fa-node"></i>' },
               { name: "Svelte & SvelteKit", level: 65, icon: '<i class="fas fa-fire"></i>' },
               { name: "C++", level: 75, icon: '<i class="fas fa-code"></i>' },
+              { name: "Java", level: 40, icon: '<i class="fab fa-java"></i>' },
               { name: "MySQL & SQLite", level: 72, icon: '<i class="fas fa-database"></i>' },
               { name: "HTML & CSS", level: 75, icon: '<i class="fab fa-html5"></i>' },
               { name: "Tailwind CSS", level: 60, icon: '<svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path fill-rule="evenodd" clip-rule="evenodd" d="M12 6.036c-2.667 0-4.333 1.325-5 3.976 1-1.325 2.167-1.822 3.5-1.491.761.189 1.305.738 1.906 1.345C13.387 10.855 14.522 12 17 12c2.667 0 4.333-1.325 5-3.976-1 1.325-2.166 1.822-3.5 1.491-.761-.189-1.305-.738-1.907-1.345-.98-.99-2.114-2.134-4.593-2.134zM7 12c-2.667 0-4.333 1.325-5 3.976 1-1.326 2.167-1.822 3.5-1.491.761.189 1.305.738 1.907 1.345.98.989 2.115 2.134 4.594 2.134 2.667 0 4.333-1.325 5-3.976-1 1.325-2.167 1.822-3.5 1.491-.761-.189-1.305-.738-1.906-1.345C10.613 13.145 9.478 12 7 12z"/></svg>' },
@@ -334,6 +344,21 @@ document.addEventListener("DOMContentLoaded", () => {
         description: "Follow my professional journey and unlock achievements:<br><small class='text-blue-300'>💡 Click each milestone to discover the adventure details!</small>",
         timeline: [
           {
+            id: "chess_coach",
+            title: "Chess Coach",
+            company: "Sydney Academy of Chess",
+            period: "August 2025 - Present",
+            type: "coaching",
+            icon: '<i class="fas fa-chalkboard-teacher"></i>',
+            achievements: ["Tactical Trainer", "Mind Mentor", "Strategy Shaper"],
+            details: [
+              "Coaching students from beginner to advanced levels, focusing on tactical and strategic improvement.",
+              "Developing fun and interactive lesson plans to teach the fundamentals of chess to young learners.",
+              "Fostering a positive and engaging learning environment to cultivate a passion for chess."
+            ],
+            skills: ["Communication", "Mentoring", "Strategic Planning", "Pedagogy"]
+          },
+          {
             id: "e12_dev",
             title: "Software Developer",
             company: "e12.io",
@@ -378,6 +403,45 @@ document.addEventListener("DOMContentLoaded", () => {
               "Developing leadership and communication skills"
             ],
             skills: ["Mentoring", "Academic Guidance", "Leadership", "Communication"]
+          }
+        ]
+      }
+    },
+    competitions: {
+      background: "bg-gradient-to-b from-red-900 to-orange-900",
+      content: {
+        title: "Battle Arena",
+        description: "Forge your skills in the heat of competition:<br><small class='text-blue-300'>💡 Click each card to see battle details!</small>",
+        competitions:[
+          {
+            id: "hacknode_2025",
+            name: "HackNode Australia 2025",
+            type: "Hackathon",
+            date: "August 2025",
+            placement: "Participant",
+            team: "Solo",
+            description: "",
+            project: "EcoTrace - AI-powered Environmental Impact Analyzer",
+            technologies: ["Python", "TypeScript", "Next.js", "React", "TailwindCSS", "SQLite"],
+            achievements: ["Complete Webapp Prototype", "AI Integration", "Sustainability Focus"],
+            awards: [],
+            icon: '<i class="fas fa-leaf text-green-400"></i>',
+            difficulty: "expert"
+          },
+          {
+            id: "alluni_2025",
+            name: "AllUni Programming Competition 2025",
+            type: "Programming Contest",
+            date: "August 2025",
+            placement: "Team Participant",
+            team: "3-person Team",
+            description: "Collaborative algorithmic problem-solving competition under time constraints",
+            project: "Complex algorithmic challenges and data structures",
+            technologies: ["Python", "Data Structures", "Algorithms", "Problem Solving"],
+            achievements: ["Team Collaboration", "Algorithmic Thinking", "Time Management"],
+            awards: [],
+            icon: '<i class="fas fa-code text-blue-400"></i>',
+            difficulty: "hard"
           }
         ]
       }
@@ -736,7 +800,9 @@ document.addEventListener("DOMContentLoaded", () => {
       "bg-gradient-to-b from-green-900 to-purple-900": gameState.darkMode ?
         "var(--bg-gradient)" : "linear-gradient(to bottom, #064e3b, #5b21b6)",
       "bg-gradient-to-b from-purple-900 to-indigo-900": gameState.darkMode ?
-        "var(--bg-gradient)" : "linear-gradient(to bottom, #4c1d95, #312e81)"
+        "var(--bg-gradient)" : "linear-gradient(to bottom, #4c1d95, #312e81)",
+      "bg-gradient-to-b from-red-900 to-orange-900" : gameState.darkMode ?
+        "var(--bg-gradient)" : "linear-gradient(to bottom, #7f1d1d, #7c2d12)"
     };
 
     // if we're already on “projects” and the grid exists, just update text
@@ -836,6 +902,33 @@ document.addEventListener("DOMContentLoaded", () => {
                     ${scene.content.education?.certifications?.map((cert, index) =>
         getCertificationBadgeHTML(cert, index)
       ).join('') || ''}
+                  </div>
+                </div>
+              </div>
+            ` : ""}
+
+            ${currentScene === "competitions" ? `
+              <div class="battle-arena animate-fade-in">
+                <div class="arena-grid">
+                  ${scene.content.competitions?.map((comp, index) => getCompetitionCardHTML(comp, index)).join("") || ""}
+                </div>
+                
+                <!-- Arena Stats -->
+                <div class="arena-stats mt-8 p-6 bg-white/5 rounded-xl border border-white/10">
+                  <h3 class="text-xl font-semibold mb-4 text-center">Combat Statistics</h3>
+                  <div class="stats-grid grid md:grid-cols-3 gap-4">
+                    <div class="stat-card text-center p-4 bg-red-500/20 rounded-lg">
+                      <div class="text-2xl font-bold text-red-400">${scene.content.competitions?.length || 0}</div>
+                      <div class="text-sm">Battles Fought</div>
+                    </div>
+                    <div class="stat-card text-center p-4 bg-blue-500/20 rounded-lg">
+                      <div class="text-2xl font-bold text-blue-400">${scene.content.competitions?.reduce((acc, comp) => acc + comp.technologies.length, 0) || 0}</div>
+                      <div class="text-sm">Weapons Mastered</div>
+                    </div>
+                    <div class="stat-card text-center p-4 bg-green-500/20 rounded-lg">
+                      <div class="text-2xl font-bold text-green-400">${scene.content.competitions?.reduce((acc, comp) => acc + comp.achievements.length, 0) || 0}</div>
+                      <div class="text-sm">Skills Gained</div>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -1178,6 +1271,62 @@ document.addEventListener("DOMContentLoaded", () => {
       });
     }
   });
+
+  window.collectCompetition = (competitionId, element) => {
+    if (!gameState.completedCompetitions) {
+      gameState.completedCompetitions = [];
+    }
+    
+    if (!gameState.completedCompetitions.includes(competitionId)) {
+      gameState.completedCompetitions.push(competitionId);
+
+      // Award XP
+      GameSystems.awardXP(30);
+
+      // Visual effects
+      element.classList.add('shield-collected');
+      const svg = element.querySelector('.shield-svg');
+      if (svg) svg.style.filter = 'drop-shadow(0 0 10px #ff6b35)';
+
+      // Get element position for particle effect
+      const rect = element.getBoundingClientRect();
+      const scrollX = window.pageXOffset || document.documentElement.scrollLeft;
+      const scrollY = window.pageYOffset || document.documentElement.scrollTop;
+
+      GameSystems.particleSystem.burst(
+        rect.left + rect.width / 2 + scrollX,
+        rect.top + rect.height / 2 + scrollY,
+        15,
+        'collect'
+      );
+
+      showAchievementNotification(`⚔️ Battle Completed: ${competitionId}`, 30);
+      checkAchievements();
+    }
+  };
+
+  window.toggleCompetitionDetails = (detailsId) => {
+    const details = document.getElementById(detailsId);
+    if (details) {
+      // Close any other open details first
+      document.querySelectorAll('.competition-details.show').forEach(panel => {
+        if (panel !== details) {
+          panel.classList.remove('show');
+        }
+      });
+
+      details.classList.toggle('show');
+    }
+  };
+
+  window.flipCompetitionCard = (cardElement, competitionId) => {
+    cardElement.classList.toggle('is-flipped');
+    
+    // Collect competition on first flip
+    if (!gameState.completedCompetitions?.includes(competitionId)) {
+      collectCompetition(competitionId, cardElement);
+    }
+  };
 
   // called when user clicks a trophy
   window.collectChessTrophy = (idx) => {
@@ -2771,6 +2920,72 @@ function getCertificationBadgeHTML(cert, index) {
                 <span class="reward-badge">+ ${reward}</span>
               `).join('') || ''}
             </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  `;
+}
+
+// Competition Card HTML Generator
+function getCompetitionCardHTML(competition, index) {
+  const isFlipped = gameState.completedCompetitions?.includes(competition.id) || false;
+  const cardClass = isFlipped ? 'is-flipped' : '';
+
+  const difficultyColors = {
+    easy: '#10b981',
+    medium: '#f59e0b',
+    hard: '#ef4444',
+    expert: '#8b5cf6'
+  };
+
+  return `
+    <div class="competition-card ${cardClass}" onclick="flipCompetitionCard(this, '${competition.id}')">
+      <div class="competition-card-inner">
+        <div class="competition-card-front" style="border-bottom: 5px solid ${difficultyColors[competition.difficulty]};">
+          <div class="card-front-icon">${competition.icon}</div>
+          <h4 class="card-front-title">${competition.name}</h4>
+          <div class="card-front-subtitle">${competition.type}</div>
+          <div class="card-front-date">${competition.date}</div>
+          <div class="card-front-difficulty" style="background-color: ${difficultyColors[competition.difficulty]};">
+            ${competition.difficulty.toUpperCase()}
+          </div>
+          <div class="card-front-prompt">Click to flip</div>
+        </div>
+        <div class="competition-card-back">
+          <div class="card-back-content">
+            <h4 class="competition-title">${competition.name}</h4>
+            <div class="competition-meta">
+              <div><strong>Team:</strong> ${competition.team}</div>
+            </div>
+            ${competition.description ? `<p class="competition-description">${competition.description}</p>` : ''}
+            <div class="competition-project">
+              <strong>Project:</strong> ${competition.project}
+            </div>
+            <div class="competition-tech">
+              <strong>Technologies:</strong>
+              <div class="tech-tags">
+                ${competition.technologies.map(tech => `<span class="tech-tag">${tech}</span>`).join('')}
+              </div>
+            </div>
+            <div class="competition-achievements">
+              <strong>Achievements:</strong>
+              <div class="achievement-tags">
+                ${competition.achievements.map(achievement => `
+                  <span class="achievement-badge">${achievement}</span>
+                `).join('')}
+              </div>
+            </div>
+            ${competition.awards && competition.awards.length > 0 ? `
+            <div class="competition-awards">
+              <strong>Recognition:</strong>
+              <div class="award-tags">
+              ${competition.awards.map(award => `
+                <span class="award-badge">🏆 ${award}</span>
+              `).join('')}
+              </div>
+            </div>
+            ` : ''}
           </div>
         </div>
       </div>
