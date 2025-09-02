@@ -383,7 +383,7 @@ document.addEventListener("DOMContentLoaded", () => {
             achievements: ["Community Leader", "Event Coordinator", "Team Player"],
             details: [
               "Assist in organizing events and tournaments to engage chess enthusiasts across campus.",
-              "Support weekly operations for a club of 150+ members, ensuring smooth event coordination and communication.",
+              "Support weekly operations for a club of 600+ members, ensuring smooth event coordination and communication.",
               "Developing event management, leadership, and communication skills."
             ],
             skills: ["Event Management", "Communication", "Team Coordination"]
