@@ -414,6 +414,26 @@ document.addEventListener("DOMContentLoaded", () => {
         description: "Forge your skills in the heat of competition:<br><small class='text-blue-300'>💡 Click each card to see battle details!</small>",
         competitions:[
           {
+            id: "syncs_2025",
+            name: "SYNCS Hack 2025",
+            type: "Hackathon",
+            date: "August 2025",
+            placement: "Best First Year Team Prize",
+            team: "404 Brain Not Found",
+            description: "Built Gigimon — a web app to strengthen community connections by helping people find and connect with local gig workers and community members nearby.",
+            project: "Gigimon - Community Gig Marketplace",
+            technologies: ["Python", "MySQL", "Next.js", "Google Maps API"],
+            achievements: [
+              "Live Map Marketplace",
+              "Google Maps Integration",
+              "Email Match Alerts",
+              "Best First Year Team Prize"
+            ],
+            awards: ["Best First Year Team Prize"],
+            icon: '<i class="fas fa-network-wired text-green-400"></i>',
+            difficulty: "hard"
+          },
+          {
             id: "hacknode_2025",
             name: "HackNode Australia 2025",
             type: "Hackathon",
