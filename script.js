@@ -426,8 +426,7 @@ document.addEventListener("DOMContentLoaded", () => {
             achievements: [
               "Live Map Marketplace",
               "Google Maps Integration",
-              "Email Match Alerts",
-              "Best First Year Team Prize"
+              "Email Match Alerts"
             ],
             awards: ["Best First Year Team Prize"],
             icon: '<i class="fas fa-network-wired text-green-400"></i>',
@@ -438,13 +437,13 @@ document.addEventListener("DOMContentLoaded", () => {
             name: "HackNode Australia 2025",
             type: "Hackathon",
             date: "August 2025",
-            placement: "Participant",
+            placement: "Most Innovative AI App Prize",
             team: "Solo",
             description: "",
             project: "EcoTrace - AI-powered Environmental Impact Analyzer",
             technologies: ["Python", "TypeScript", "Next.js", "React", "TailwindCSS", "SQLite"],
             achievements: ["Complete Webapp Prototype", "AI Integration", "Sustainability Focus"],
-            awards: [],
+            awards: ["Most Innovative AI App Prize"],
             icon: '<i class="fas fa-leaf text-green-400"></i>',
             difficulty: "expert"
           },
@@ -2978,10 +2977,10 @@ function getCompetitionCardHTML(competition, index) {
             <div class="competition-meta">
               <div><strong>Team:</strong> ${competition.team}</div>
             </div>
-            ${competition.description ? `<p class="competition-description">${competition.description}</p>` : ''}
             <div class="competition-project">
-              <strong>Project:</strong> ${competition.project}
+            <strong>Project:</strong> ${competition.project}
             </div>
+            ${competition.description ? `<p class="competition-description">${competition.description}</p>` : ''}
             <div class="competition-tech">
               <strong>Technologies:</strong>
               <div class="tech-tags">
