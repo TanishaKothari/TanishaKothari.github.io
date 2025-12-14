@@ -1735,7 +1735,7 @@ input[type="checkbox"] {
 }
 
 .skill-scroll.open {
-  max-height: 100vh;      /* big enough to show all skills */
+  max-height: 100%;      /* big enough to show all skills */
   transform: none !important;
 }
 
