@@ -255,7 +255,9 @@ window.portfolioData = {
                     "Developing fun and interactive lesson plans to teach the fundamentals of chess to young learners.",
                     "Fostering a positive and engaging learning environment to cultivate a passion for chess."
                 ],
-                skills: ["Communication", "Mentoring", "Strategic Planning", "Pedagogy"]
+                skills: ["Communication", "Mentoring", "Strategic Planning", "Pedagogy"],
+                color: "hover:border-yellow-500/50",
+                iconColor: "text-yellow-400"
             },
             {
                 id: "e12_dev",
@@ -270,7 +272,9 @@ window.portfolioData = {
                     "Implemented secure JWT and OAuth 2.0 authentication flows, enabling protected access and role-based control across the platform.",
                     "Integrated with and extended Node.js APIs to support frontend functionality for a scalable IoT data system."
                 ],
-                skills: ["Svelte", "SvelteKit", "JWT", "OAuth 2.0", "Node.js"]
+                skills: ["Svelte", "SvelteKit", "JWT", "OAuth 2.0", "Node.js"],
+                color: "hover:border-green-500/50",
+                iconColor: "text-green-400"
             },
             {
                 id: "chess_exec",
@@ -285,7 +289,9 @@ window.portfolioData = {
                     "Support weekly operations for a club of 600+ members, ensuring smooth event coordination and communication.",
                     "Developing event management, leadership, and communication skills."
                 ],
-                skills: ["Event Management", "Communication", "Team Coordination"]
+                skills: ["Event Management", "Communication", "Team Coordination"],
+                color: "hover:border-purple-500/50",
+                iconColor: "text-purple-400"
             },
             {
                 id: "peer_mentor",
@@ -301,7 +307,9 @@ window.portfolioData = {
                     "Contributing to building an inclusive learning environment",
                     "Developing leadership and communication skills"
                 ],
-                skills: ["Mentoring", "Academic Guidance", "Leadership", "Communication"]
+                skills: ["Mentoring", "Academic Guidance", "Leadership", "Communication"],
+                color: "hover:border-orange-500/50",
+                iconColor: "text-orange-400"
             }
         ]
     },
@@ -323,8 +331,10 @@ window.portfolioData = {
                 "Email Match Alerts"
             ],
             awards: ["Best First Year Team Prize"],
-            icon: '<i class="fas fa-network-wired text-green-400"></i>',
-            difficulty: "hard"
+            icon: '<i class="fas fa-network-wired"></i>',
+            difficulty: "hard",
+            color: "hover:border-green-500/50",
+            iconColor: "text-green-400",
         },
         {
             id: "hacknode_2025",
@@ -338,8 +348,10 @@ window.portfolioData = {
             technologies: ["Python", "TypeScript", "Next.js", "React", "TailwindCSS", "SQLite"],
             achievements: ["Complete Webapp Prototype", "AI Integration", "Sustainability Focus"],
             awards: ["Most Innovative AI App Prize"],
-            icon: '<i class="fas fa-leaf text-green-400"></i>',
-            difficulty: "expert"
+            icon: '<i class="fas fa-trophy"></i>',
+            difficulty: "expert",
+            color: "hover:border-yellow-500/50",
+            iconColor: "text-yellow-400",
         },
         {
             id: "alluni_2025",
@@ -353,8 +365,41 @@ window.portfolioData = {
             technologies: ["Python", "Data Structures", "Algorithms", "Problem Solving"],
             achievements: ["Team Collaboration", "Algorithmic Thinking", "Time Management"],
             awards: [],
-            icon: '<i class="fas fa-code text-blue-400"></i>',
-            difficulty: "hard"
+            icon: '<i class="fas fa-code"></i>',
+            difficulty: "hard",
+            color: "hover:border-blue-500/50",
+            iconColor: "text-blue-400",
+        }
+    ],
+
+    volunteerWork: [
+        {
+            title: "Special Education Support",
+            icon: '<i class="fas fa-heart"></i>',
+            color: "hover:border-pink-500/50",
+            iconColor: "text-pink-400",
+            description: "Assisted as a yoga teacher at a school for autistic children, showcasing exceptional attention to detail and patience in guiding students through exercises."
+        },
+        {
+            title: "Community Service",
+            icon: '<i class="fas fa-hands-helping"></i>',
+            color: "hover:border-blue-500/50",
+            iconColor: "text-blue-400",
+            description: "Contributed to the distribution of meals to over 100 blue-collar workers, developing effective communication and teamwork skills by collaborating with other volunteers."
+        },
+        {
+            title: "Healthcare Support",
+            icon: '<i class="fas fa-hand-holding-heart"></i>',
+            color: "hover:border-red-500/50",
+            iconColor: "text-red-400",
+            description: "Assisted in running a community blood donation camp by managing certificate distribution to donors, contributing to the smooth operation of the event."
+        },
+        {
+            title: "Delegate",
+            icon: '<i class="fas fa-globe"></i>',
+            color: "hover:border-green-500/50",
+            iconColor: "text-green-400",
+            description: "I had the privilege of delegating an insightful interview with former member of parliament at New Zealand Parliament Mr. Kanwaljit Singh Bakshi on the role of India as a soft power in the global scenario."
         }
     ],
 

@@ -17,6 +17,7 @@
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet" />
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="styles.css" />
+    <script src="data.js"></script>
 </head>
 
 <body class="traditional-view min-h-screen bg-gradient-to-b from-gray-900 to-black text-white">
@@ -139,171 +140,17 @@
 
         <!-- Projects Section -->
         <section id="projects" class="scroll-stagger scroll-mt-24">
-            <div class="relative">
-                <h2 class="text-4xl font-bold mb-12 flex items-center gap-3">
-                    <i class="fas fa-code text-blue-400"></i>Featured Projects
-                </h2>
-
+            <h2 class="text-4xl font-bold mb-12 flex items-center gap-3">
+                <i class="fas fa-code text-blue-400"></i>Featured Projects
+            </h2>
+            <div id="gamedev-projects-container">
                 <h3 class="text-2xl font-bold mb-8">Game Development Projects</h3>
-                <div class="grid gap-8 md:grid-cols-2">
-                    <!-- Project 1 -->
-                    <div class="group hover-lift hover-glow hover-lift hover-glow relative bg-white/5 rounded-xl p-6 hover:bg-white/10 transition-all duration-300
-                            border border-white/10 hover:border-blue-500/50">
-                        <div class="flex items-center gap-4 mb-4">
-                            <i class="fas fa-crosshairs"></i>
-                            <h3 class="text-xl font-bold group-hover:text-blue-400 transition-colors">Firearm Frenzy
-                            </h3>
-                        </div>
-                        <div class="text-blue-300 mb-2 text-sm">Unreal Engine 5, C++</div>
-                        <p class="mb-4 text-gray-300">A third-person shooter</p>
-                        <div class="flex items-center gap-4">
-                            <a href="https://github.com/TanishaKothari/Firearm-Frenzy" target="_blank"
-                                rel="noopener noreferrer"
-                                class="inline-flex items-center gap-2 text-blue-300 hover:text-blue-100">
-                                <i class="fab fa-github"></i>
-                                <span>View Code</span>
-                            </a>
-                        </div>
-                    </div>
-
-                    <!-- Project 2 -->
-                    <div class="group hover-lift hover-glow relative bg-white/5 rounded-xl p-6 hover:bg-white/10 transition-all duration-300
-                            border border-white/10 hover:border-blue-500/50">
-                        <div class="flex items-center gap-4 mb-4">
-                            <i class="fas fa-dungeon"></i>
-                            <h3 class="text-xl font-bold group-hover:text-blue-400 transition-colors">Crypt Raider</h3>
-                        </div>
-                        <div class="text-blue-300 mb-2 text-sm">Unreal Engine 5, C++</div>
-                        <p class="mb-4 text-gray-300">A puzzle adventure</p>
-                        <div class="flex items-center gap-4">
-                            <a href="https://github.com/TanishaKothari/CryptRaider" target="_blank"
-                                rel="noopener noreferrer"
-                                class="inline-flex items-center gap-2 text-blue-300 hover:text-blue-100">
-                                <i class="fab fa-github"></i>
-                                <span>View Code</span>
-                            </a>
-                        </div>
-                    </div>
-
-                    <!-- Project 3 -->
-                    <div class="group hover-lift hover-glow relative bg-white/5 rounded-xl p-6 hover:bg-white/10 transition-all duration-300
-                            border border-white/10 hover:border-blue-500/50">
-                        <div class="flex items-center gap-4 mb-4">
-                            <i class="fas fa-rocket"></i>
-                            <h3 class="text-xl font-bold group-hover:text-blue-400 transition-colors">PortalPaths: Maze
-                                Multiverse</h3>
-                        </div>
-                        <div class="text-blue-300 mb-2 text-sm">C++, Raylib</div>
-                        <p class="mb-4 text-gray-300">A maze game with various themes and different difficulty modes</p>
-                        <div class="flex items-center gap-4">
-                            <a href="https://github.com/TanishaKothari/PortalPaths-Maze_Multiverse" target="_blank"
-                                rel="noopener noreferrer"
-                                class="inline-flex items-center gap-2 text-blue-300 hover:text-blue-100">
-                                <i class="fab fa-github"></i>
-                                <span>View Code</span>
-                            </a>
-                            <a href="https://tanishakothari.itch.io/portalpaths-maze-multiverse" target="_blank"
-                                rel="noopener noreferrer"
-                                class="inline-flex items-center gap-2 text-blue-300 hover:text-blue-100 transition-colors">
-                                <i class="fas fa-external-link-alt"></i>
-                                <span>Play Game</span>
-                            </a>
-                        </div>
-                    </div>
-
-                    <!-- Project 4 -->
-                    <div class="group hover-lift hover-glow relative bg-white/5 rounded-xl p-6 hover:bg-white/10 transition-all duration-300
-                            border border-white/10 hover:border-blue-500/50">
-                        <div class="flex items-center gap-4 mb-4">
-                            <i class="fas fa-puzzle-piece"></i>
-                            <h3 class="text-xl font-bold group-hover:text-blue-400 transition-colors">Sudoku Mastermind
-                            </h3>
-                        </div>
-                        <div class="text-blue-300 mb-2 text-sm">Unity, C#</div>
-                        <p class="mb-4 text-gray-300">Classic sudoku and variants</p>
-                        <div class="flex items-center gap-4">
-                            <a href="https://github.com/TanishaKothari/Sudoku-Mastermind" target="_blank"
-                                rel="noopener noreferrer"
-                                class="inline-flex items-center gap-2 text-blue-300 hover:text-blue-100">
-                                <i class="fab fa-github"></i>
-                                <span>View Code</span>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-
-                <h3 class="text-2xl font-bold mb-8 mt-12">Software/Web Development Projects</h3>
-                <div class="grid gap-8 md:grid-cols-2">
-                    <!-- Project 5 -->
-                    <div class="group hover-lift hover-glow relative bg-white/5 rounded-xl p-6 hover:bg-white/10 transition-all duration-300
-                            border border-white/10 hover:border-blue-500/50">
-                        <div class="flex items-center gap-4 mb-4">
-                            <i class="fas fa-leaf"></i>
-                            <h3 class="text-xl font-bold group-hover:text-blue-400 transition-colors">EcoTrace</h3>
-                        </div>
-                        <div class="text-blue-300 mb-2 text-sm">Python, TypeScript, Next.js, React, TailwindCSS,
-                            SQLAlchemy</div>
-                        <p class="mb-4 text-gray-300">AI-powered environmental impact analyzer</p>
-                        <div class="flex items-center gap-4">
-                            <a href="https://github.com/TanishaKothari/EcoTrace" target="_blank"
-                                rel="noopener noreferrer"
-                                class="inline-flex items-center gap-2 text-blue-300 hover:text-blue-100">
-                                <i class="fab fa-github"></i>
-                                <span>View Code</span>
-                            </a>
-                        </div>
-                    </div>
-
-                    <!-- Project 6 -->
-                    <div class="group hover-lift hover-glow relative bg-white/5 rounded-xl p-6 hover:bg-white/10 transition-all duration-300
-                            border border-white/10 hover:border-blue-500/50">
-                        <div class="flex items-center gap-4 mb-4">
-                            <i class="fas fa-globe-americas"></i>
-                            <h3 class="text-xl font-bold group-hover:text-blue-400 transition-colors">Quizzical</h3>
-                        </div>
-                        <div class="text-blue-300 mb-2 text-sm">React</div>
-                        <p class="mb-4 text-gray-300">An interactive quiz application that tests your knowledge across various topics</p>
-                        <div class="flex items-center gap-4">
-                            <a href="https://github.com/TanishaKothari/Quizzical" target="_blank"
-                                rel="noopener noreferrer"
-                                class="inline-flex items-center gap-2 text-blue-300 hover:text-blue-100">
-                                <i class="fab fa-github"></i>
-                                <span>View Code</span>
-                            </a>
-                            <a href="https://quizzical-gold-three.vercel.app/" target="_blank"
-                                rel="noopener noreferrer"
-                                class="inline-flex items-center gap-2 text-blue-300 hover:text-blue-100 transition-colors">
-                                <i class="fas fa-external-link-alt"></i>
-                                <span>View Project</span>
-                            </a>
-                        </div>
-                    </div>
-
-                    <!-- Project 7 -->
-                    <div class="group hover-lift hover-glow relative bg-white/5 rounded-xl p-6 hover:bg-white/10 transition-all duration-300
-                            border border-white/10 hover:border-blue-500/50">
-                        <div class="flex items-center gap-4 mb-4">
-                            <i class="fas fa-globe-americas"></i>
-                            <h3 class="text-xl font-bold group-hover:text-blue-400 transition-colors">ExploreEase</h3>
-                        </div>
-                        <div class="text-blue-300 mb-2 text-sm">Python, Flask, HTML, CSS, JavaScript, MySQL</div>
-                        <p class="mb-4 text-gray-300">A personalized travel itinerary generator</p>
-                        <div class="flex items-center gap-4">
-                            <a href="https://github.com/TanishaKothari/ExploreEase" target="_blank"
-                                rel="noopener noreferrer"
-                                class="inline-flex items-center gap-2 text-blue-300 hover:text-blue-100">
-                                <i class="fab fa-github"></i>
-                                <span>View Code</span>
-                            </a>
-                            <a href="https://exploreease-w7ps.onrender.com" target="_blank"
-                                rel="noopener noreferrer"
-                                class="inline-flex items-center gap-2 text-blue-300 hover:text-blue-100 transition-colors">
-                                <i class="fas fa-external-link-alt"></i>
-                                <span>View Project</span>
-                            </a>
-                        </div>
-                    </div>
-                </div>
+                <div class="grid gap-8 md:grid-cols-2" id="gamedev-grid"></div>
+            </div>
+            <div id="software-projects-container" class="mt-12">
+                <h3 class="text-2xl font-bold mb-8">Software/Web Development Projects</h3>
+                <div class="grid gap-8 md:grid-cols-2" id="software-grid"></div>
+            </div>
         </section>
 
         <!-- Skills Section -->
@@ -311,182 +158,7 @@
             <h2 class="text-4xl font-bold mb-12 flex items-center gap-3">
                 <i class="fas fa-layer-group text-blue-400"></i>Technical Skills
             </h2>
-            <div class="mb-12 last:mb-0">
-                <h3 class="text-2xl font-bold mb-6 text-gray-200">Game Development</h3>
-                <div class="grid gap-6 md:grid-cols-2">
-                    <div class="group hover-lift hover-glow bg-white/5 p-5 rounded-lg border border-white/10">
-                        <div class="flex items-center gap-4 mb-3">
-                            <i class="fas fa-gamepad"></i>
-                            <span class="text-lg font-medium">Unreal Engine & C++</span>
-                        </div>
-                        <div class="w-2/3 bg-gray-700 rounded-full h-2">
-                            <div class="bg-blue-500 h-full rounded-full" style="width: 70%"></div>
-                        </div>
-                    </div>
-                    <div class="group hover-lift hover-glow bg-white/5 p-5 rounded-lg border border-white/10">
-                        <div class="flex items-center gap-4 mb-3">
-                            <i class="fab fa-unity"></i>
-                            <span class="text-lg font-medium">Unity & C#</span>
-                        </div>
-                        <div class="w-2/3 bg-gray-700 rounded-full h-2">
-                            <div class="bg-blue-500 h-full rounded-full" style="width: 65%"></div>
-                        </div>
-                    </div>
-                    <div class="group hover-lift hover-glow bg-white/5 p-5 rounded-lg border border-white/10">
-                        <div class="flex items-center gap-4 mb-3">
-                            <i class="fas fa-cube"></i>
-                            <span class="text-lg font-medium">Raylib</span>
-                        </div>
-                        <div class="w-2/3 bg-gray-700 rounded-full h-2">
-                            <div class="bg-blue-500 h-full rounded-full" style="width: 60%"></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="mb-12 last:mb-0">
-                <h3 class="text-2xl font-bold mb-6 text-gray-200">Full-Stack Development</h3>
-                <div class="grid gap-6 md:grid-cols-2">
-                    <div class="group hover-lift hover-glow bg-white/5 p-5 rounded-lg border border-white/10">
-                        <div class="flex items-center gap-4 mb-3">
-                            <i class="fab fa-python"></i>
-                            <span class="text-lg font-medium">Python & Flask</span>
-                        </div>
-                        <div class="w-2/3 bg-gray-700 rounded-full h-2">
-                            <div class="bg-blue-500 h-full rounded-full" style="width: 80%"></div>
-                        </div>
-                    </div>
-
-                    <div class="group hover-lift hover-glow bg-white/5 p-5 rounded-lg border border-white/10">
-                        <div class="flex items-center gap-4 mb-3">
-                            <i class="fab fa-js"></i>
-                            <span class="text-lg font-medium">JavaScript</span>
-                        </div>
-                        <div class="w-2/3 bg-gray-700 rounded-full h-2">
-                            <div class="bg-blue-500 h-full rounded-full" style="width: 70%"></div>
-                        </div>
-                    </div>
-
-                    <div class="group hover-lift hover-glow bg-white/5 p-5 rounded-lg border border-white/10">
-                        <div class="flex items-center gap-4 mb-3">
-                            <i class="fab fa-node"></i>
-                            <span class="text-lg font-medium">Node.js</span>
-                        </div>
-                        <div class="w-2/3 bg-gray-700 rounded-full h-2">
-                            <div class="bg-blue-500 h-full rounded-full" style="width: 65%"></div>
-                        </div>
-                    </div>
-
-                    <div class="group hover-lift hover-glow bg-white/5 p-5 rounded-lg border border-white/10">
-                        <div class="flex items-center gap-4 mb-3">
-                            <i class="fas fa-fire"></i>
-                            <span class="text-lg font-medium">Svelte & SvelteKit</span>
-                        </div>
-                        <div class="w-2/3 bg-gray-700 rounded-full h-2">
-                            <div class="bg-blue-500 h-full rounded-full" style="width: 65%"></div>
-                        </div>
-                    </div>
-
-                    <div class="group hover-lift hover-glow bg-white/5 p-5 rounded-lg border border-white/10">
-                        <div class="flex items-center gap-4 mb-3">
-                            <i class="fas fa-code"></i>
-                            <span class="text-lg font-medium">C++</span>
-                        </div>
-                        <div class="w-2/3 bg-gray-700 rounded-full h-2">
-                            <div class="bg-blue-500 h-full rounded-full" style="width: 75%"></div>
-                        </div>
-                    </div>
-
-                    <div class="group hover-lift hover-glow bg-white/5 p-5 rounded-lg border border-white/10">
-                        <div class="flex items-center gap-4 mb-3">
-                            <i class="fab fa-java"></i>
-                            <span class="text-lg font-medium">Java</span>
-                        </div>
-                        <div class="w-2/3 bg-gray-700 rounded-full h-2">
-                            <div class="bg-blue-500 h-full rounded-full" style="width: 40%"></div>
-                        </div>
-                    </div>
-
-                    <div class="group hover-lift hover-glow bg-white/5 p-5 rounded-lg border border-white/10">
-                        <div class="flex items-center gap-4 mb-3">
-                            <i class="fas fa-database"></i>
-                            <span class="text-lg font-medium">MySQL, PostgreSQL, & SQLite</span>
-                        </div>
-                        <div class="w-2/3 bg-gray-700 rounded-full h-2">
-                            <div class="bg-blue-500 h-full rounded-full" style="width: 80%"></div>
-                        </div>
-                    </div>
-
-                    <div class="group hover-lift hover-glow bg-white/5 p-5 rounded-lg border border-white/10">
-                        <div class="flex items-center gap-4 mb-3">
-                            <i class="fab fa-html5"></i>
-                            <span class="text-lg font-medium">HTML & CSS</span>
-                        </div>
-                        <div class="w-2/3 bg-gray-700 rounded-full h-2">
-                            <div class="bg-blue-500 h-full rounded-full" style="width: 75%"></div>
-                        </div>
-                    </div>
-
-                    <div class="group hover-lift hover-glow bg-white/5 p-5 rounded-lg border border-white/10">
-                        <div class="flex items-center gap-4 mb-3">
-                            <i class="fab fa-react"></i>
-                            <span class="text-lg font-medium">React</span>
-                        </div>
-                        <div class="w-2/3 bg-gray-700 rounded-full h-2">
-                            <div class="bg-blue-500 h-full rounded-full" style="width: 90%"></div>
-                        </div>
-                    </div>
-
-                    <div class="group hover-lift hover-glow bg-white/5 p-5 rounded-lg border border-white/10">
-                        <div class="flex items-center gap-4 mb-3">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="currentColor"
-                                viewBox="0 0 24 24">
-                                <path fill-rule="evenodd" clip-rule="evenodd"
-                                    d="M12 6.036c-2.667 0-4.333 1.325-5 3.976 1-1.325 2.167-1.822 3.5-1.491.761.189 1.305.738 1.906 1.345C13.387 10.855 14.522 12 17 12c2.667 0 4.333-1.325 5-3.976-1 1.325-2.166 1.822-3.5 1.491-.761-.189-1.305-.738-1.907-1.345-.98-.99-2.114-2.134-4.593-2.134zM7 12c-2.667 0-4.333 1.325-5 3.976 1-1.326 2.167-1.822 3.5-1.491.761.189 1.305.738 1.907 1.345.98.989 2.115 2.134 4.594 2.134 2.667 0 4.333-1.325 5-3.976-1 1.325-2.167 1.822-3.5 1.491-.761-.189-1.305-.738-1.906-1.345C10.613 13.145 9.478 12 7 12z" />
-                            </svg>
-                            <span class="text-lg font-medium">Tailwind CSS</span>
-                        </div>
-                        <div class="w-2/3 bg-gray-700 rounded-full h-2">
-                            <div class="bg-blue-500 h-full rounded-full" style="width: 60%"></div>
-                        </div>
-                    </div>
-
-                    <div class="group hover-lift hover-glow bg-white/5 p-5 rounded-lg border border-white/10">
-                        <div class="flex items-center gap-4 mb-3">
-                            <i class="fab fa-bootstrap"></i>
-                            <span class="text-lg font-medium">Bootstrap</span>
-                        </div>
-                        <div class="w-2/3 bg-gray-700 rounded-full h-2">
-                            <div class="bg-blue-500 h-full rounded-full" style="width: 70%"></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="mb-12 last:mb-0">
-                <h3 class="text-2xl font-bold mb-6 text-gray-200">Developer Tools</h3>
-                <div class="grid gap-6 md:grid-cols-2">
-                    <div class="group hover-lift hover-glow bg-white/5 p-5 rounded-lg border border-white/10">
-                        <div class="flex items-center gap-4 mb-3">
-                            <i class="fab fa-git-alt"></i>
-                            <span class="text-lg font-medium">Git & Github</span>
-                        </div>
-                        <div class="w-2/3 bg-gray-700 rounded-full h-2">
-                            <div class="bg-blue-500 h-full rounded-full" style="width: 90%"></div>
-                        </div>
-                    </div>
-
-                    <div class="group hover-lift hover-glow bg-white/5 p-5 rounded-lg border border-white/10">
-                        <div class="flex items-center gap-4 mb-3">
-                            <i class="fas fa-code"></i>
-                            <span class="text-lg font-medium">VS Code</span>
-                        </div>
-                        <div class="w-2/3 bg-gray-700 rounded-full h-2">
-                            <div class="bg-blue-500 h-full rounded-full" style="width: 85%"></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            <div id="skills-container"></div>
         </section>
 
         <!-- Education Section -->
@@ -494,134 +166,8 @@
             <h2 class="text-4xl font-bold mb-12 flex items-center gap-3">
                 <i class="fas fa-graduation-cap text-blue-400"></i>Education Journey
             </h2>
-
-            <!-- University -->
-            <div class="group hover-lift hover-glow relative bg-white/5 rounded-xl p-8 hover:bg-white/10 transition-all duration-300
-                            border border-white/10 hover:border-blue-500/50 mb-8">
-                <div class="flex flex-col md:flex-row md:items-center justify-between mb-6">
-                    <div class="flex items-center gap-4">
-                        <i class="fas fa-university text-3xl text-blue-400"></i>
-                        <div>
-                            <h3 class="text-2xl font-bold group-hover:text-blue-400 transition-colors">
-                                The University of Sydney
-                            </h3>
-                            <p class="text-blue-300">Bachelor of Advanced Computing</p>
-                        </div>
-                    </div>
-                    <div class="mt-4 md:mt-0 text-gray-400">
-                        July 2024 - July 2028
-                    </div>
-                </div>
-                <div class="grid md:grid-cols-2 gap-6 mt-4">
-                    <div class="bg-white/5 p-4 rounded-lg">
-                        <div class="font-semibold text-blue-300 mb-2">Major</div>
-                        <div>Computer Science</div>
-                    </div>
-                    <div class="bg-white/5 p-4 rounded-lg">
-                        <div class="font-semibold text-blue-300 mb-2">Minor</div>
-                        <div>Software Development</div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Certifications -->
-            <div class="grid gap-6 md:grid-cols-2">
-                <div class="group hover-lift hover-glow bg-white/5 p-6 rounded-xl hover:bg-white/10 transition-all duration-300
-                                border border-white/10 hover:border-blue-500/50">
-                    <div class="flex items-start gap-4">
-                        <div class="text-3xl text-blue-400 p-3 bg-white/5 rounded-lg">
-                            <i class="fas fa-layer-group"></i>
-                        </div>
-                        <div>
-                            <h4 class="text-lg font-semibold group-hover:text-blue-400 transition-colors">
-                                Advanced React
-                            </h4>
-                            <div class="text-blue-300 mt-1">Scrimba</div>
-                            <div class="text-sm text-gray-400 mt-1">December 2025</div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="group hover-lift hover-glow bg-white/5 p-6 rounded-xl hover:bg-white/10 transition-all duration-300
-                                border border-white/10 hover:border-blue-500/50">
-                    <div class="flex items-start gap-4">
-                        <div class="text-3xl text-blue-400 p-3 bg-white/5 rounded-lg">
-                            <i class="fab fa-react"></i>
-                        </div>
-                        <div>
-                            <h4 class="text-lg font-semibold group-hover:text-blue-400 transition-colors">
-                                Learn React
-                            </h4>
-                            <div class="text-blue-300 mt-1">Scrimba</div>
-                            <div class="text-sm text-gray-400 mt-1">December 2025</div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="group hover-lift hover-glow bg-white/5 p-6 rounded-xl hover:bg-white/10 transition-all duration-300
-                                border border-white/10 hover:border-blue-500/50">
-                    <div class="flex items-start gap-4">
-                        <div class="text-3xl text-blue-400 p-3 bg-white/5 rounded-lg">
-                            <i class="fas fa-gamepad"></i>
-                        </div>
-                        <div>
-                            <h4 class="text-lg font-semibold group-hover:text-blue-400 transition-colors">
-                                UE5 C++ Developer: Code Your Own Unreal Games
-                            </h4>
-                            <div class="text-blue-300 mt-1">GameDev.tv</div>
-                            <div class="text-sm text-gray-400 mt-1">December 2024 - January 2025</div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="group hover-lift hover-glow bg-white/5 p-6 rounded-xl hover:bg-white/10 transition-all duration-300
-                                border border-white/10 hover:border-blue-500/50">
-                    <div class="flex items-start gap-4">
-                        <div class="text-3xl text-blue-400 p-3 bg-white/5 rounded-lg">
-                            <i class="fas fa-code"></i>
-                        </div>
-                        <div>
-                            <h4 class="text-lg font-semibold group-hover:text-blue-400 transition-colors">
-                                C++ Fundamentals: Game Programming For Beginners
-                            </h4>
-                            <div class="text-blue-300 mt-1">GameDev.tv</div>
-                            <div class="text-sm text-gray-400 mt-1">November 2024</div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="group hover-lift hover-glow bg-white/5 p-6 rounded-xl hover:bg-white/10 transition-all duration-300
-                                border border-white/10 hover:border-blue-500/50">
-                    <div class="flex items-start gap-4">
-                        <div class="text-3xl text-blue-400 p-3 bg-white/5 rounded-lg">
-                            <i class="fas fa-laptop-code"></i>
-                        </div>
-                        <div>
-                            <h4 class="text-lg font-semibold group-hover:text-blue-400 transition-colors">
-                                Electronic Arts Software Engineering Virtual Experience
-                            </h4>
-                            <div class="text-blue-300 mt-1">Forage</div>
-                            <div class="text-sm text-gray-400 mt-1">November 2024</div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="group hover-lift hover-glow bg-white/5 p-6 rounded-xl hover:bg-white/10 transition-all duration-300
-                                border border-white/10 hover:border-blue-500/50">
-                    <div class="flex items-start gap-4">
-                        <div class="text-3xl text-blue-400 p-3 bg-white/5 rounded-lg">
-                            <i class="fas fa-university"></i>
-                        </div>
-                        <div>
-                            <h4 class="text-lg font-semibold group-hover:text-blue-400 transition-colors">
-                                CS50x
-                            </h4>
-                            <div class="text-blue-300 mt-1">Harvard University</div>
-                            <div class="text-sm text-gray-400 mt-1">April 2024 - May 2024</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            <div id="university-container" class="mb-8"></div>
+            <div id="certifications-grid" class="grid gap-6 md:grid-cols-2"></div>
         </section>
 
         <!-- Experience Section -->
@@ -629,94 +175,7 @@
             <h2 class="text-4xl font-bold mb-12 flex items-center gap-3">
                 <i class="fas fa-briefcase text-blue-400"></i>Experience
             </h2>
-            <div class="grid gap-8">
-                <div class="group hover-lift hover-glow bg-white/5 rounded-xl p-6 hover:bg-white/10 transition-all duration-300
-                                border border-white/10 hover:border-green-500/50">
-                    <div class="flex items-center gap-4 mb-4">
-                        <div class="text-3xl text-yellow-400 p-3 bg-white/5 rounded-lg">
-                            <i class="fas fa-chalkboard-teacher"></i>
-                        </div>
-                        <div>
-                            <h3 class="text-xl font-bold group-hover:text-yellow-400 transition-colors">
-                                Chess Coach
-                            </h3>
-                            <div class="text-blue-300">Sydney Academy of Chess</div>
-                            <div class="text-gray-400">August 2025 - Present</div>
-                        </div>
-                    </div>
-                    <ul class="text-gray-300 leading-relaxed space-y-2">
-                        <li>• Coaching students from beginner to advanced levels, focusing on tactical and strategic improvement.</li>
-                        <li>• Developing fun and interactive lesson plans to teach the fundamentals of chess to young learners.</li>
-                        <li>• Fostering a positive and engaging learning environment to cultivate a passion for chess.</li>
-                    </ul>
-                </div>
-                <div class="group hover-lift hover-glow bg-white/5 rounded-xl p-6 hover:bg-white/10 transition-all duration-300
-                                border border-white/10 hover:border-green-500/50">
-                    <div class="flex items-center gap-4 mb-4">
-                        <div class="text-3xl text-green-400 p-3 bg-white/5 rounded-lg">
-                            <i class="fas fa-laptop-code"></i>
-                        </div>
-                        <div>
-                            <h3 class="text-xl font-bold group-hover:text-green-400 transition-colors">
-                                Software Developer
-                            </h3>
-                            <div class="text-blue-300">e12.io</div>
-                            <div class="text-gray-400">March 2025 - Present</div>
-                        </div>
-                    </div>
-                    <ul class="text-gray-300 leading-relaxed space-y-2">
-                        <li>• Built responsive web interfaces in Svelte and SvelteKit for device onboarding, data
-                            visualization, and vendor/product management.</li>
-                        <li>• Implemented secure JWT and OAuth 2.0 authentication flows, enabling protected access and
-                            role-based control across the platform.</li>
-                        <li>• Integrated with and extended Node.js APIs to support frontend functionality for a scalable
-                            IoT data system.</li>
-                    </ul>
-                </div>
-                <div class="group hover-lift hover-glow bg-white/5 rounded-xl p-6 hover:bg-white/10 transition-all duration-300
-                                border border-white/10 hover:border-purple-500/50">
-                    <div class="flex items-center gap-4 mb-4">
-                        <div class="text-3xl text-purple-400 p-3 bg-white/5 rounded-lg">
-                            <i class="fas fa-chess"></i>
-                        </div>
-                        <div>
-                            <h3 class="text-xl font-bold group-hover:text-purple-400 transition-colors">
-                                USYD Chess Club General Executive
-                            </h3>
-                            <div class="text-blue-300">University of Sydney</div>
-                            <div class="text-gray-400">May 2025 - Present</div>
-                        </div>
-                    </div>
-                    <ul class="text-gray-300 leading-relaxed space-y-2">
-                        <li>• Assist in organizing events and tournaments to engage chess enthusiasts across campus.
-                        </li>
-                        <li>• Support weekly operations for a club of 600+ members, ensuring smooth event coordination
-                            and communication.</li>
-                        <li>• Developing event management, leadership, and communication skills.</li>
-                    </ul>
-                </div>
-                <div class="group hover-lift hover-glow bg-white/5 rounded-xl p-6 hover:bg-white/10 transition-all duration-300
-                                border border-white/10 hover:border-orange-500/50">
-                    <div class="flex items-center gap-4 mb-4">
-                        <div class="text-3xl text-orange-400 p-3 bg-white/5 rounded-lg">
-                            <i class="fas fa-users"></i>
-                        </div>
-                        <div>
-                            <h3 class="text-xl font-bold group-hover:text-orange-400 transition-colors">
-                                ENGO Peer Mentor
-                            </h3>
-                            <div class="text-blue-300">University of Sydney</div>
-                            <div class="text-gray-400">February 2025 - Present</div>
-                        </div>
-                    </div>
-                    <ul class="text-gray-300 leading-relaxed space-y-2">
-                        <li>• Mentoring first-year students to facilitate their transition to university life</li>
-                        <li>• Providing academic guidance and social support</li>
-                        <li>• Contributing to building an inclusive learning environment</li>
-                        <li>• Developing leadership and communication skills</li>
-                    </ul>
-                </div>
-            </div>
+            <div id="experience-container" class="grid gap-8"></div>
         </section>
 
         <!-- Competitions Section -->
@@ -724,85 +183,7 @@
             <h2 class="text-4xl font-bold mb-12 flex items-center gap-3">
                 <i class="fas fa-trophy text-blue-400"></i>Hackathons & Competitions
             </h2>
-
-            <div class="grid gap-8">
-                <div class="group hover-lift hover-glow bg-white/5 rounded-xl p-6 hover:bg-white/10 transition-all duration-300
-                                border border-white/10 hover:border-green-500/50">
-                    <div class="flex items-center gap-4 mb-4">
-                        <div class="text-3xl text-green-400 p-3 bg-white/5 rounded-lg">
-                            <i class="fas fa-network-wired"></i>
-                        </div>
-                        <div>
-                            <h3 class="text-xl font-bold group-hover:text-green-400 transition-colors">
-                                SYNCS Hack 2025
-                            </h3>
-                            <div class="text-gray-400">August 2025</div>
-                            <div class="text-sm text-yellow-300 mt-1">Best First Year Team Prize — Team: 404 Brain Not Found</div>
-                        </div>
-                    </div>
-                    <p class="text-gray-300 leading-relaxed mb-4">
-                        Built Gigimon — a web app to help people find and connect with local gig workers and community members to reduce isolation in hybrid work and gig-economy settings.
-                    </p>
-                    <div class="flex flex-wrap gap-2">
-                        <span class="px-3 py-1 bg-blue-500/20 text-blue-300 rounded-full text-sm">Python</span>
-                        <span class="px-3 py-1 bg-blue-500/20 text-blue-300 rounded-full text-sm">MySQL</span>
-                        <span class="px-3 py-1 bg-blue-500/20 text-blue-300 rounded-full text-sm">Next.js</span>
-                        <span class="px-3 py-1 bg-blue-500/20 text-blue-300 rounded-full text-sm">Google Maps API</span>
-                    </div>
-                </div>
-
-                <div class="group hover-lift hover-glow bg-white/5 rounded-xl p-6 hover:bg-white/10 transition-all duration-300
-                                border border-white/10 hover:border-yellow-500/50">
-                    <div class="flex items-center gap-4 mb-4">
-                        <div class="text-3xl text-yellow-400 p-3 bg-white/5 rounded-lg">
-                            <i class="fas fa-trophy"></i>
-                        </div>
-                        <div>
-                            <h3 class="text-xl font-bold group-hover:text-yellow-400 transition-colors">
-                                HackNode Australia 2025
-                            </h3>
-                            <div class="text-gray-400">August 2025</div>
-                            <div class="text-sm text-yellow-300 mt-1">Most Innovative AI App Prize</div>
-                        </div>
-                    </div>
-                    <p class="text-gray-300 leading-relaxed mb-4">
-                        Developed EcoTrace, an AI-powered product environmental impact analyzer.
-                    </p>
-                    <div class="flex flex-wrap gap-2">
-                        <span class="px-3 py-1 bg-blue-500/20 text-blue-300 rounded-full text-sm">Python</span>
-                        <span class="px-3 py-1 bg-blue-500/20 text-blue-300 rounded-full text-sm">TypeScript</span>
-                        <span class="px-3 py-1 bg-blue-500/20 text-blue-300 rounded-full text-sm">Next.js</span>
-                        <span class="px-3 py-1 bg-blue-500/20 text-blue-300 rounded-full text-sm">React</span>
-                        <span class="px-3 py-1 bg-blue-500/20 text-blue-300 rounded-full text-sm">TailwindCSS</span>
-                        <span class="px-3 py-1 bg-blue-500/20 text-blue-300 rounded-full text-sm">SQLite</span>
-                    </div>
-                </div>
-
-                <div class="group hover-lift hover-glow bg-white/5 rounded-xl p-6 hover:bg-white/10 transition-all duration-300
-                                border border-white/10 hover:border-blue-500/50">
-                    <div class="flex items-center gap-4 mb-4">
-                        <div class="text-3xl text-blue-400 p-3 bg-white/5 rounded-lg">
-                            <i class="fas fa-code"></i>
-                        </div>
-                        <div>
-                            <h3 class="text-xl font-bold group-hover:text-blue-400 transition-colors">
-                                AllUni Programming Competition 2025
-                            </h3>
-                            <div class="text-gray-400">August 2025</div>
-                        </div>
-                    </div>
-                    <p class="text-gray-300 leading-relaxed mb-4">
-                        Collaborated in a 3-person team to solve complex algorithmic problems under time constraints,
-                        demonstrating teamwork and problem-solving skills.
-                    </p>
-                    <div class="flex flex-wrap gap-2">
-                        <span class="px-3 py-1 bg-blue-500/20 text-blue-300 rounded-full text-sm">Python</span>
-                        <span class="px-3 py-1 bg-blue-500/20 text-blue-300 rounded-full text-sm">Data Structures</span>
-                        <span class="px-3 py-1 bg-blue-500/20 text-blue-300 rounded-full text-sm">Algorithms</span>
-                        <span class="px-3 py-1 bg-blue-500/20 text-blue-300 rounded-full text-sm">Problem Solving</span>
-                    </div>
-                </div>
-            </div>
+            <div id="competitions-container" class="grid gap-8"></div>
         </section>
 
         <!-- Volunteer Work Section -->
@@ -810,73 +191,7 @@
             <h2 class="text-4xl font-bold mb-12 flex items-center gap-3">
                 <i class="fas fa-hands-helping text-blue-400"></i>Volunteer Work
             </h2>
-            <div class="grid gap-8">
-                <div class="group hover-lift hover-glow bg-white/5 rounded-xl p-6 hover:bg-white/10 transition-all duration-300
-                                border border-white/10 hover:border-pink-500/50">
-                    <div class="flex items-center gap-4 mb-4">
-                        <div class="text-3xl text-pink-400 p-3 bg-white/5 rounded-lg">
-                            <i class="fas fa-heart"></i>
-                        </div>
-                        <h3 class="text-xl font-bold group-hover:text-pink-400 transition-colors">
-                            Special Education Support
-                        </h3>
-                    </div>
-                    <p class="text-gray-300 leading-relaxed">
-                        Assisted as a yoga teacher at a school for autistic children, showcasing exceptional attention
-                        to detail and patience in guiding students through exercises.
-                    </p>
-                </div>
-
-                <div class="group hover-lift hover-glow bg-white/5 rounded-xl p-6 hover:bg-white/10 transition-all duration-300
-                                border border-white/10 hover:border-blue-500/50">
-                    <div class="flex items-center gap-4 mb-4">
-                        <div class="text-3xl text-blue-400 p-3 bg-white/5 rounded-lg">
-                            <i class="fas fa-hands-helping"></i>
-                        </div>
-                        <h3 class="text-xl font-bold group-hover:text-blue-400 transition-colors">
-                            Community Service
-                        </h3>
-                    </div>
-                    <p class="text-gray-300 leading-relaxed">
-                        Contributed to the distribution of meals to over 100 blue-collar workers, developing effective
-                        communication and teamwork skills by collaborating with other volunteers.
-                    </p>
-                </div>
-
-                <div class="group hover-lift hover-glow bg-white/5 rounded-xl p-6 hover:bg-white/10 transition-all duration-300
-                                border border-white/10 hover:border-red-500/50">
-                    <div class="flex items-center gap-4 mb-4">
-                        <div class="text-3xl text-red-400 p-3 bg-white/5 rounded-lg">
-                            <i class="fas fa-hand-holding-heart"></i>
-                        </div>
-                        <h3 class="text-xl font-bold group-hover:text-red-400 transition-colors">
-                            Healthcare Support
-                        </h3>
-                    </div>
-                    <p class="text-gray-300 leading-relaxed">
-                        Assisted in running a community blood donation camp by managing certificate distribution to
-                        donors,
-                        contributing to the smooth operation of the event.
-                    </p>
-                </div>
-
-                <div class="group hover-lift hover-glow bg-white/5 rounded-xl p-6 hover:bg-white/10 transition-all duration-300
-                        border border-white/10 hover:border-green-500/50">
-                    <div class="flex items-center gap-4 mb-4">
-                        <div class="text-3xl text-green-400 p-3 bg-white/5 rounded-lg">
-                            <i class="fas fa-globe"></i>
-                        </div>
-                        <h3 class="text-xl font-bold group-hover:text-green-400 transition-colors">
-                            Delegate
-                        </h3>
-                    </div>
-                    <p class="text-gray-300 leading-relaxed">
-                        I had the privilege of delegating an insightful interview with former member of parliament at
-                        New Zealand Parliament Mr. Kanwaljit Singh Bakshi on the role of India as a soft power in the
-                        global scenario.
-                    </p>
-                </div>
-            </div>
+            <div id="volunteer-container" class="grid gap-8"></div>
         </section>
 
         <!-- Chess Section -->
@@ -884,199 +199,12 @@
             <h2 class="text-4xl font-bold mb-12 flex items-center gap-3">
                 <i class="fas fa-chess text-blue-400"></i>Chess Journey
             </h2>
-
             <div class="grid gap-8 md:grid-cols-2">
-                <!-- Achievements -->
-                <div class="space-y-6">
+                <div id="chess-achievements-container" class="space-y-6">
                     <h3 class="text-2xl font-bold text-gray-200 mb-6">Achievements</h3>
-                    <div class="group hover-lift hover-glow bg-white/5 rounded-xl p-6 hover:bg-white/10 transition-all duration-300
-                                        border border-white/10 hover:border-yellow-500/50">
-                        <div class="flex items-start gap-4">
-                            <div class="text-3xl p-3 bg-white/5 rounded-lg">
-                                <i class="fas fa-trophy text-yellow-400"></i>
-                            </div>
-                            <div>
-                                <h4 class="text-lg font-semibold group-hover:text-yellow-400 transition-colors">
-                                    Arena Candidate Master
-                                </h4>
-                                <div class="text-blue-300 mt-1">2023</div>
-                                <div class="text-gray-400 mt-2">Achieved ACM title through consistent performance</div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="group hover-lift hover-glow bg-white/5 rounded-xl p-6 hover:bg-white/10 transition-all duration-300
-                                        border border-white/10 hover:border-yellow-500/50">
-                        <div class="flex items-start gap-4">
-                            <div class="text-3xl p-3 bg-white/5 rounded-lg">
-                                <i class="fas fa-crown text-yellow-400"></i>
-                            </div>
-                            <div>
-                                <h4 class="text-lg font-semibold group-hover:text-yellow-400 transition-colors">
-                                    Team Leadership
-                                </h4>
-                                <div class="text-blue-300 mt-1">2022-2024</div>
-                                <div class="text-gray-400 mt-2">School Chess Team Captain, led team to CBSE Nationals
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="group hover-lift hover-glow bg-white/5 rounded-xl p-6 hover:bg-white/10 transition-all duration-300
-                                        border border-white/10 hover:border-yellow-500/50">
-                        <div class="flex items-start gap-4">
-                            <div class="text-3xl p-3 bg-white/5 rounded-lg">
-                                <i class="fas fa-bullseye text-green-400"></i>
-                            </div>
-                            <div>
-                                <h4 class="text-lg font-semibold group-hover:text-yellow-400 transition-colors">
-                                    Tournament Recognition
-                                </h4>
-                                <div class="text-green-400 mt-1">2</div>
-                                <div class="text-gray-400 mt-2">Best Female Player awards in rated tournaments</div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="group hover-lift hover-glow bg-white/5 rounded-xl p-6 hover:bg-white/10 transition-all duration-300
-                                        border border-white/10 hover:border-yellow-500/50">
-                        <div class="flex items-start gap-4">
-                            <div class="text-3xl p-3 bg-white/5 rounded-lg">
-                                <i class="fas fa-chart-line text-blue-400"></i>
-                            </div>
-                            <div>
-                                <h4 class="text-lg font-semibold group-hover:text-yellow-400 transition-colors">
-                                    FIDE Rating Peak
-                                </h4>
-                                <div class="text-yellow-400 mt-1">~1750</div>
-                                <div class="text-gray-400 mt-2">Active tournament player since 2022</div>
-                            </div>
-                        </div>
-                    </div>
                 </div>
-
-                <!-- Transferable Skills -->
-                <div class="space-y-6">
+                <div id="chess-skills-container" class="space-y-6">
                     <h3 class="text-2xl font-bold text-gray-200 mb-6">Transferable Skills</h3>
-                    <div class="group hover-lift hover-glow bg-white/5 rounded-xl p-6 hover:bg-white/10 transition-all duration-300
-                                        border border-white/10 hover:border-blue-500/50">
-                        <div class="flex justify-between items-center mb-3">
-                            <h4 class="text-lg font-semibold group-hover:text-blue-400 transition-colors">
-                                Strategic Planning
-                            </h4>
-                            <span class="text-blue-300">83%</span>
-                        </div>
-                        <div class="w-full bg-gray-800 h-2 rounded-full">
-                            <div class="bg-blue-500 h-full rounded-full transition-all duration-1000"
-                                style="width: 83%">
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="group hover-lift hover-glow bg-white/5 rounded-xl p-6 hover:bg-white/10 transition-all duration-300
-                                        border border-white/10 hover:border-blue-500/50">
-                        <div class="flex justify-between items-center mb-3">
-                            <h4 class="text-lg font-semibold group-hover:text-blue-400 transition-colors">
-                                Leadership
-                            </h4>
-                            <span class="text-blue-300">80%</span>
-                        </div>
-                        <div class="w-full bg-gray-800 h-2 rounded-full">
-                            <div class="bg-blue-500 h-full rounded-full transition-all duration-1000"
-                                style="width: 80%">
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="group hover-lift hover-glow bg-white/5 rounded-xl p-6 hover:bg-white/10 transition-all duration-300
-                                        border border-white/10 hover:border-blue-500/50">
-                        <div class="flex justify-between items-center mb-3">
-                            <h4 class="text-lg font-semibold group-hover:text-blue-400 transition-colors">
-                                Pattern Recognition
-                            </h4>
-                            <span class="text-blue-300">85%</span>
-                        </div>
-                        <div class="w-full bg-gray-800 h-2 rounded-full">
-                            <div class="bg-blue-500 h-full rounded-full transition-all duration-1000"
-                                style="width: 85%">
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="group hover-lift hover-glow bg-white/5 rounded-xl p-6 hover:bg-white/10 transition-all duration-300
-                                        border border-white/10 hover:border-blue-500/50">
-                        <div class="flex justify-between items-center mb-3">
-                            <h4 class="text-lg font-semibold group-hover:text-blue-400 transition-colors">
-                                Decision Making
-                            </h4>
-                            <span class="text-blue-300">75%</span>
-                        </div>
-                        <div class="w-full bg-gray-800 h-2 rounded-full">
-                            <div class="bg-blue-500 h-full rounded-full transition-all duration-1000"
-                                style="width: 75%">
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="group hover-lift hover-glow bg-white/5 rounded-xl p-6 hover:bg-white/10 transition-all duration-300
-                                        border border-white/10 hover:border-blue-500/50">
-                        <div class="flex justify-between items-center mb-3">
-                            <h4 class="text-lg font-semibold group-hover:text-blue-400 transition-colors">
-                                Problem Solving
-                            </h4>
-                            <span class="text-blue-300">85%</span>
-                        </div>
-                        <div class="w-full bg-gray-800 h-2 rounded-full">
-                            <div class="bg-blue-500 h-full rounded-full transition-all duration-1000"
-                                style="width: 85%">
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="group hover-lift hover-glow bg-white/5 rounded-xl p-6 hover:bg-white/10 transition-all duration-300
-                                        border border-white/10 hover:border-blue-500/50">
-                        <div class="flex justify-between items-center mb-3">
-                            <h4 class="text-lg font-semibold group-hover:text-blue-400 transition-colors">
-                                Time Management
-                            </h4>
-                            <span class="text-blue-300">90%</span>
-                        </div>
-                        <div class="w-full bg-gray-800 h-2 rounded-full">
-                            <div class="bg-blue-500 h-full rounded-full transition-all duration-1000"
-                                style="width: 90%">
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="group hover-lift hover-glow bg-white/5 rounded-xl p-6 hover:bg-white/10 transition-all duration-300
-                                        border border-white/10 hover:border-blue-500/50">
-                        <div class="flex justify-between items-center mb-3">
-                            <h4 class="text-lg font-semibold group-hover:text-blue-400 transition-colors">
-                                Pressure Handling
-                            </h4>
-                            <span class="text-blue-300">75%</span>
-                        </div>
-                        <div class="w-full bg-gray-800 h-2 rounded-full">
-                            <div class="bg-blue-500 h-full rounded-full transition-all duration-1000"
-                                style="width: 75%">
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="group hover-lift hover-glow bg-white/5 rounded-xl p-6 hover:bg-white/10 transition-all duration-300
-                                        border border-white/10 hover:border-blue-500/50">
-                        <div class="flex justify-between items-center mb-3">
-                            <h4 class="text-lg font-semibold group-hover:text-blue-400 transition-colors">
-                                Team Coordination
-                            </h4>
-                            <span class="text-blue-300">80%</span>
-                        </div>
-                        <div class="w-full bg-gray-800 h-2 rounded-full">
-                            <div class="bg-blue-500 h-full rounded-full transition-all duration-1000"
-                                style="width: 80%">
-                            </div>
-                        </div>
-                    </div>
                 </div>
             </div>
         </section>
@@ -1084,31 +212,187 @@
         <!-- Contact Section -->
         <section id="contact" class="scroll-stagger mb-24">
             <h2 class="text-3xl font-bold mb-6">Contact</h2>
-            <div class="grid gap-6 md:grid-cols-3">
-                <a href="mailto:kotharitanisha50@gmail.com" target="_blank" rel="noopener noreferrer"
-                    class="bg-white/10 p-6 rounded-lg text-center transform hover:bg-red-700 hover:scale-105 transition-all">
-                    <div class="text-4xl mb-2"><i class="fas fa-envelope"></i></div>
-                    <div class="text-lg">Email</div>
-                </a>
-
-                <a href="https://www.linkedin.com/in/TanishaKothariGD" target="_blank" rel="noopener noreferrer"
-                    class="bg-white/10 p-6 rounded-lg text-center transform hover:bg-blue-700 hover:scale-105 transition-all">
-                    <div class="text-4xl mb-2"><i class="fab fa-linkedin"></i></div>
-                    <div class="text-lg">LinkedIn</div>
-                </a>
-
-                <a href="https://github.com/TanishaKothari" target="_blank" rel="noopener noreferrer"
-                    class="bg-white/10 p-6 rounded-lg text-center transform hover:bg-gray-700 hover:scale-105 transition-all">
-                    <div class="text-4xl mb-2"><i class="fab fa-github"></i></div>
-                    <div class="text-lg">GitHub</div>
-                </a>
-            </div>
+            <div id="contact-container" class="grid gap-6 md:grid-cols-3"></div>
         </section>
     </main>
 
-    <script src="game_systems.js"></script>
     <script>
         document.addEventListener("DOMContentLoaded", () => {
+            const data = window.portfolioData;
+
+            // Render Projects
+            const renderProjects = (projects, containerId, isGame) => {
+                const container = document.getElementById(containerId);
+                container.innerHTML = projects.map(p => `
+                    <div class="group hover-lift hover-glow relative bg-white/5 rounded-xl p-6 hover:bg-white/10 transition-all duration-300 border border-white/10 hover:border-blue-500/50">
+                        <div class="flex items-center gap-4 mb-4">
+                            ${p.icon}
+                            <h3 class="text-xl font-bold group-hover:text-blue-400 transition-colors">${p.name}</h3>
+                        </div>
+                        <div class="text-blue-300 mb-2 text-sm">${p.tech}</div>
+                        <p class="mb-4 text-gray-300">${p.description}</p>
+                        <div class="flex items-center gap-4">
+                            <a href="${p.githubLink}" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 text-blue-300 hover:text-blue-100">
+                                <i class="fab fa-github"></i><span>View Code</span>
+                            </a>
+                            ${p.liveLink ? `
+                                <a href="${p.liveLink}" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 text-blue-300 hover:text-blue-100 transition-colors">
+                                    <i class="fas fa-external-link-alt"></i><span>${p.isGame ? 'Play Game' : 'View Project'}</span>
+                                </a>
+                            ` : ''}
+                        </div>
+                    </div>
+                `).join('');
+            };
+            renderProjects(data.projects.gamedev, 'gamedev-grid', true);
+            renderProjects(data.projects.softwareWeb, 'software-grid', false);
+
+            // Render Skills
+            const skillsContainer = document.getElementById('skills-container');
+            const skillCategories = [
+                { title: "Game Development", data: data.skills.gamedev },
+                { title: "Full-Stack Development", data: data.skills.fullstack },
+                { title: "Developer Tools", data: data.skills.tools }
+            ];
+            skillsContainer.innerHTML = skillCategories.map(cat => `
+                <div class="mb-12 last:mb-0">
+                    <h3 class="text-2xl font-bold mb-6 text-gray-200">${cat.title}</h3>
+                    <div class="grid gap-6 md:grid-cols-2">
+                        ${cat.data.map(s => `
+                            <div class="group hover-lift hover-glow bg-white/5 p-5 rounded-lg border border-white/10">
+                                <div class="flex items-center gap-4 mb-3">
+                                    ${s.icon}
+                                    <span class="text-lg font-medium">${s.name}</span>
+                                </div>
+                                <div class="w-2/3 bg-gray-700 rounded-full h-2">
+                                    <div class="bg-blue-500 h-full rounded-full" style="width: ${s.level}%"></div>
+                                </div>
+                            </div>
+                        `).join('')}
+                    </div>
+                </div>
+            `).join('');
+
+            // Render Education
+            document.getElementById('university-container').innerHTML = data.education.university.map(u => `
+                <div class="group hover-lift hover-glow relative bg-white/5 rounded-xl p-8 hover:bg-white/10 transition-all duration-300 border border-white/10 hover:border-blue-500/50 mb-8">
+                    <div class="flex flex-col md:flex-row md:items-center justify-between mb-6">
+                        <div class="flex items-center gap-4">
+                            ${u.icon}
+                            <div>
+                                <h3 class="text-2xl font-bold group-hover:text-blue-400 transition-colors">${u.name}</h3>
+                                <p class="text-blue-300">${u.degree}</p>
+                            </div>
+                        </div>
+                        <div class="mt-4 md:mt-0 text-gray-400">${u.period}</div>
+                    </div>
+                    <div class="grid md:grid-cols-2 gap-6 mt-4">
+                        <div class="bg-white/5 p-4 rounded-lg">
+                            <div class="font-semibold text-blue-300 mb-2">Major</div>
+                            <div>${u.major}</div>
+                        </div>
+                        <div class="bg-white/5 p-4 rounded-lg">
+                            <div class="font-semibold text-blue-300 mb-2">Minor</div>
+                            <div>${u.minor}</div>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+
+            document.getElementById('certifications-grid').innerHTML = data.education.certifications.map(c => `
+                <div class="group hover-lift hover-glow bg-white/5 p-6 rounded-xl hover:bg-white/10 transition-all duration-300 border border-white/10 hover:border-blue-500/50">
+                    <div class="flex items-start gap-4">
+                        <div class="text-3xl text-blue-400 p-3 bg-white/5 rounded-lg">${c.icon}</div>
+                        <div>
+                            <h4 class="text-lg font-semibold group-hover:text-blue-400 transition-colors">${c.name}</h4>
+                            <div class="text-blue-300 mt-1">${c.provider}</div>
+                            <div class="text-sm text-gray-400 mt-1">${c.date}</div>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+
+            // Render Experience
+            document.getElementById('experience-container').innerHTML = data.experience.roles.map(r => `
+                <div class="group hover-lift hover-glow bg-white/5 rounded-xl p-6 hover:bg-white/10 transition-all duration-300 border border-white/10 ${r.color || 'hover:border-blue-500/50'}">
+                    <div class="flex items-center gap-4 mb-4">
+                        <div class="text-3xl ${r.iconColor || 'text-blue-400'} p-3 bg-white/5 rounded-lg">${r.icon}</div>
+                        <div>
+                            <h3 class="text-xl font-bold group-hover:${r.iconColor || 'text-blue-400'} transition-colors">${r.title}</h3>
+                            <div class="text-blue-300">${r.company}</div>
+                            <div class="text-gray-400">${r.period}</div>
+                        </div>
+                    </div>
+                    <ul class="text-gray-300 leading-relaxed space-y-2">
+                        ${r.details.map(d => `<li>• ${d}</li>`).join('')}
+                    </ul>
+                </div>
+            `).join('');
+
+            // Render Competitions
+            document.getElementById('competitions-container').innerHTML = (data.competitions || []).map(c => `
+                <div class="group hover-lift hover-glow bg-white/5 rounded-xl p-6 hover:bg-white/10 transition-all duration-300 border border-white/10 ${c.color || 'hover:border-blue-500/50'}">
+                    <div class="flex items-center gap-4 mb-4">
+                        <div class="text-3xl ${c.iconColor || 'text-blue-400'} p-3 bg-white/5 rounded-lg">${c.icon}</div>
+                        <div>
+                            <h3 class="text-xl font-bold group-hover:${c.iconColor || 'text-blue-400'} transition-colors">${c.name}</h3>
+                            <div class="text-gray-400">${c.date}</div>
+                            ${c.placement ? `<div class="text-sm text-yellow-300 mt-1">${c.placement} ${c.team ? `— Team: ${c.team}` : ''}</div>` : ''}
+                        </div>
+                    </div>
+                    <p class="text-gray-300 leading-relaxed mb-4">${c.description || c.project}</p>
+                    <div class="flex flex-wrap gap-2">
+                        ${(c.technologies || []).map(t => `<span class="px-3 py-1 bg-blue-500/20 text-blue-300 rounded-full text-sm">${t}</span>`).join('')}
+                    </div>
+                </div>
+            `).join('');
+
+            // Render Volunteer Work
+            document.getElementById('volunteer-container').innerHTML = (data.volunteerWork || []).map(v => `
+                <div class="group hover-lift hover-glow bg-white/5 rounded-xl p-6 hover:bg-white/10 transition-all duration-300 border border-white/10 ${v.color}">
+                    <div class="flex items-center gap-4 mb-4">
+                        <div class="text-3xl ${v.iconColor} p-3 bg-white/5 rounded-lg">${v.icon}</div>
+                        <h3 class="text-xl font-bold group-hover:${v.iconColor} transition-colors">${v.title}</h3>
+                    </div>
+                    <p class="text-gray-300 leading-relaxed">${v.description}</p>
+                </div>
+            `).join('');
+
+            // Render Chess
+            document.getElementById('chess-achievements-container').innerHTML += data.chess.achievements.map(a => `
+                <div class="group hover-lift hover-glow bg-white/5 rounded-xl p-6 hover:bg-white/10 transition-all duration-300 border border-white/10 hover:border-yellow-500/50">
+                    <div class="flex items-start gap-4">
+                        <div class="text-3xl p-3 bg-white/5 rounded-lg">${a.icon}</div>
+                        <div>
+                            <h4 class="text-lg font-semibold group-hover:text-yellow-400 transition-colors">${a.title}</h4>
+                            <div class="text-blue-300 mt-1">${a.date || a.rating || a.count || ''}</div>
+                            <div class="text-gray-400 mt-2">${a.details}</div>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+
+            document.getElementById('chess-skills-container').innerHTML += data.chess.skills.map(s => `
+                <div class="group hover-lift hover-glow bg-white/5 rounded-xl p-6 hover:bg-white/10 transition-all duration-300 border border-white/10 hover:border-blue-500/50">
+                    <div class="flex justify-between items-center mb-3">
+                        <h4 class="text-lg font-semibold group-hover:text-blue-400 transition-colors">${s.name}</h4>
+                        <span class="text-blue-300">${s.level}%</span>
+                    </div>
+                    <div class="w-full bg-gray-800 h-2 rounded-full">
+                        <div class="bg-blue-500 h-full rounded-full transition-all duration-1000" style="width: ${s.level}%"></div>
+                    </div>
+                </div>
+            `).join('');
+
+            // Render Contact
+            document.getElementById('contact-container').innerHTML = data.socialLinks.map(s => `
+                <a href="${s.link}" target="_blank" rel="noopener noreferrer" class="bg-white/10 p-6 rounded-lg text-center transform ${s.color} hover:scale-105 transition-all">
+                    <div class="text-4xl mb-2">${s.icon}</div>
+                    <div class="text-lg">${s.name}</div>
+                </a>
+            `).join('');
+
+            // Scroll Animation Logic
             const els = document.querySelectorAll('.scroll-stagger');
             els.forEach((el, i) => {
                 // set custom delay var for children
