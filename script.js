@@ -223,6 +223,22 @@ document.addEventListener("DOMContentLoaded", () => {
           ],
           certifications: [
             {
+              id: "advanced_react",
+              name: "Advanced React",
+              provider: "Scrimba",
+              date: "December 2025",
+              icon: '<i class="fas fa-layer-group"></i>',
+              questType: "Skill Quest",
+              status: "Completed",
+              rewards: [
+                "Reusable Patterns",
+                "Custom Hooks",
+                "Advanced Routing",
+                "Performance Optimization"
+              ],
+              description: "Deepened React expertise with reusable component patterns, custom hooks, routing, and optimization techniques. Built VanLife, a multi-page webapp backed by Firebase that lets users browse vans, view detailed listings, and manage host-specific dashboards."
+            },
+            {
               id: "react_basics",
               name: "Learn React",
               provider: "Scrimba",
