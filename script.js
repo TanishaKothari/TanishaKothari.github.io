@@ -115,7 +115,7 @@ document.addEventListener("DOMContentLoaded", () => {
       content: {
         title: "Project Vault",
         description: "Unearth hidden gems in the Project Vault:<br><small class='text-blue-300'>💡 Click the treasure chests to reveal each project's details!</small>",
-        items: [
+        gamedevProjects: [
           {
             name: "Firearm Frenzy",
             tech: "Unreal Engine 5, C++",
@@ -143,13 +143,22 @@ document.addEventListener("DOMContentLoaded", () => {
             description: "Classic sudoku and variants",
             link: "https://github.com/TanishaKothari/Sudoku-Mastermind",
             icon: '<i class="fas fa-puzzle-piece"></i>'
-          },
+          }
+        ],
+        softwareWebProjects: [
           {
             name: "EcoTrace",
             tech: "Python, TypeScript, Next.js, React, TailwindCSS, SQLite",
             description: "AI-powered environmental impact analyzer",
             link: "https://github.com/TanishaKothari/EcoTrace",
             icon: '<i class="fas fa-leaf"></i>'
+          },
+          {
+            name: "Quizzical",
+            tech: "React",
+            description: "An interactive quiz application that tests your knowledge across various topics",
+            link: "https://github.com/TanishaKothari/Quizzical",
+            icon: '<i class="fas fa-question-circle"></i>'
           },
           {
             name: "ExploreEase",
@@ -184,9 +193,9 @@ document.addEventListener("DOMContentLoaded", () => {
               { name: "Svelte & SvelteKit", level: 65, icon: '<i class="fas fa-fire"></i>' },
               { name: "C++", level: 75, icon: '<i class="fas fa-code"></i>' },
               { name: "Java", level: 40, icon: '<i class="fab fa-java"></i>' },
-              { name: "MySQL, PostgreSQL, & SQLite", level: 72, icon: '<i class="fas fa-database"></i>' },
+              { name: "MySQL, PostgreSQL, & SQLite", level: 80, icon: '<i class="fas fa-database"></i>' },
               { name: "HTML & CSS", level: 75, icon: '<i class="fab fa-html5"></i>' },
-              {name: "React", level: 70, icon: '<i class="fab fa-react"></i>' },
+              {name: "React", level: 90, icon: '<i class="fab fa-react"></i>' },
               { name: "Tailwind CSS", level: 60, icon: '<svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path fill-rule="evenodd" clip-rule="evenodd" d="M12 6.036c-2.667 0-4.333 1.325-5 3.976 1-1.325 2.167-1.822 3.5-1.491.761.189 1.305.738 1.906 1.345C13.387 10.855 14.522 12 17 12c2.667 0 4.333-1.325 5-3.976-1 1.325-2.166 1.822-3.5 1.491-.761-.189-1.305-.738-1.907-1.345-.98-.99-2.114-2.134-4.593-2.134zM7 12c-2.667 0-4.333 1.325-5 3.976 1-1.326 2.167-1.822 3.5-1.491.761.189 1.305.738 1.907 1.345.98.989 2.115 2.134 4.594 2.134 2.667 0 4.333-1.325 5-3.976-1 1.325-2.167 1.822-3.5 1.491-.761-.189-1.305-.738-1.906-1.345C10.613 13.145 9.478 12 7 12z"/></svg>' },
               { name: "Bootstrap", level: 70, icon: '<i class="fab fa-bootstrap"></i>' }
             ]
@@ -897,8 +906,13 @@ document.addEventListener("DOMContentLoaded", () => {
             ` : ""}
 
             ${currentScene === "projects" ? `
+              <h3 class="text-2xl font-bold mb-6 text-blue-300">Game Development Projects</h3>
               <div class="project-grid grid gap-6 md:grid-cols-3 animate-fade-in">
-                ${scene.content.items?.map(getTreasureChestHTML).join("") || ""}
+                ${scene.content.gamedevProjects?.map(getTreasureChestHTML).join("") || ""}
+              </div>
+              <h3 class="text-2xl font-bold mb-6 text-green-300 mt-12">Software/Web Development Projects</h3>
+              <div class="project-grid grid gap-6 md:grid-cols-3 animate-fade-in">
+                ${scene.content.softwareWebProjects?.map(getTreasureChestHTML).join("") || ""}
               </div>
             ` : ""}
 
@@ -2822,6 +2836,13 @@ function getTreasureChestHTML(project) {
                     class="flex items-center gap-2 hover:text-yellow-200 transition-colors">
                   <i class="fas fa-external-link-alt"></i>
                   <span>Play Game</span>
+                </a>
+              ` : ''}
+              ${project.name === "Quizzical" ? `
+                <a href="https://quizzical-gold-three.vercel.app/" target="_blank" rel="noopener noreferrer" 
+                    class="flex items-center gap-2 hover:text-yellow-200 transition-colors">
+                  <i class="fas fa-external-link-alt"></i>
+                  <span>View Project</span>
                 </a>
               ` : ''}
               ${project.name === "ExploreEase" ? `
