@@ -2846,7 +2846,7 @@ function getTreasureChestHTML(project) {
                 </a>
               ` : ''}
               ${project.name === "ExploreEase" ? `
-                <a href="https://exploreease-4cf23960f067.herokuapp.com/login" target="_blank" rel="noopener noreferrer" 
+                <a href="https://exploreease-w7ps.onrender.com" target="_blank" rel="noopener noreferrer" 
                     class="flex items-center gap-2 hover:text-yellow-200 transition-colors">
                   <i class="fas fa-external-link-alt"></i>
                   <span>View Project</span>
