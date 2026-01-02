@@ -6,14 +6,16 @@ window.portfolioData = {
                 tech: "Unreal Engine 5, C++",
                 description: `A third-person shooter`,
                 githubLink: "https://github.com/TanishaKothari/Firearm-Frenzy",
-                icon: '<i class="fas fa-crosshairs"></i>'
+                icon: '<i class="fas fa-crosshairs"></i>',
+                isGame: true
             },
             {
                 name: "Crypt Raider",
                 tech: "Unreal Engine 5, C++",
                 description: "A puzzle adventure",
                 githubLink: "https://github.com/TanishaKothari/CryptRaider",
-                icon: '<i class="fas fa-dungeon"></i>'
+                icon: '<i class="fas fa-dungeon"></i>',
+                isGame: true
             },
             {
                 name: "PortalPaths: Maze Multiverse",
@@ -21,14 +23,16 @@ window.portfolioData = {
                 description: `A maze game with various themes and different difficulty modes`,
                 githubLink: "https://github.com/TanishaKothari/PortalPaths-Maze_Multiverse",
                 liveLink: "https://tanishakothari.itch.io/portalpaths-maze-multiverse",
-                icon: '<i class="fas fa-rocket"></i>'
+                icon: '<i class="fas fa-rocket"></i>',
+                isGame: true
             },
             {
                 name: "Sudoku Mastermind",
                 tech: "Unity, C#",
                 description: "Classic sudoku and variants",
                 githubLink: "https://github.com/TanishaKothari/Sudoku-Mastermind",
-                icon: '<i class="fas fa-puzzle-piece"></i>'
+                icon: '<i class="fas fa-puzzle-piece"></i>',
+                isGame: true
             }
         ],
         softwareWeb: [

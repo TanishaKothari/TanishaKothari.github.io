@@ -2485,30 +2485,16 @@ function getTreasureChestHTML(project) {
             </div>
             <p class="mb-4">${project.description}</p>
             <div class="flex items-center gap-4" style="color: yellow">
-              <a href="${project.link}" target="_blank" rel="noopener noreferrer"
+              <a href="${project.githubLink}" target="_blank" rel="noopener noreferrer"
                   class="flex items-center gap-2 hover:text-yellow-200 transition-colors">
                 <i class="fab fa-github"></i>
                 <span>View Code</span>
               </a>
-              ${project.name === "PortalPaths: Maze Multiverse" ? `
-                <a href="https://tanishakothari.itch.io/portalpaths-maze-multiverse" target="_blank" rel="noopener noreferrer"
+              ${project.liveLink ? `
+                <a href="${project.liveLink}" target="_blank" rel="noopener noreferrer"
                     class="flex items-center gap-2 hover:text-yellow-200 transition-colors">
                   <i class="fas fa-external-link-alt"></i>
-                  <span>Play Game</span>
-                </a>
-              ` : ''}
-              ${project.name === "Quizzical" ? `
-                <a href="https://quizzical-gold-three.vercel.app/" target="_blank" rel="noopener noreferrer" 
-                    class="flex items-center gap-2 hover:text-yellow-200 transition-colors">
-                  <i class="fas fa-external-link-alt"></i>
-                  <span>View Project</span>
-                </a>
-              ` : ''}
-              ${project.name === "ExploreEase" ? `
-                <a href="https://exploreease-w7ps.onrender.com" target="_blank" rel="noopener noreferrer" 
-                    class="flex items-center gap-2 hover:text-yellow-200 transition-colors">
-                  <i class="fas fa-external-link-alt"></i>
-                  <span>View Project</span>
+                  <span>${project.isGame ? 'Play Game' : 'View Project'}</span>
                 </a>
               ` : ''}
             </div>
