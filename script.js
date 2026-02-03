@@ -417,7 +417,7 @@ document.addEventListener("DOMContentLoaded", () => {
                   Bachelor of Advanced Computing with expertise in Computer Science and Software Development.
                 </p>
                 <p class="bio-text">
-                  Achieved the prestigious rank of Arena Candidate Master in chess, demonstrating 
+                  Achieved the prestigious rank of Arena FIDE Master in chess, demonstrating 
                   strategic thinking and tactical prowess. Actively seeking new adventures in 
                   game development, software engineering, and web development.
                 </p>
@@ -425,10 +425,9 @@ document.addEventListener("DOMContentLoaded", () => {
                 <div class="character-achievements">
                   <h4 class="achievements-subtitle">Notable Achievements</h4>
                   <div class="achievement-badges">
-                    <span class="badge">💻 16+ Github Projects</span>
+                    <span class="badge">💻 20+ Github Projects</span>
                     <span class="badge">🏆 500+ Bugs Squashed</span>
-                    <span class="badge">♟️ Arena Candidate Master</span>
-                    <span class="badge">📈 ~1630 Chess Rating</span>
+                    <span class="badge">♟️ Arena FIDE Master</span>
                   </div>
                 </div>
               </div>

@@ -180,9 +180,9 @@ window.portfolioData = {
     chess: {
         achievements: [
             {
-                title: "Arena Candidate Master",
-                date: "2023",
-                details: "Achieved ACM title through consistent performance",
+                title: "Arena FIDE Master",
+                date: "2026",
+                details: "Achieved AFM title through consistent performance",
                 icon: '<i class="fas fa-trophy text-yellow-400"></i>'
             },
             {
