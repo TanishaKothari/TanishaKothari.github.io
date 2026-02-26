@@ -1,5 +1,30 @@
 window.portfolioData = {
     projects: {
+        softwareWeb: [
+            {
+                name: "EcoTrace",
+                tech: "Python, TypeScript, Next.js, React, TailwindCSS, SQLite",
+                description: "AI-powered environmental impact analyser",
+                githubLink: "https://github.com/TanishaKothari/EcoTrace",
+                icon: '<i class="fas fa-leaf"></i>'
+            },
+            {
+                name: "Quizzical",
+                tech: "React",
+                description: "An interactive quiz application that tests your knowledge across various topics",
+                githubLink: "https://github.com/TanishaKothari/Quizzical",
+                liveLink: "https://quizzical-gold-three.vercel.app/",
+                icon: '<i class="fas fa-question-circle"></i>'
+            },
+            {
+                name: "ExploreEase",
+                tech: "Python, Flask, HTML, CSS, JavaScript, MySQL",
+                description: "A personalised travel itinerary generator website",
+                githubLink: "https://github.com/TanishaKothari/ExploreEase",
+                liveLink: "https://exploreease-w7ps.onrender.com",
+                icon: '<i class="fas fa-globe-americas"></i>'
+            }
+        ],
         gamedev: [
             {
                 name: "Firearm Frenzy",
@@ -34,40 +59,10 @@ window.portfolioData = {
                 icon: '<i class="fas fa-puzzle-piece"></i>',
                 isGame: true
             }
-        ],
-        softwareWeb: [
-            {
-                name: "EcoTrace",
-                tech: "Python, TypeScript, Next.js, React, TailwindCSS, SQLite",
-                description: "AI-powered environmental impact analyzer",
-                githubLink: "https://github.com/TanishaKothari/EcoTrace",
-                icon: '<i class="fas fa-leaf"></i>'
-            },
-            {
-                name: "Quizzical",
-                tech: "React",
-                description: "An interactive quiz application that tests your knowledge across various topics",
-                githubLink: "https://github.com/TanishaKothari/Quizzical",
-                liveLink: "https://quizzical-gold-three.vercel.app/",
-                icon: '<i class="fas fa-question-circle"></i>'
-            },
-            {
-                name: "ExploreEase",
-                tech: "Python, Flask, HTML, CSS, JavaScript, MySQL",
-                description: "A travel itinerary generator website",
-                githubLink: "https://github.com/TanishaKothari/ExploreEase",
-                liveLink: "https://exploreease-w7ps.onrender.com",
-                icon: '<i class="fas fa-globe-americas"></i>'
-            }
         ]
     },
 
     skills: {
-        gamedev: [
-            { name: "Unreal Engine & C++", level: 70, icon: '<i class="fas fa-gamepad"></i>' },
-            { name: "Unity & C#", level: 65, icon: '<i class="fab fa-unity"></i>' },
-            { name: "Raylib", level: 60, icon: '<i class="fas fa-cube"></i>' }
-        ],
         fullstack: [
             { name: "Python & Flask", level: 80, icon: '<i class="fab fa-python"></i>' },
             { name: "JavaScript", level: 70, icon: '<i class="fab fa-js"></i>' },
@@ -80,6 +75,11 @@ window.portfolioData = {
             { name: "React", level: 90, icon: '<i class="fab fa-react"></i>' },
             { name: "Tailwind CSS", level: 60, icon: '<svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path fill-rule="evenodd" clip-rule="evenodd" d="M12 6.036c-2.667 0-4.333 1.325-5 3.976 1-1.325 2.167-1.822 3.5-1.491.761.189 1.305.738 1.906 1.345C13.387 10.855 14.522 12 17 12c2.667 0 4.333-1.325 5-3.976-1 1.325-2.166 1.822-3.5 1.491-.761-.189-1.305-.738-1.907-1.345-.98-.99-2.114-2.134-4.593-2.134zM7 12c-2.667 0-4.333 1.325-5 3.976 1-1.326 2.167-1.822 3.5-1.491.761.189 1.305.738 1.907 1.345.98.989 2.115 2.134 4.594 2.134 2.667 0 4.333-1.325 5-3.976-1 1.325-2.167 1.822-3.5 1.491-.761-.189-1.305-.738-1.906-1.345C10.613 13.145 9.478 12 7 12z"/></svg>' },
             { name: "Bootstrap", level: 70, icon: '<i class="fab fa-bootstrap"></i>' }
+        ],
+        gamedev: [
+            { name: "Unreal Engine & C++", level: 70, icon: '<i class="fas fa-gamepad"></i>' },
+            { name: "Unity & C#", level: 65, icon: '<i class="fab fa-unity"></i>' },
+            { name: "Raylib", level: 60, icon: '<i class="fas fa-cube"></i>' }
         ],
         tools: [
             { name: "Git & GitHub", level: 90, icon: '<i class="fab fa-github"></i>' },
@@ -378,7 +378,7 @@ window.portfolioData = {
             icon: '<i class="fas fa-heart"></i>',
             color: "hover:border-pink-500/50",
             iconColor: "text-pink-400",
-            description: "Assisted as a yoga teacher at a school for autistic children, showcasing exceptional attention to detail and patience in guiding students through exercises."
+            description: "Assisted as a yoga teacher at a school for autistic children, showcasing exceptional attention to detail and patience in guiding students through exercises, helping create a calming and supportive environment."
         },
         {
             title: "Community Service",
@@ -392,14 +392,18 @@ window.portfolioData = {
             icon: '<i class="fas fa-hand-holding-heart"></i>',
             color: "hover:border-red-500/50",
             iconColor: "text-red-400",
-            description: "Assisted in running a community blood donation camp by managing certificate distribution to donors, contributing to the smooth operation of the event."
+            description: "Managed certificate distribution at a community blood donation camp, \
+                      ensuring smooth operations and supporting a vital healthcare initiative \
+                      that saves lives in the community."
         },
         {
             title: "Delegate",
             icon: '<i class="fas fa-globe"></i>',
             color: "hover:border-green-500/50",
             iconColor: "text-green-400",
-            description: "I had the privilege of delegating an insightful interview with former member of parliament at New Zealand Parliament Mr. Kanwaljit Singh Bakshi on the role of India as a soft power in the global scenario."
+            description: "Conducted an insightful interview with former New Zealand Parliament member \
+                      Mr. Kanwaljit Singh Bakshi, exploring India's role as a soft power in global \
+                      politics and international relations."
         }
     ],
 

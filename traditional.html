@@ -120,18 +120,18 @@
                 <h1
                     class="text-6xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-violet-400">
                     Tanisha Kothari</h1>
-                <p class="text-2xl mb-8 max-w-2xl leading-relaxed text-gray-300">Game Developer & Computer Science
-                    Student specializing in C++, Unreal Engine, and Unity development.</p>
+                <p class="text-2xl mb-8 max-w-2xl leading-relaxed text-gray-300">Full-Stack Developer & Computer Science
+                    Student specializing in Python, JavaScript, React, and Node.js.</p>
                 <div class="bg-white/5 p-6 rounded-lg backdrop-blur-sm border border-white/10 max-w-2xl mb-8">
                     <h2 class="text-xl font-bold mb-3 text-blue-400">Career Objective</h2>
                     <p class="leading-relaxed">
-                        Aspiring game programmer seeking internship opportunities to contribute to innovative game
-                        development projects.
-                        Passionate about creating immersive gaming experiences through efficient code and creative
+                        Aspiring full-stack developer seeking internship opportunities to contribute to innovative software
+                        engineering projects.
+                        Passionate about solving real-world problems through efficient code and creative
                         problem-solving.
                     </p>
                 </div>
-                <a href="assets/Tanisha Kothari-Game Developer.pdf" target="_blank" rel="noopener noreferrer"
+                <a href="assets/Tanisha Kothari-SWE.pdf" target="_blank" rel="noopener noreferrer"
                     class="inline-flex items-center gap-2 px-6 py-3 bg-blue-600 hover:bg-blue-700 rounded-lg transition-colors">
                     <i class="fas fa-file-alt"></i><span>Download Resume</span>
                 </a>
@@ -143,13 +143,13 @@
             <h2 class="text-4xl font-bold mb-12 flex items-center gap-3">
                 <i class="fas fa-code text-blue-400"></i>Featured Projects
             </h2>
-            <div id="gamedev-projects-container">
+            <div id="software-projects-container">
+                <h3 class="text-2xl font-bold mb-8">Full-Stack Development Projects</h3>
+                <div class="grid gap-8 md:grid-cols-2" id="software-grid"></div>
+            </div>
+            <div id="gamedev-projects-container" class="mt-12">
                 <h3 class="text-2xl font-bold mb-8">Game Development Projects</h3>
                 <div class="grid gap-8 md:grid-cols-2" id="gamedev-grid"></div>
-            </div>
-            <div id="software-projects-container" class="mt-12">
-                <h3 class="text-2xl font-bold mb-8">Software/Web Development Projects</h3>
-                <div class="grid gap-8 md:grid-cols-2" id="software-grid"></div>
             </div>
         </section>
 
@@ -244,14 +244,14 @@
                     </div>
                 `).join('');
             };
-            renderProjects(data.projects.gamedev, 'gamedev-grid', true);
             renderProjects(data.projects.softwareWeb, 'software-grid', false);
+            renderProjects(data.projects.gamedev, 'gamedev-grid', true);
 
             // Render Skills
             const skillsContainer = document.getElementById('skills-container');
             const skillCategories = [
-                { title: "Game Development", data: data.skills.gamedev },
                 { title: "Full-Stack Development", data: data.skills.fullstack },
+                { title: "Game Development", data: data.skills.gamedev },
                 { title: "Developer Tools", data: data.skills.tools }
             ];
             skillsContainer.innerHTML = skillCategories.map(cat => `

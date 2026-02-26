@@ -35,20 +35,61 @@ document.addEventListener("DOMContentLoaded", () => {
         You've entered the portfolio dungeon of Tanisha Kothari. Choose your path wisely!<br>💡 Tip: Look for floating gems to gain XP!
         <div class="bg-white/10 p-4 rounded-lg mt-2">
           <h2 class="text-xl font-bold mb-2">Career Objective</h2>
-          <p>Aspiring game programmer seeking internship opportunities to contribute to innovative game development projects. Passionate about creating immersive gaming experiences through efficient code and creative problem-solving.</p>
+          <p>Aspiring full-stack developer seeking internship opportunities to contribute to innovative software engineering projects. Passionate about solving real-world problems through efficient code and creative problem-solving.</p>
         </div>`,
         choices: [
-          { text: "Game Maker's Odyssey", nextScene: "gamedev" },
           { text: "Enter Project Vault", nextScene: "projects" },
           { text: "Explore Skills Chamber", nextScene: "skills" },
           { text: "Quest for Knowledge", nextScene: "academics" },
           { text: "Search for Experience", nextScene: "experience" },
           { text: "Enter Battle Arena", nextScene: "competitions" },
+          { text: "Game Maker's Odyssey", nextScene: "gamedev" },
           { text: "Path of the Chess Master", nextScene: "chess" },
           { text: "About the Developer", nextScene: "about" },
           { text: "Contact Portal", nextScene: "contact" }
         ],
       },
+    },
+    projects: {
+      background: "bg-gradient-to-b from-indigo-900 to-violet-900",
+      content: {
+        title: "Project Vault",
+        description: "Unearth hidden gems in the Project Vault:<br><small class='text-blue-300'>💡 Click the treasure chests to reveal each project's details!</small>",
+        softwareWebProjects: portfolioData.projects.softwareWeb,
+        gamedevProjects: portfolioData.projects.gamedev
+      },
+    },
+    skills: {
+      background: "bg-gradient-to-b from-blue-900 to-indigo-900",
+      content: {
+        title: "Skills Chamber",
+        description: "You discover ancient scrolls revealing powerful abilities:",
+        skillCategories: [
+          {
+            title: "Full-Stack Spellbook",
+            skills: portfolioData.skills.fullstack
+          },
+          {
+            title: "Game Development Arsenal",
+            skills: portfolioData.skills.gamedev
+          },
+          {
+            title: "Developer Tools",
+            skills: portfolioData.skills.tools
+          }
+        ]
+      },
+    },
+    academics: {
+      background: "bg-gradient-to-b from-green-900 to-purple-900",
+      content: {
+        title: "Quest Log",
+        description: "Complete educational quests to unlock knowledge and skills:<br><small class='text-blue-300'>💡 Click each quest to see completion details!</small>",
+        education: {
+          university: portfolioData.education.university,
+          certifications: portfolioData.education.certifications
+        }
+      }
     },
     gamedev: {
       background: "bg-gradient-to-r from-purple-900 to-blue-900",
@@ -111,47 +152,6 @@ document.addEventListener("DOMContentLoaded", () => {
         ]
       }
     },
-    projects: {
-      background: "bg-gradient-to-b from-indigo-900 to-violet-900",
-      content: {
-        title: "Project Vault",
-        description: "Unearth hidden gems in the Project Vault:<br><small class='text-blue-300'>💡 Click the treasure chests to reveal each project's details!</small>",
-        gamedevProjects: portfolioData.projects.gamedev,
-        softwareWebProjects: portfolioData.projects.softwareWeb,
-      },
-    },
-    skills: {
-      background: "bg-gradient-to-b from-blue-900 to-indigo-900",
-      content: {
-        title: "Skills Chamber",
-        description: "You discover ancient scrolls revealing powerful abilities:",
-        skillCategories: [
-          {
-            title: "Game Development Arsenal",
-            skills: portfolioData.skills.gamedev
-          },
-          {
-            title: "Full-Stack Spellbook",
-            skills: portfolioData.skills.fullstack
-          },
-          {
-            title: "Developer Tools",
-            skills: portfolioData.skills.tools
-          }
-        ]
-      },
-    },
-    academics: {
-      background: "bg-gradient-to-b from-green-900 to-purple-900",
-      content: {
-        title: "Quest Log",
-        description: "Complete educational quests to unlock knowledge and skills:<br><small class='text-blue-300'>💡 Click each quest to see completion details!</small>",
-        education: {
-          university: portfolioData.education.university,
-          certifications: portfolioData.education.certifications
-        }
-      }
-    },
     chess: {
       background: "bg-gradient-to-r from-blue-900 to-purple-900",
       content: {
@@ -194,7 +194,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 </div>
                 <div class="character-info">
                   <h3 class="character-name">Tanisha Kothari</h3>
-                  <p class="character-class">Game Developer • Code Apprentice</p>
+                  <p class="character-class">Full-Stack Developer • Code Apprentice</p>
                   <p class="character-location">🌏 Sydney, Australia</p>
                 </div>
               </div>
@@ -209,20 +209,9 @@ document.addEventListener("DOMContentLoaded", () => {
                   <div class="stat-info">
                     <span class="stat-name">Programming</span>
                     <div class="stat-bar">
-                      <div class="stat-fill" style="width: 85%"></div>
+                      <div class="stat-fill" style="width: 90%"></div>
                     </div>
-                    <span class="stat-value">85/100</span>
-                  </div>
-                </div>
-                
-                <div class="stat-item">
-                  <div class="stat-icon"><i class="fas fa-gamepad text-purple-400"></i></div>
-                  <div class="stat-info">
-                    <span class="stat-name">Game Development</span>
-                    <div class="stat-bar">
-                      <div class="stat-fill" style="width: 80%"></div>
-                    </div>
-                    <span class="stat-value">80/100</span>
+                    <span class="stat-value">90/100</span>
                   </div>
                 </div>
 
@@ -256,6 +245,17 @@ document.addEventListener("DOMContentLoaded", () => {
                       <div class="stat-fill" style="width: 92%"></div>
                     </div>
                     <span class="stat-value">92/100</span>
+                  </div>
+                </div>
+
+                <div class="stat-item">
+                  <div class="stat-icon"><i class="fas fa-gamepad text-purple-400"></i></div>
+                  <div class="stat-info">
+                    <span class="stat-name">Game Development</span>
+                    <div class="stat-bar">
+                      <div class="stat-fill" style="width: 80%"></div>
+                    </div>
+                    <span class="stat-value">80/100</span>
                   </div>
                 </div>
 
@@ -362,7 +362,7 @@ document.addEventListener("DOMContentLoaded", () => {
                   <div class="quest-details">
                     <p class="quest-description">
                       Managed certificate distribution at a community blood donation camp, 
-                      ensuring smooth operations and supporting this vital healthcare initiative 
+                      ensuring smooth operations and supporting a vital healthcare initiative 
                       that saves lives in the community.
                     </p>
                     <div class="quest-achievements">
@@ -412,14 +412,14 @@ document.addEventListener("DOMContentLoaded", () => {
               <h3 class="section-title">Character Background</h3>
               <div class="bio-content">
                 <p class="bio-text">
-                  A passionate game developer with a love for creating interactive experiences. 
+                  A passionate full-stack developer with a love for solving problems. 
                   Currently on a quest for knowledge at the University of Sydney, pursuing a 
                   Bachelor of Advanced Computing with expertise in Computer Science and Software Development.
                 </p>
                 <p class="bio-text">
                   Achieved the prestigious rank of Arena FIDE Master in chess, demonstrating 
                   strategic thinking and tactical prowess. Actively seeking new adventures in 
-                  game development, software engineering, and web development.
+                  software engineering and game development.
                 </p>
                 
                 <div class="character-achievements">
@@ -435,7 +435,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
             <!-- Download Resume Button -->
             <div class="character-actions">
-              <a href="assets/Tanisha Kothari-Game Developer.pdf" target="_blank" rel="noopener noreferrer" 
+              <a href="assets/Tanisha Kothari-SWE.pdf" target="_blank" rel="noopener noreferrer" 
                 class="character-sheet-btn">
                 <i class="fas fa-scroll mr-2"></i>
                 Download Character Sheet (Resume)
@@ -563,13 +563,14 @@ document.addEventListener("DOMContentLoaded", () => {
             ` : ""}
 
             ${currentScene === "projects" ? `
-              <h3 class="text-2xl font-bold mb-6 text-blue-300">Game Development Projects</h3>
-              <div class="project-grid grid gap-6 md:grid-cols-3 animate-fade-in">
-                ${scene.content.gamedevProjects?.map(getTreasureChestHTML).join("") || ""}
-              </div>
-              <h3 class="text-2xl font-bold mb-6 text-green-300 mt-12">Software/Web Development Projects</h3>
+              <h3 class="text-2xl font-bold mb-6 text-green-300">Full-Stack Development Projects</h3>
               <div class="project-grid grid gap-6 md:grid-cols-3 animate-fade-in">
                 ${scene.content.softwareWebProjects?.map(getTreasureChestHTML).join("") || ""}
+              </div>
+
+              <h3 class="text-2xl font-bold mb-6 text-blue-300 mt-12">Game Development Projects</h3>
+              <div class="project-grid grid gap-6 md:grid-cols-3 animate-fade-in">
+                ${scene.content.gamedevProjects?.map(getTreasureChestHTML).join("") || ""}
               </div>
             ` : ""}
 
