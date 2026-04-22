@@ -84,6 +84,15 @@ window.portfolioData = {
         tools: [
             { name: "Git & GitHub", level: 90, icon: '<i class="fab fa-github"></i>' },
             { name: "VS Code", level: 85, icon: '<i class="fas fa-code"></i>' },
+            { name: "Docker", level: 40, icon: '<i class="fab fa-docker"></i>' }
+        ],
+        concepts: [
+            { name: "Data Structures & Algorithms", level: 65, icon: '<i class="fas fa-project-diagram"></i>' },
+            { name: "Software Design", level: 85, icon: '<i class="fas fa-drafting-compass"></i>' },
+            { name: "Object-Oriented Programming (OOP)", level: 85, icon: '<i class="fas fa-cubes"></i>' },
+            { name: "Linux", level: 70, icon: '<i class="fab fa-linux"></i>' },
+            { name: "TCP/IP", level: 70, icon: '<i class="fas fa-network-wired"></i>' },
+            { name: "Database Design", level: 90, icon: '<i class="fas fa-database"></i>' }
         ]
     },
 
@@ -243,6 +252,23 @@ window.portfolioData = {
     experience: {
         roles: [
             {
+                id: "yogi_foods",
+                title: "Full-Stack Developer",
+                company: "Yogi Foods",
+                period: "January 2026 - Present",
+                type: "development",
+                icon: '<i class="fas fa-utensils"></i>',
+                achievements: ["Web Wizard", "Database Dynamo", "API Artisan"],
+                details: [
+                    "Building an e-commerce platform using React, Node.js/Express, and MySQL (products catalog, cart, orders).",
+                    "Integrating Stripe for secure card and invoice payments and OAuth 2.0 social login.",
+                    "Deployed via Docker on AWS with Nginx reverse proxy for production routing and performance."
+                ],
+                skills: ["React", "Node.js", "MySQL", "Stripe API", "Docker"],
+                color: "hover:border-red-500/50",
+                iconColor: "text-red-400"
+            },
+            {
                 id: "chess_coach",
                 title: "Chess Coach",
                 company: "Sydney Academy of Chess",
@@ -263,7 +289,7 @@ window.portfolioData = {
                 id: "e12_dev",
                 title: "Software Developer",
                 company: "e12.io",
-                period: "March 2025 - Present",
+                period: "March 2025 - January 2026",
                 type: "development",
                 icon: '<i class="fas fa-laptop-code"></i>',
                 achievements: ["Full-Stack Explorer", "UI/UX Architect", "API Master"],
@@ -285,8 +311,9 @@ window.portfolioData = {
                 icon: '<i class="fas fa-chess"></i>',
                 achievements: ["Community Leader", "Event Coordinator", "Team Player"],
                 details: [
-                    "Assist in organizing events and tournaments to engage chess enthusiasts across campus.",
-                    "Support weekly operations for a club of 600+ members, ensuring smooth event coordination and communication.",
+                    "Update and maintain the club's website, ensuring it reflects the latest information and events.",
+                    "Support weekly operations and organize events for a club of 500+ members.",
+                    "Built the website for the Australian Chess Championships 2026 using WordPress, which served ~31k+ requests from ~2k+ users weekly across Australia and overseas.",
                     "Developing event management, leadership, and communication skills."
                 ],
                 skills: ["Event Management", "Communication", "Team Coordination"],
@@ -297,7 +324,7 @@ window.portfolioData = {
                 id: "peer_mentor",
                 title: "ENGO Peer Mentor",
                 company: "University of Sydney",
-                period: "February 2025 - Present",
+                period: "February 2025 - November 2025",
                 type: "mentorship",
                 icon: '<i class="fas fa-users"></i>',
                 achievements: ["Mentor Master", "Guide", "Support Specialist"],
@@ -316,12 +343,55 @@ window.portfolioData = {
 
     competitions: [
         {
+            id: "hsil_2026",
+            name: "HSIL Hackathon 2026",
+            type: "Hackathon",
+            date: "April 2026",
+            placement: "Honourable Mention (4th of 17)",
+            team: "Solely (6 members)",
+            description: "Conceptualized 'Solely', an AI-powered foot-imaging solution to detect early diabetes risk and pre-ulcerative signs, focusing on underserved, high-risk non-white populations. Our pitch emphasized clinical impact, accessibility, and health equity.",
+            project: "Solely - AI Foot Imaging for Diabetes Risk",
+            technologies: ["AI", "Healthcare", "Pitch"],
+            achievements: [
+                "Honourable Mention (4th Place)",
+                "Healthcare Innovation Pitch",
+                "Focus on Underserved Populations",
+                "Clinical Impact & Accessibility"
+            ],
+            awards: ["Honourable Mention (4th Place)"],
+            icon: '<i class="fas fa-shoe-prints"></i>',
+            difficulty: "medium",
+            color: "hover:border-pink-500/50",
+            iconColor: "text-pink-400",
+        },
+        {
+            id: "terminal_2026",
+            name: "Terminal 2026 (Citadel)",
+            type: "Programming Contest",
+            date: "April 2026",
+            placement: "APAC Regional Participant",
+            team: "Bashers (3 members)",
+            description: "Developed a Python-based strategy for a tower defense-style game, focused on path manipulation and adaptability: funneling opponents into concentrated defenses, alternating attack sides to avoid predictability, and simulating paths to choose the least-damage entry point for each attack.",
+            project: "Tower Defense AI Strategy (Python)",
+            technologies: ["Python", "Strategy", "Adversarial AI"],
+            achievements: [
+                "Tower Defense AI",
+                "Path Manipulation & Adaptability",
+                "Adversarial Solution Design"
+            ],
+            awards: [],
+            icon: '<i class="fas fa-terminal"></i>',
+            difficulty: "hard",
+            color: "hover:border-gray-500/50",
+            iconColor: "text-gray-400",
+        },
+        {
             id: "syncs_2025",
             name: "SYNCS Hack 2025",
             type: "Hackathon",
             date: "August 2025",
             placement: "Best First Year Team Prize",
-            team: "404 Brain Not Found",
+            team: "404 Brain Not Found (4 members)",
             description: "Built Gigimon — a web app to strengthen community connections by helping people find and connect with local gig workers and community members nearby.",
             project: "Gigimon - Community Gig Marketplace",
             technologies: ["Python", "MySQL", "Next.js", "Google Maps API"],
@@ -359,7 +429,7 @@ window.portfolioData = {
             type: "Programming Contest",
             date: "August 2025",
             placement: "Team Participant",
-            team: "3-person Team",
+            team: "Python Potatoes (3 members)",
             description: "Collaborative algorithmic problem-solving competition under time constraints",
             project: "Complex algorithmic challenges and data structures",
             technologies: ["Python", "Data Structures", "Algorithms", "Problem Solving"],

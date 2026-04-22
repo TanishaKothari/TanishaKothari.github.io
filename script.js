@@ -76,6 +76,10 @@ document.addEventListener("DOMContentLoaded", () => {
           {
             title: "Developer Tools",
             skills: portfolioData.skills.tools
+          },
+          {
+            title: "Core Concepts",
+            skills: portfolioData.skills.concepts
           }
         ]
       },
