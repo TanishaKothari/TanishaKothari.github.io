@@ -252,6 +252,24 @@ window.portfolioData = {
     experience: {
         roles: [
             {
+                id: "futurefocus_optiver",
+                title: "FutureFocus Program (Tech Stream)",
+                company: "Optiver",
+                period: "May 2026",
+                type: "development",
+                icon: '<i class="fas fa-exchange-alt"></i>',
+                achievements: ["Exchange Simulator", "Systems Design", "Concurrency Handling"],
+                details: [
+                    "Learned trading basics and how trading systems work.",
+                    "Designed and built a functional exchange simulator in 3 days with a partner using Python: order book & matching engine, risk management, and multi-client order routing.",
+                    "Prioritised system architecture design before implementation; navigated complex concurrency and race condition challenges inherent to a live, multi-client trading environment.",
+                    "Faced engineering tradeoffs where latency was a defining constraint, shaping all design decisions."
+                ],
+                skills: ["System Architecture", "Concurrency", "Latency Optimization", "Python", "Trading Systems"],
+                color: "hover:border-blue-500/50",
+                iconColor: "text-blue-400"
+            },
+            {
                 id: "yogi_foods",
                 title: "Full-Stack Developer",
                 company: "Yogi Foods",
@@ -343,6 +361,27 @@ window.portfolioData = {
 
     competitions: [
         {
+            id: "terminal_2026",
+            name: "Terminal 2026 (Citadel)",
+            type: "Programming Contest",
+            date: "April 2026",
+            placement: "APAC Regional Participant",
+            team: "Bashers (3 members)",
+            description: "Developed a Python-based strategy for a tower defense-style game, focused on path manipulation and adaptability: funneling opponents into concentrated defenses, alternating attack sides to avoid predictability, and simulating paths to choose the least-damage entry point for each attack.",
+            project: "Tower Defense AI Strategy (Python)",
+            technologies: ["Python", "Strategy", "Adversarial AI"],
+            achievements: [
+                "Tower Defense AI",
+                "Path Manipulation & Adaptability",
+                "Adversarial Solution Design"
+            ],
+            awards: [],
+            icon: '<i class="fas fa-terminal"></i>',
+            difficulty: "hard",
+            color: "hover:border-gray-500/50",
+            iconColor: "text-gray-400",
+        },
+        {
             id: "hsil_2026",
             name: "HSIL Hackathon 2026",
             type: "Hackathon",
@@ -365,25 +404,21 @@ window.portfolioData = {
             iconColor: "text-pink-400",
         },
         {
-            id: "terminal_2026",
-            name: "Terminal 2026 (Citadel)",
-            type: "Programming Contest",
-            date: "April 2026",
-            placement: "APAC Regional Participant",
-            team: "Bashers (3 members)",
-            description: "Developed a Python-based strategy for a tower defense-style game, focused on path manipulation and adaptability: funneling opponents into concentrated defenses, alternating attack sides to avoid predictability, and simulating paths to choose the least-damage entry point for each attack.",
-            project: "Tower Defense AI Strategy (Python)",
-            technologies: ["Python", "Strategy", "Adversarial AI"],
-            achievements: [
-                "Tower Defense AI",
-                "Path Manipulation & Adaptability",
-                "Adversarial Solution Design"
-            ],
-            awards: [],
-            icon: '<i class="fas fa-terminal"></i>',
-            difficulty: "hard",
-            color: "hover:border-gray-500/50",
-            iconColor: "text-gray-400",
+            id: "hacknode_2025",
+            name: "HackNode Australia 2025",
+            type: "Hackathon",
+            date: "August 2025",
+            placement: "Most Innovative AI App Prize",
+            team: "Solo",
+            description: "",
+            project: "EcoTrace - AI-powered Environmental Impact Analyzer",
+            technologies: ["Python", "TypeScript", "Next.js", "React", "TailwindCSS", "SQLite"],
+            achievements: ["Complete Webapp Prototype", "AI Integration", "Sustainability Focus"],
+            awards: ["Most Innovative AI App Prize"],
+            icon: '<i class="fas fa-trophy"></i>',
+            difficulty: "expert",
+            color: "hover:border-yellow-500/50",
+            iconColor: "text-yellow-400",
         },
         {
             id: "syncs_2025",
@@ -405,23 +440,6 @@ window.portfolioData = {
             difficulty: "hard",
             color: "hover:border-green-500/50",
             iconColor: "text-green-400",
-        },
-        {
-            id: "hacknode_2025",
-            name: "HackNode Australia 2025",
-            type: "Hackathon",
-            date: "August 2025",
-            placement: "Most Innovative AI App Prize",
-            team: "Solo",
-            description: "",
-            project: "EcoTrace - AI-powered Environmental Impact Analyzer",
-            technologies: ["Python", "TypeScript", "Next.js", "React", "TailwindCSS", "SQLite"],
-            achievements: ["Complete Webapp Prototype", "AI Integration", "Sustainability Focus"],
-            awards: ["Most Innovative AI App Prize"],
-            icon: '<i class="fas fa-trophy"></i>',
-            difficulty: "expert",
-            color: "hover:border-yellow-500/50",
-            iconColor: "text-yellow-400",
         },
         {
             id: "alluni_2025",
