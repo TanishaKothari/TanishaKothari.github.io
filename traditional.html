@@ -224,17 +224,19 @@
             const renderProjects = (projects, containerId, isGame) => {
                 const container = document.getElementById(containerId);
                 container.innerHTML = projects.map(p => `
-                    <div class="group hover-lift hover-glow relative bg-white/5 rounded-xl p-6 hover:bg-white/10 transition-all duration-300 border border-white/10 hover:border-blue-500/50">
+                    <div class="group hover-lift hover-glow relative bg-white/5 rounded-xl p-6 hover:bg-white/10 transition-all duration-300 border border-white/10 hover:border-blue-500/50 flex h-full flex-col">
                         <div class="flex items-center gap-4 mb-4">
                             ${p.icon}
                             <h3 class="text-xl font-bold group-hover:text-blue-400 transition-colors">${p.name}</h3>
                         </div>
                         <div class="text-blue-300 mb-2 text-sm">${p.tech}</div>
                         <p class="mb-4 text-gray-300">${p.description}</p>
-                        <div class="flex items-center gap-4">
-                            <a href="${p.githubLink}" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 text-blue-300 hover:text-blue-100">
-                                <i class="fab fa-github"></i><span>View Code</span>
-                            </a>
+                        <div class="mt-auto flex items-center gap-4 pt-4">
+                            ${p.githubLink ? `
+                                <a href="${p.githubLink}" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 text-blue-300 hover:text-blue-100">
+                                    <i class="fab fa-github"></i><span>View Code</span>
+                                </a>
+                            ` : ''}
                             ${p.liveLink ? `
                                 <a href="${p.liveLink}" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 text-blue-300 hover:text-blue-100 transition-colors">
                                     <i class="fas fa-external-link-alt"></i><span>${p.isGame ? 'Play Game' : 'View Project'}</span>

@@ -891,10 +891,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // sync the grid’s align-bottom class
   function syncGridAlign() {
-    const grid = document.querySelector(".project-grid");
-    if (!grid) return;
-    const anyOpen = !!grid.querySelector(".chest-wrapper.opened");
-    grid.classList.toggle("align-bottom", anyOpen);
+    document.querySelectorAll(".project-grid").forEach(grid => {
+      const anyOpen = !!grid.querySelector(".chest-wrapper.opened");
+      grid.classList.toggle("align-bottom", anyOpen);
+    });
   }
 
   // Add resize observer
@@ -2489,11 +2489,13 @@ function getTreasureChestHTML(project) {
             </div>
             <p class="mb-4">${project.description}</p>
             <div class="flex items-center gap-4" style="color: yellow">
+              ${project.githubLink ? `
               <a href="${project.githubLink}" target="_blank" rel="noopener noreferrer"
                   class="flex items-center gap-2 hover:text-yellow-200 transition-colors">
                 <i class="fab fa-github"></i>
                 <span>View Code</span>
               </a>
+              ` : ''}
               ${project.liveLink ? `
                 <a href="${project.liveLink}" target="_blank" rel="noopener noreferrer"
                     class="flex items-center gap-2 hover:text-yellow-200 transition-colors">

@@ -27,9 +27,17 @@ window.portfolioData = {
         ],
         gamedev: [
             {
+                name: "Behind the Screen",
+                tech: "Godot",
+                description: "A fantasy roguelike strategy game featuring a dual-layered narrative. You are an arcade machine setting up levels, but behind the screen you become the Dark Lord, strategically deploying monsters to defend your loot from increasingly powerful heroes.",
+                liveLink: "https://nhimbus2000.itch.io/behind-the-screen",
+                icon: '<i class="fas fa-chess-king"></i>',
+                isGame: true
+            },
+            {
                 name: "Firearm Frenzy",
                 tech: "Unreal Engine 5, C++",
-                description: `A third-person shooter`,
+                description: `A third-person shooter set in a futuristic arena, where you'll battle relentless AI opponents, relying on quick reflexes, precise aim, and smart weapon choices to stay alive.`,
                 githubLink: "https://github.com/TanishaKothari/Firearm-Frenzy",
                 icon: '<i class="fas fa-crosshairs"></i>',
                 isGame: true
@@ -37,7 +45,7 @@ window.portfolioData = {
             {
                 name: "Crypt Raider",
                 tech: "Unreal Engine 5, C++",
-                description: "A puzzle adventure",
+                description: "A first-person puzzle adventure set in a mysterious ancient crypt, where you'll manipulate objects, solve intricate puzzles, and unlock hidden pathways to uncover the secrets buried within.",
                 githubLink: "https://github.com/TanishaKothari/CryptRaider",
                 icon: '<i class="fas fa-dungeon"></i>',
                 isGame: true
@@ -45,7 +53,7 @@ window.portfolioData = {
             {
                 name: "PortalPaths: Maze Multiverse",
                 tech: "C++, Raylib",
-                description: `A maze game with various themes and different difficulty modes`,
+                description: `Explore ever-changing mazes across multiple worlds, from asteroid fields to tropical jungles, as you race through procedurally generated environments, collect powerups, and overcome unique challenges to find your way to the exit.`,
                 githubLink: "https://github.com/TanishaKothari/PortalPaths-Maze_Multiverse",
                 liveLink: "https://tanishakothari.itch.io/portalpaths-maze-multiverse",
                 icon: '<i class="fas fa-rocket"></i>',
@@ -54,7 +62,7 @@ window.portfolioData = {
             {
                 name: "Sudoku Mastermind",
                 tech: "Unity, C#",
-                description: "Classic sudoku and variants",
+                description: "A Sudoku experience with a twist, where you'll test your logic and problem-solving skills across multiple variants, using careful deduction and strategic thinking to solve challenging grids and master new rules.",
                 githubLink: "https://github.com/TanishaKothari/Sudoku-Mastermind",
                 icon: '<i class="fas fa-puzzle-piece"></i>',
                 isGame: true
@@ -84,7 +92,9 @@ window.portfolioData = {
         tools: [
             { name: "Git & GitHub", level: 90, icon: '<i class="fab fa-github"></i>' },
             { name: "VS Code", level: 85, icon: '<i class="fas fa-code"></i>' },
-            { name: "Docker", level: 40, icon: '<i class="fab fa-docker"></i>' }
+            { name: "Docker", level: 40, icon: '<i class="fab fa-docker"></i>' },
+            { name: "AWS", level: 35, icon: '<i class="fab fa-aws"></i>' },
+            { name: "Nginx", level: 35, icon: '<i class="fas fa-server"></i>' }
         ],
         concepts: [
             { name: "Data Structures & Algorithms", level: 65, icon: '<i class="fas fa-project-diagram"></i>' },
@@ -279,8 +289,9 @@ window.portfolioData = {
                 achievements: ["Web Wizard", "Database Dynamo", "API Artisan"],
                 details: [
                     "Building an e-commerce platform using React, Node.js/Express, and MySQL (products catalog, cart, orders).",
-                    "Integrating Stripe for secure card and invoice payments and OAuth 2.0 social login.",
-                    "Deployed via Docker on AWS with Nginx reverse proxy for production routing and performance."
+                    "Integrated Stripe for secure card payments, swissqrbill for invoice payments, and OAuth 2.0 social login.",
+                    "Deployed via Docker on AWS Lightsail with Nginx reverse proxy and rate limiting for production routing, security, and performance.",
+                    "Implemented MySQL master-slave replication and automated backups using Docker on AWS, improving database resilience and disaster recovery readiness."
                 ],
                 skills: ["React", "Node.js", "MySQL", "Stripe API", "Docker"],
                 color: "hover:border-red-500/50",
@@ -361,6 +372,27 @@ window.portfolioData = {
 
     competitions: [
         {
+            id: "usyd_game_jam_2026",
+            name: "University of Sydney Game Jam 2026",
+            type: "Game Jam",
+            date: "June 2026",
+            placement: "12th of 39",
+            team: "Evil Gnomes (4 members)",
+            description: "Made Behind the Screen, a fantasy roguelike strategy game with a dual-layered narrative where you act as an arcade machine setting up levels and, behind the screen, a Dark Lord defending loot from increasingly powerful heroes.",
+            project: "Behind the Screen",
+            technologies: ["Godot"],
+            achievements: [
+                "Character Implementation",
+                "UI Development",
+                "Narrative Contribution"
+            ],
+            awards: [],
+            icon: '<i class="fas fa-chess-king"></i>',
+            difficulty: "hard",
+            color: "hover:border-blue-500/50",
+            iconColor: "text-blue-400",
+        },
+        {
             id: "terminal_2026",
             name: "Terminal 2026 (Citadel)",
             type: "Programming Contest",
@@ -368,7 +400,7 @@ window.portfolioData = {
             placement: "APAC Regional Participant",
             team: "Bashers (3 members)",
             description: "Developed a Python-based strategy for a tower defense-style game, focused on path manipulation and adaptability: funneling opponents into concentrated defenses, alternating attack sides to avoid predictability, and simulating paths to choose the least-damage entry point for each attack.",
-            project: "Tower Defense AI Strategy (Python)",
+            project: "Tower Defense AI Strategy",
             technologies: ["Python", "Strategy", "Adversarial AI"],
             achievements: [
                 "Tower Defense AI",
